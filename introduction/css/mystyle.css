@@ -1,8 +1,13 @@
 body {
+  /* Fallback color in case the GIF fails to load */
+  background-color: #1b213a; 
+  
+  /* Your background GIF */
   background-image: url('https://i.pinimg.com/originals/e5/40/08/e54008fec896ec085da559cf537d6f32.gif'); 
-  background-size: cover;       
+  background-size: cover;        
   background-repeat: no-repeat; 
   background-attachment: fixed; 
+  
   font-family: Arial, sans-serif;
   color: white;
   text-align: center; /* Center content */
@@ -27,6 +32,10 @@ p {
 .gallery img {
   width: 250px;
   height: 250px;
+  
+  /* THE FIX: This ensures images fill the square without distortion */
+  object-fit: cover; 
+  
   border: 3px solid rgb(27, 33, 58);
   border-radius: 10px;
   margin: 5px;
