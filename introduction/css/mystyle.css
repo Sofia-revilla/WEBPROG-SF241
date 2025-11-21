@@ -1,7 +1,33 @@
 body {
-  background-color: lightblue;
+  background-image: url('https://i.pinimg.com/originals/e5/40/08/e54008fec896ec085da559cf537d6f32.gif'); 
+  background-size: cover;       
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
+  font-family: Arial, sans-serif;
+  color: white;
+  text-align: center; /* Center content */
 }
+
 h1 {
-  color: navy;
-  margin-left: 20px;
+  margin-top: 30px;
+}
+
+p {
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: inline-block;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.gallery {
+  margin-top: 30px;
+}
+
+.gallery img {
+  width: 250px;
+  height: 250px;
+  border: 3px solid rgb(27, 33, 58);
+  border-radius: 10px;
+  margin: 5px;
 }
