@@ -1,15 +1,18 @@
 .container {
   display: flex;
   flex-wrap: wrap;
-  background-color: lightgrey;
+  background-color: lightgray;
 }
 
 .container div {
   width: 100px;
+  height: 100px;
   margin: 10px;
-  padding: 10px;
-  text-align: center;  
   font-size: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .pink {
@@ -17,5 +20,5 @@
 }
 
 .yellow {
-  background-color: rgb(81, 145, 179);
+  background-color: rgb(112, 145, 227);
 }
