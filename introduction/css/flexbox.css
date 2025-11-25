@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: lightgrey;
+}
+
+.container div {
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;  
+  font-size: 30px;
+}
+
+.pink {
+  background-color: lightpink;
+}
+
+.yellow {
+  background-color: lightyellow;
+}
