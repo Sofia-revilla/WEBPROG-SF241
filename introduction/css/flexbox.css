@@ -1,7 +1,7 @@
-.container {
+container {
   display: flex;
   flex-wrap: wrap;
-  background-color: lightgray;
+  background-color: lightgreen;
 }
 
 .container div {
@@ -21,4 +21,5 @@
 
 .yellow {
   background-color: rgb(112, 145, 227);
+
 }
