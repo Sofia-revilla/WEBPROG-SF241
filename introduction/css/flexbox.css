@@ -23,8 +23,7 @@ body {
 .main-wrapper {
     width: 100%;
     max-width: 1100px;
-    /* CHANGED HERE: Set to 0.5 for transparency */
-    background-color: rgba(20, 20, 20, 0.5); 
+    background-color: rgba(20, 20, 20, 0.85); /* Dark overlay to make text readable */
     backdrop-filter: blur(10px); /* Glass blur effect */
     border-radius: 20px;
     padding: 30px;
