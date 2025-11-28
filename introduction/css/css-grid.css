@@ -90,7 +90,7 @@ body {
 }
 
 .card.wide {
-    flex: 1 1 100%; /*  width */
+    flex: 1 1 100%; /* width */
 }
 
 .card h3 {
@@ -148,6 +148,14 @@ h2 {
 
 .gallery img:hover {
     opacity: 0.8;
+}
+
+/* added gif */
+.gallery .blink-gif {
+    width: 50px !important;
+    height: auto !important;
+    border: none !important;
+    border-radius: 0 !important;
 }
 
 /* added gif wrapper - align alignment */
