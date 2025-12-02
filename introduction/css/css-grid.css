@@ -10,6 +10,8 @@ body {
     display: flex;
     justify-content: center;
     padding: 20px;
+    min-height: 100vh;
+    align-items: flex-start;
 }
 
 /* --- LAYOUT WRAPPER --- */
@@ -19,11 +21,13 @@ body {
     
     background-color: rgba(20, 20, 20, 0.75); 
     
-    backdrop-filter: blur(10px); /* Glass blur effect */
+    backdrop-filter: blur(10px); 
     border-radius: 20px;
     padding: 30px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /* --- HEADER SECTION --- */
@@ -56,6 +60,7 @@ body {
     border-radius: 20px;
     font-size: 0.85rem;
     margin-right: 5px;
+    margin-bottom: 5px;
     border: 1px solid #6c5ce7;
     color: #dfe6e9;
 }
@@ -138,6 +143,7 @@ h2 {
     border-radius: 15px;
     border: 2px solid #2d3436;
     transition: opacity 0.3s;
+    max-width: 100%;
 }
 
 .gallery img:hover {
@@ -197,4 +203,37 @@ h2 {
     padding: 20px; 
     font-weight: bold;
     color: rgba(255, 255, 255, 0.7);
+}
+
+@media screen and (max-width: 768px) {
+    .main-wrapper {
+        padding: 20px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .card {
+        flex: 1 1 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .profile-pic-container .avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .number-container div {
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
+        margin: 5px;
+    }
 }
