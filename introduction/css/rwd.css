@@ -1,4 +1,4 @@
-
+/*updated css*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -21,7 +21,7 @@ body {
     align-items: flex-start;
 }
 
-/*LAYOUT WRAPPER */
+/* --- LAYOUT WRAPPER --- */
 .main-wrapper {
     width: 100%;
     max-width: 1100px;
@@ -33,11 +33,11 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     margin-top: 20px;
     margin-bottom: 20px;
-    transition: transform 0.1s; 
-    cursor: pointer;
+    transition: transform 0.1s; /* Smooths out the start of the click */
+    cursor: pointer; /* Indicates it is clickable */
 }
 
-/* effect */
+/* --- CLICK SHAKE EFFECT --- */
 @keyframes shake-box {
     0% { transform: translate(1px, 1px) rotate(0deg); }
     10% { transform: translate(-1px, -2px) rotate(-1deg); }
