@@ -1,4 +1,3 @@
-/*updated css*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -6,7 +5,7 @@
 }
 
 body {
-    /* BACKGROUND*/
+    /* Background */
     background-image: url('https://i.pinimg.com/originals/e5/40/08/e54008fec896ec085da559cf537d6f32.gif');
     background-size: cover;
     background-repeat: no-repeat;
@@ -14,14 +13,40 @@ body {
     background-position: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
+    
+    /* Layout */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    justify-content: flex-start;
     padding: 20px;
     min-height: 100vh;
-    align-items: flex-start;
 }
 
-/* --- LAYOUT WRAPPER --- */
+/* Top Header Bar */
+.grid-container {
+    width: 100%;
+    max-width: 1100px;
+    background-color: rgba(20, 20, 20, 0.75); 
+    backdrop-filter: blur(10px); 
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Main Profile Wrapper */
 .main-wrapper {
     width: 100%;
     max-width: 1100px;
@@ -31,13 +56,11 @@ body {
     padding: 30px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    margin-top: 20px;
-    margin-bottom: 20px;
-    transition: transform 0.1s; /* Smooths out the start of the click */
-    cursor: pointer; /* Indicates it is clickable */
+    transition: transform 0.1s; 
+    cursor: pointer; 
 }
 
-/* --- CLICK SHAKE EFFECT --- */
+/* Shake Animation */
 @keyframes shake-box {
     0% { transform: translate(1px, 1px) rotate(0deg); }
     10% { transform: translate(-1px, -2px) rotate(-1deg); }
@@ -54,10 +77,9 @@ body {
 
 .main-wrapper:active {
     animation: shake-box 0.5s;
-    /*added more respoonsicve effect*/
 }
 
-/* --- HEADER SECTION --- */
+/* Profile Header Section */
 .profile-header {
     display: flex;
     align-items: center;
@@ -71,7 +93,7 @@ body {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-    border: 4px solid #6c5ce7; /* BORDER OF PROFILE*/
+    border: 4px solid #6c5ce7; 
     object-fit: cover;
 }
 
@@ -92,7 +114,7 @@ body {
     color: #dfe6e9;
 }
 
-/* --- INFO GRID (FOR INFO HEADER) --- */
+/* Info Grid */
 .info-grid {
     display: flex;
     flex-wrap: wrap;
@@ -104,19 +126,19 @@ body {
     background-color: #2d2d2d;
     padding: 25px;
     border-radius: 15px;
-    flex: 1 1 300px; /* Flex-grow, flex-shrink, basis */
+    flex: 1 1 300px; 
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     border: 1px solid rgba(255,255,255,0.05);
     transition: transform 0.2s;
 }
 
 .card:hover {
-    transform: translateY(-5px); /*HOVER EFFECT :> */
+    transform: translateY(-5px); 
     border-color: #6c5ce7;
 }
 
 .card.wide {
-    flex: 1 1 100%; /* width */
+    flex: 1 1 100%; 
 }
 
 .card h3 {
@@ -133,11 +155,11 @@ body {
     margin-bottom: 10px;
 }
 
-/* List styling for certificates */
 .badge-list {
     list-style: none;
     margin-top: 10px;
 }
+
 .badge-list li {
     display: inline-block;
     background: rgba(108, 92, 231, 0.2);
@@ -148,7 +170,7 @@ body {
     color: white;
 }
 
-/* --- GALLERY --- */
+/* Gallery */
 h2 {
     text-align: center;
     margin-bottom: 20px;
@@ -162,7 +184,6 @@ h2 {
     margin-bottom: 40px;
 }
 
-/* IMAGE AND GIF CON*/
 .gallery img {
     width: 250px;
     height: 250px;
@@ -170,14 +191,13 @@ h2 {
     border-radius: 15px;
     border: 2px solid #2d3436;
     transition: opacity 0.3s;
-    max-width: 100%; /* Ensures images shrink on small screens */
+    max-width: 100%; 
 }
 
 .gallery img:hover {
     opacity: 0.8;
 }
 
-/* added gif */
 .gallery .blink-gif {
     width: 50px !important;
     height: auto !important;
@@ -185,14 +205,13 @@ h2 {
     border-radius: 0 !important;
 }
 
-/* added gif wrapper - align alignment */
 .gallery-item {
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-/* --- NUMBER CONTAINER --- */
+/* Number Container */
 .number-container {
     display: flex;
     flex-wrap: wrap;
@@ -212,7 +231,7 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #2d3436; /* color inside cirle*/
+    color: #2d3436; 
 }
 
 .pink {
@@ -223,7 +242,7 @@ h2 {
     background-color: rgb(112, 145, 227); 
 }
 
-/* --- FOOTER --- */
+/* Footer */
 .footer-text {
     text-align: center; 
     margin-top: 30px; 
@@ -232,6 +251,7 @@ h2 {
     color: rgba(255, 255, 255, 0.7);
 }
 
+/* Responsiveness */
 @media screen and (max-width: 768px) {
     .main-wrapper {
         padding: 20px;
@@ -244,11 +264,15 @@ h2 {
     }
     
     .profile-info h1 {
-        font-size: 1.5rem; /* Slightly smaller font for tablets */
+        font-size: 1.5rem; 
     }
 
     .card {
         flex: 1 1 100%;
+    }
+    
+    .header h1 {
+        font-size: 1.1rem;
     }
 }
 
@@ -257,7 +281,6 @@ h2 {
         padding: 10px;
     }
     
-    /* Removed stray 'a' tag selector that was causing errors */
     .profile-pic-container .avatar {
         width: 100px;
         height: 100px;
@@ -271,7 +294,7 @@ h2 {
     }
     
     .gallery img {
-        width: 100%; /* Full width images on mobile */
+        width: 100%; 
         height: auto;
     }
 }
