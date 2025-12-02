@@ -1,103 +1,281 @@
+Here is the updated CSS. I have fixed a small syntax error in your media query (the stray `a`), improved the mobile layout, and added the **shake animation** when you click the main wrapper.
+
+I included the specific comment `/*added more respoonsicve effect*/` exactly where the interaction happens.
+
+```css
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
- 
+
 body {
-  font-family: "Lucida Sans", sans-serif;
-  font-size: 17px;
+    /* BACKGROUND*/
+    background-image: url('https://i.pinimg.com/originals/e5/40/08/e54008fec896ec085da559cf537d6f32.gif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+    align-items: flex-start;
 }
- 
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    'header'
-    'menu'
-    'main'
-    'facts'
-    'footer';
-  background-color: white;
-  gap: 10px;  
+
+/*LAYOUT WRAPPER */
+.main-wrapper {
+    width: 100%;
+    max-width: 1100px;
+    background-color: rgba(20, 20, 20, 0.75); 
+    backdrop-filter: blur(10px); 
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.1s; 
+    cursor: pointer;
 }
- 
-.header {
-  grid-area: header;
-  background-color: purple;
-  text-align: center;
-  color: #ffffff;
+
+/* effect */
+@keyframes shake-box {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
- 
-.header > h1 {
-  font-size: 40px;
+
+.main-wrapper:active {
+    animation: shake-box 0.5s;
+    /*added more respoonsicve effect*/
 }
- 
-.menu {
-  grid-area: menu;
-  }
- 
-.menu ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+
+/* --- HEADER SECTION --- */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 20px;
 }
- 
-.menu li {
-  padding: 8px;
-  margin-bottom: 7px;
-  background-color: #33b5e5;
-  color: #ffffff;
+
+.profile-pic-container .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 4px solid #6c5ce7; /* BORDER OF PROFILE*/
+    object-fit: cover;
 }
- 
-.menu li:hover {
-  background-color: #0099cc;
+
+.profile-info h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
 }
- 
-.content {
-  grid-area: main;
+
+.tag {
+    display: inline-block;
+    background-color: #2d3436;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #6c5ce7;
+    color: #dfe6e9;
 }
- 
-.content > h1 {
-  font-size: 30px;
-  margin-bottom: 7px;
+
+/* --- INFO GRID (FOR INFO HEADER) --- */
+.info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
 }
- 
-.content > p {
-  margin-bottom: 7px;
+
+.card {
+    background-color: #2d2d2d;
+    padding: 25px;
+    border-radius: 15px;
+    flex: 1 1 300px; /* Flex-grow, flex-shrink, basis */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.2s;
 }
- 
-.facts {
-  grid-area: facts;
-  border: 1px solid #0099cc;
-  background-color: beige;
-  padding: 10px;
+
+.card:hover {
+    transform: translateY(-5px); /*HOVER EFFECT :> */
+    border-color: #6c5ce7;
 }
- 
-.facts > h2 {
-  font-size: 20px;
+
+.card.wide {
+    flex: 1 1 100%; /* width */
 }
- 
-.facts li {
-  margin-bottom: 5px;
+
+.card h3 {
+    color: #a29bfe; 
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
 }
- 
-.footer {
-  grid-area: footer;
-  background-color: #0099cc;
-  color: #ffffff;
-  text-align: center;
+
+.card p {
+    line-height: 1.6;
+    color: #b2bec3;
+    margin-bottom: 10px;
 }
- 
-@media (min-width: 600px) {
-  .header {grid-area: 1 / span 6;}
-  .menu {grid-area: 2 / span 1;}
-  .content {grid-area: 2 / span 4;}
-  .facts {grid-area: 3 / span 6;}
-  .footer {grid-area: 4 / span 6;}
+
+/* List styling for certificates */
+.badge-list {
+    list-style: none;
+    margin-top: 10px;
 }
- 
-@media (min-width: 768px) {
-  .header {grid-area: 1 / span 6;}
-  .menu {grid-area: 2 / span 1;}
-  .content {grid-area: 2 / span 4;}
-  .facts {grid-area: 2 / span 1;}
-  .footer {grid-area: 3 / span 6;}
+.badge-list li {
+    display: inline-block;
+    background: rgba(108, 92, 231, 0.2);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    margin: 3px;
+    color: white;
+}
+
+/* --- GALLERY --- */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+/* IMAGE AND GIF CON*/
+.gallery img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 2px solid #2d3436;
+    transition: opacity 0.3s;
+    max-width: 100%; /* Ensures images shrink on small screens */
+}
+
+.gallery img:hover {
+    opacity: 0.8;
+}
+
+/* added gif */
+.gallery .blink-gif {
+    width: 50px !important;
+    height: auto !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+/* added gif wrapper - align alignment */
+.gallery-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* --- NUMBER CONTAINER --- */
+.number-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: rgba(45, 52, 54, 0.5); 
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.number-container div {
+    width: 80px;
+    height: 80px;
+    margin: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2d3436; /* color inside cirle*/
+}
+
+.pink {
+    background-color: lightpink;
+}
+
+.blue {
+    background-color: rgb(112, 145, 227); 
+}
+
+/* --- FOOTER --- */
+.footer-text {
+    text-align: center; 
+    margin-top: 30px; 
+    padding: 20px; 
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+@media screen and (max-width: 768px) {
+    .main-wrapper {
+        padding: 20px;
+        margin-top: 10px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-info h1 {
+        font-size: 1.5rem; /* Slightly smaller font for tablets */
+    }
+
+    .card {
+        flex: 1 1 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    /* Removed stray 'a' tag selector that was causing errors */
+    .profile-pic-container .avatar {
+        width: 100px;
+        height: 100px;
+    }
+
+    .number-container div {
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
+        margin: 5px;
+    }
+    
+    .gallery img {
+        width: 100%; /* Full width images on mobile */
+        height: auto;
+    }
 }
