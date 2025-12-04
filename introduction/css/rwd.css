@@ -50,6 +50,9 @@ body {
 .main-wrapper {
     width: 100%;
     max-width: 1100px;
+    /* --- CHANGED HERE: Made container explicitly long --- */
+    min-height: 140vh; 
+    
     background-color: rgba(20, 20, 20, 0.75); 
     backdrop-filter: blur(10px); 
     border-radius: 20px;
@@ -58,6 +61,10 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     transition: transform 0.1s; 
     cursor: pointer; 
+    
+    /* Helps position the bottom grid */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Shake Animation */
@@ -251,11 +258,57 @@ h2 {
     color: rgba(255, 255, 255, 0.7);
 }
 
+/* --- NEW BOTTOM GRID SECTION --- */
+
+/* Pushes grid to the bottom */
+.bottom-grid-wrapper {
+    margin-top: auto; 
+    padding-top: 50px;
+    width: 100%;
+}
+
+.bottom-label {
+    margin-bottom: 15px;
+    color: #a29bfe;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.bottom-grid {
+    display: grid;
+    /* Creates as many columns as will fit, minimum width 100px */
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 15px;
+    width: 100%;
+}
+
+.grid-box {
+    background-color: rgba(45, 52, 54, 0.6);
+    border: 1px solid #6c5ce7;
+    height: 100px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.grid-box:hover {
+    background-color: #6c5ce7;
+    box-shadow: 0 0 15px #6c5ce7;
+    cursor: pointer;
+}
+
 /* Responsiveness */
 @media screen and (max-width: 768px) {
     .main-wrapper {
         padding: 20px;
         margin-top: 10px;
+        min-height: auto; /* Reset length on mobile so it's not too long */
     }
 
     .profile-header {
