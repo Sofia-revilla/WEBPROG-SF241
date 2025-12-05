@@ -18,20 +18,20 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
     justify-content: flex-start;
-    padding: 20px;
+    padding-top: 20px;
     min-height: 100vh;
 }
 
 /* Top Header Bar */
 .grid-container {
-    width: 100%;
+    width: 90%;
     max-width: 1100px;
     background-color: rgba(20, 20, 20, 0.75); 
     backdrop-filter: blur(10px); 
     border-radius: 20px;
     padding: 20px;
+    margin-bottom: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     text-align: center;
@@ -48,9 +48,10 @@ body {
 
 /* Main Profile Wrapper */
 .main-wrapper {
-    width: 100%;
+    width: 90%;
     max-width: 1100px;
-    /* --- CHANGED HERE: Made container explicitly long --- */
+    
+    /* Forces the container to be very long */
     min-height: 140vh; 
     
     background-color: rgba(20, 20, 20, 0.75); 
@@ -62,9 +63,12 @@ body {
     transition: transform 0.1s; 
     cursor: pointer; 
     
-    /* Helps position the bottom grid */
+    /* Layout for internal items */
     display: flex;
     flex-direction: column;
+    
+    /* Margin bottom ensures space before the footer */
+    margin-bottom: 50px;
 }
 
 /* Shake Animation */
@@ -205,19 +209,6 @@ h2 {
     opacity: 0.8;
 }
 
-.gallery .blink-gif {
-    width: 50px !important;
-    height: auto !important;
-    border: none !important;
-    border-radius: 0 !important;
-}
-
-.gallery-item {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
 /* Number Container */
 .number-container {
     display: flex;
@@ -226,6 +217,7 @@ h2 {
     background-color: rgba(45, 52, 54, 0.5); 
     padding: 20px;
     border-radius: 15px;
+    margin-bottom: 30px;
 }
 
 .number-container div {
@@ -249,18 +241,9 @@ h2 {
     background-color: rgb(112, 145, 227); 
 }
 
-/* Footer */
-.footer-text {
-    text-align: center; 
-    margin-top: 30px; 
-    padding: 20px; 
-    font-weight: bold;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-
+/* --- BOTTOM GRID (INSIDE CONTAINER) --- */
 .bottom-grid-wrapper {
-    margin-top: auto; 
+    margin-top: auto; /* Pushes to the very bottom of the wrapper */
     padding-top: 50px;
     width: 100%;
 }
@@ -276,7 +259,6 @@ h2 {
 
 .bottom-grid {
     display: grid;
-    /* Creates as many columns as will fit, minimum width 100px */
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 15px;
     width: 100%;
@@ -301,12 +283,31 @@ h2 {
     cursor: pointer;
 }
 
+
+.footer {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 20px 0;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-top: 1px solid #6c5ce7;
+    
+    margin-top: auto; 
+    backdrop-filter: blur(5px);
+}
+
+.footer p {
+    margin: 0;
+}
+
 /* Responsiveness */
 @media screen and (max-width: 768px) {
     .main-wrapper {
         padding: 20px;
-        margin-top: 10px;
-        min-height: auto; /* Reset length on mobile so it's not too long */
+        min-height: auto; 
     }
 
     .profile-header {
@@ -328,10 +329,6 @@ h2 {
 }
 
 @media screen and (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-    
     .profile-pic-container .avatar {
         width: 100px;
         height: 100px;
