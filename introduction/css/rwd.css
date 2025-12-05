@@ -18,16 +18,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Aligns to top */
+    justify-content: flex-start;
     padding-top: 20px;
-    padding-bottom: 20px;
     min-height: 100vh;
 }
 
 /* Top Header Bar */
 .grid-container {
     width: 90%;
-    max-width: 1100px;
+    /* UPDATED: Made wider */
+    max-width: 1250px;
     background-color: rgba(20, 20, 20, 0.75); 
     backdrop-filter: blur(10px); 
     border-radius: 20px;
@@ -49,12 +49,12 @@ body {
 
 /* Main Profile Wrapper */
 .main-wrapper {
-    width: 90%; /* Fits nicely on mobile */
-    max-width: 1100px; /* Won't get too wide on PC */
+    width: 90%;
+    /* UPDATED: Made wider to fit more content horizontally */
+    max-width: 1250px;
     
-    /* REMOVED min-height: 140vh. 
-       Now using 'auto' so it fits the content exactly. */
-    height: auto; 
+    /* UPDATED: Removed min-height: 140vh so it doesn't force scrolling */
+    min-height: auto; 
     
     background-color: rgba(20, 20, 20, 0.75); 
     backdrop-filter: blur(10px); 
@@ -62,15 +62,34 @@ body {
     padding: 30px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    
-    /* REMOVED transition, transform, and cursor pointer 
-       so it stays a solid rectangle and doesn't move. */
+    transition: transform 0.1s; 
+    cursor: pointer; 
     
     /* Layout for internal items */
     display: flex;
     flex-direction: column;
     
+    /* Margin bottom ensures space before the footer */
     margin-bottom: 50px;
+}
+
+/* Shake Animation */
+@keyframes shake-box {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+.main-wrapper:active {
+    animation: shake-box 0.5s;
 }
 
 /* Profile Header Section */
@@ -81,8 +100,6 @@ body {
     margin-bottom: 40px;
     border-bottom: 1px solid rgba(255,255,255,0.1);
     padding-bottom: 20px;
-    flex-wrap: wrap; /* Allows wrapping on small phones */
-    justify-content: center; /* Centers items on mobile */
 }
 
 .profile-pic-container .avatar {
@@ -91,10 +108,6 @@ body {
     border-radius: 50%;
     border: 4px solid #6c5ce7; 
     object-fit: cover;
-}
-
-.profile-info {
-    text-align: left;
 }
 
 .profile-info h1 {
@@ -120,25 +133,20 @@ body {
     flex-wrap: wrap;
     gap: 20px;
     margin-bottom: 40px;
-    justify-content: center; /* Ensures cards are centered */
 }
 
 .card {
     background-color: #2d2d2d;
     padding: 25px;
     border-radius: 15px;
-    /* Changed flex-basis to auto to prevent overflow on tiny screens */
     flex: 1 1 300px; 
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     border: 1px solid rgba(255,255,255,0.05);
-    
-    /* Kept the hover EFFECT, but removed MOVEMENT (transform) if desired. 
-       If you want absolutely no movement, remove the transform line below. */
-    transition: border-color 0.2s; 
+    transition: transform 0.2s;
 }
 
 .card:hover {
-    /* Removed transform: translateY to keep it fixed/still */
+    transform: translateY(-5px); 
     border-color: #6c5ce7;
 }
 
@@ -158,7 +166,6 @@ body {
     line-height: 1.6;
     color: #b2bec3;
     margin-bottom: 10px;
-    word-wrap: break-word; /* Prevents long text breaking layout */
 }
 
 .badge-list {
@@ -238,8 +245,8 @@ h2 {
 
 /* --- BOTTOM GRID (INSIDE CONTAINER) --- */
 .bottom-grid-wrapper {
-    margin-top: auto; 
-    padding-top: 50px;
+    /* UPDATED: Changed from margin-top: auto (which pushed it to bottom) to a fixed small margin */
+    margin-top: 30px; 
     width: 100%;
 }
 
@@ -254,8 +261,7 @@ h2 {
 
 .bottom-grid {
     display: grid;
-    /* Adjusted grid to prevent tiny columns on mobile */
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     gap: 15px;
     width: 100%;
 }
@@ -299,19 +305,15 @@ h2 {
     margin: 0;
 }
 
-/* Responsiveness - FIXED for mobile */
+/* Responsiveness */
 @media screen and (max-width: 768px) {
     .main-wrapper {
-        width: 95%; /* Use more screen space on mobile */
-        padding: 15px; /* Less padding to save space */
+        padding: 20px;
+        min-height: auto; 
     }
 
     .profile-header {
         flex-direction: column;
-        text-align: center;
-    }
-
-    .profile-info {
         text-align: center;
     }
     
@@ -320,17 +322,11 @@ h2 {
     }
 
     .card {
-        flex: 1 1 100%; /* Make cards full width on mobile */
+        flex: 1 1 100%;
     }
     
     .header h1 {
         font-size: 1.1rem;
-    }
-    
-    .number-container div {
-        width: 60px;
-        height: 60px;
-        font-size: 18px;
     }
 }
 
@@ -340,6 +336,13 @@ h2 {
         height: 100px;
     }
 
+    .number-container div {
+        width: 60px;
+        height: 60px;
+        font-size: 18px;
+        margin: 5px;
+    }
+    
     .gallery img {
         width: 100%; 
         height: auto;
