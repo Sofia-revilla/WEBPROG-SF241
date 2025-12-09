@@ -174,7 +174,7 @@ body {
     position: absolute;
     right: 50px;
     bottom: 0;
-    height: 110%;
+    height: 150%;
     display: flex;
     align-items: flex-end;
     z-index: 3;
