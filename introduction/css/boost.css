@@ -19,17 +19,16 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    /* CHANGE: Background settings fixed to cover the screen */
     background-image: url('https://png.pngtree.com/background/20210715/original/pngtree-white-simple-texture-background-picture-image_1323742.jpg');
     background-color: var(--bg-color); 
     background-attachment: fixed; 
-    background-size: cover; /* Ensures image covers the screen */
+    background-size: cover; 
     background-position: center;
     color: var(--text-main);
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Aligns to top to allow scrolling */
     padding: 20px;
 }
 
@@ -39,6 +38,75 @@ body {
     max-width: 1400px;
     background-color: transparent; 
     margin: 0 auto;
+}
+
+/* --- LIGHTBOX (POPUP) STYLES --- */
+.lightbox {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 9999; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Image inside the lightbox */
+.lightbox-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 900px;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(255,255,255,0.1);
+    animation: zoom 0.4s;
+}
+
+/* Caption text */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 50px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* Close button (X) */
+.close-btn {
+    position: absolute;
+    top: 30px;
+    right: 45px;
+    color: #f1f1f1;
+    font-size: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 10001;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: var(--primary-blue);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Zoom Animation */
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
 }
 
 /* --- NAVIGATION --- */
@@ -171,34 +239,31 @@ body {
     display: flex;
     align-items: flex-end;
     z-index: 3;
+    pointer-events: none; /* Allows clicking through the empty space around image */
 }
 
 .hero-img-wrapper img {
     height: 150%;
     width: auto;
     object-fit: contain;
-    /* Smooth transition for hover */
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
     transform-origin: bottom center;
     cursor: pointer;
+    pointer-events: auto; /* Re-enable clicks on the image itself */
 }
 
-/* CHANGE: HOVER EFFECT FOR HERO IMAGE */
 .hero-img-wrapper img:hover {
-    /* Scale up, slight rotate, and lift */
     transform: scale(1.1) translateY(-10px) rotate(-2deg);
-    /* Add a glow/shadow effect to the PNG cutout */
     filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
     z-index: 10;
 }
-
 
 /* --- THREE COLUMN LAYOUT --- */
 .dashboard-grid {
     display: grid;
     grid-template-columns: 1.2fr 1fr 1fr;
     gap: 30px;
-    align-items: start; /* Ensures columns don't stretch weirdly */
+    align-items: start; 
 }
 
 .section-header {
@@ -208,12 +273,11 @@ body {
     margin-bottom: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 10px;
 }
 
 .gallery-container {
     display: grid;
-    /* Creates 2 columns automatically */
     grid-template-columns: repeat(2, 1fr); 
     gap: 15px;
     padding-bottom: 15px; 
@@ -231,7 +295,6 @@ body {
     border: 3px solid transparent; 
 }
 
-/* GALLERY HOVER EFFECT */
 .gallery-card:hover {
     transform: scale(1.05) translateY(-5px);
     z-index: 10;
@@ -336,53 +399,84 @@ body {
     margin: 0;
 }
 
-/* --- RESPONSIVENESS MEDIA QUERIES --- */
+/* --- RESPONSIVENESS (Media Queries) --- */
 
-@media (max-width: 992px) {
+/* Tablet & Smaller Laptops */
+@media (max-width: 1024px) {
     .dashboard-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr; /* Switch to 2 columns */
     }
     
+    /* Gallery takes up both columns on top */
     .col-gallery {
         grid-column: span 2;
     }
 
-    .hero-text h1 { font-size: 2.5rem; }
-    .hero-banner { height: auto; min-height: 300px; }
-    .hero-img-wrapper { height: 100%; width: 40%; opacity: 0.8; }
+    .gallery-container {
+        /* On tablet, show 4 images per row instead of 2 */
+        grid-template-columns: repeat(4, 1fr); 
+    }
+
+    .hero-text h1 { font-size: 2.8rem; }
+    .hero-img-wrapper { opacity: 0.8; }
 }
 
+/* Mobile Phones */
 @media (max-width: 768px) {
-    .nav-bar { flex-direction: column; gap: 15px; }
-    .nav-menu { display: none; }
+    .nav-bar { 
+        flex-direction: column; 
+        gap: 15px; 
+    }
     
+    .nav-menu { display: none; /* Hide middle menu on mobile */ }
+    
+    .nav-left-icons, .nav-auth-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+
     .dashboard-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Switch to 1 column */
         gap: 40px;
     }
 
     .col-gallery { grid-column: span 1; }
 
+    .gallery-container {
+        grid-template-columns: 1fr 1fr; /* Back to 2 images per row on small screens */
+    }
+
     .hero-banner {
         flex-direction: column;
         text-align: center;
         padding: 40px 20px;
-        overflow: hidden;
+        height: auto;
     }
 
-    .hero-text { max-width: 100%; margin-bottom: 20px; }
+    .hero-text { 
+        max-width: 100%; 
+        margin-bottom: 20px; 
+    }
+
+    .hero-text h1 { font-size: 2.2rem; }
+
     .hero-img-wrapper { 
         position: relative; 
         right: auto; 
         bottom: auto; 
-        width: 200px;
-        height: 200px; 
+        width: 100%;
+        height: 250px; 
+        justify-content: center;
         opacity: 1; 
+        margin-top: 20px;
+    }
+
+    .hero-img-wrapper img {
+        height: 100%;
+        width: auto;
     }
     
-    .gallery-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
+    .lightbox-content {
+        width: 95%;
     }
 }

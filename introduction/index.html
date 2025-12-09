@@ -11,6 +11,12 @@
 </head>
 <body>
 
+    <div id="lightbox" class="lightbox">
+        <span class="close-btn">&times;</span>
+        <img class="lightbox-content" id="lightbox-img">
+        <div id="caption"></div>
+    </div>
+
     <div class="app-container">
         
         <nav class="nav-bar">
@@ -44,33 +50,33 @@
 
             <div class="col-gallery">
                 <div class="section-header">
-                    Gallery >
+                    Gallery <small style="font-size: 0.8rem; opacity: 0.6; font-weight: normal;">(Click image to expand)</small>
                 </div>
                 <div class="gallery-container">
                     <div class="gallery-card">
-                        <img src="image/shy.jpg" alt="Gallery">
+                        <img src="image/shy.jpg" alt="Shy Pose">
                         <div class="gallery-overlay">hehe</div>
                     </div>
                     <div class="gallery-card">
-                         <img src="image/family.jpg" alt="Gallery">
+                         <img src="image/family.jpg" alt="My Family">
                         <div class="gallery-overlay">Family</div>
                     </div>
                     <div class="gallery-card">
-                        <img src="image/shs.jpg" alt="Gallery">
+                        <img src="image/shs.jpg" alt="SHS Days">
                         <div class="gallery-overlay">Me</div>
                     </div>
 
                     <div class="gallery-card">
-                        <img src="https://picsum.photos/id/1011/300/500" alt="Gallery">
-                        <div class="gallery-overlay">Travel</div>
-                    </div>
-                    <div class="gallery-card">
-                        <img src="https://picsum.photos/id/1025/300/500" alt="Gallery">
+                        <img src="image/pet1" alt="Pet Photo">
                         <div class="gallery-overlay">Pets</div>
                     </div>
                     <div class="gallery-card">
-                         <img src="https://picsum.photos/id/1069/300/500" alt="Gallery">
-                         <div class="gallery-overlay">Hobbies</div>
+                        <img src="image/pet2" alt="My Pets">
+                        <div class="gallery-overlay">More Pets</div>
+                    </div>
+                    <div class="gallery-card">
+                         <img src="image/pet3" alt="My Hobbies">
+                         <div class="gallery-overlay">And More Pets</div>
                     </div>
                 </div>
             </div>
@@ -121,11 +127,42 @@
 
         </div> 
         
-        <div style="text-align: center; margin-top: 50px; color: var(--text-light); font-size: 0.8rem;">
+        <div style="text-align: center; margin-top: 50px; margin-bottom: 20px; color: var(--text-light); font-size: 0.8rem;">
             WEBPROG SF241 | © 2025 Ma. Sofia Anne Revilla
         </div>
 
     </div>
 
+    <script> //try adding java for effects (got this from the internet)
+        // Get elements
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const captionText = document.getElementById('caption');
+        const closeBtn = document.querySelector('.close-btn');
+
+        // Select all gallery images
+        const galleryImages = document.querySelectorAll('.gallery-card img');
+
+        // Add click event to each image
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = "flex";
+                lightboxImg.src = img.src;
+                captionText.innerHTML = img.alt;
+            });
+        });
+
+        // Close when clicking the X
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = "none";
+        });
+
+        // Close when clicking outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target !== lightboxImg) {
+                lightbox.style.display = "none";
+            }
+        });
+    </script>
 </body>
 </html>
