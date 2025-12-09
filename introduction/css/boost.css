@@ -20,7 +20,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     /* CHANGE: Replaced solid color with a subtle patterned image background */
-    background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+    background-image: url('https://png.pngtree.com/background/20210715/original/pngtree-white-simple-texture-background-picture-image_1323742.jpg');
     background-color: var(--bg-color); /* Fallback color */
     background-attachment: fixed; /* Makes the background stay still while scrolling */
     color: var(--text-main);
