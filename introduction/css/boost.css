@@ -19,7 +19,10 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-color);
+    /* CHANGE: Replaced solid color with a subtle patterned image background */
+    background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+    background-color: var(--bg-color); /* Fallback color */
+    background-attachment: fixed; /* Makes the background stay still while scrolling */
     color: var(--text-main);
     min-height: 100vh;
     display: flex;
@@ -32,7 +35,8 @@ body {
 .app-container {
     width: 100%;
     max-width: 1400px;
-    background-color: var(--bg-color);
+    /* Make container transparent so body background shows through */
+    background-color: transparent; 
     margin: 0 auto;
 }
 
@@ -110,7 +114,6 @@ body {
 /* --- HERO BANNER --- */
 .hero-banner {
     position: relative;
-    /* BACKGROUND IMAGE / GIF SETTINGS */
     background-image: url('https://i.pinimg.com/originals/e5/40/08/e54008fec896ec085da559cf537d6f32.gif');
     background-size: cover;
     background-position: center;
@@ -159,14 +162,6 @@ body {
     font-weight: 400;
 }
 
-.read-more {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    border-bottom: 2px solid rgba(255,255,255,0.6);
-    padding-bottom: 2px;
-}
-
 .hero-img-wrapper {
     position: absolute;
     right: 50px;
@@ -175,14 +170,29 @@ body {
     display: flex;
     align-items: flex-end;
     z-index: 3;
-    pointer-events: none;
+    /* REMOVED pointer-events: none; to allow hovering on the image */
+    /* pointer-events: none; */
 }
 
+/* CHANGE: NEW STYLES FOR THE HERO IMAGE "POP" EFFECT */
 .hero-img-wrapper img {
     height: 150%;
     width: auto;
     object-fit: contain;
+    /* Add a smooth transition with a slight bounce effect */
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+    transform-origin: bottom center; /* Ensure it grows from the bottom */
+    cursor: pointer;
 }
+
+/* CHANGE: HOVER STATE FOR HERO IMAGE */
+.hero-img-wrapper img:hover {
+    /* Scale up and lift slightly */
+    transform: scale(1.08) translateY(-2%);
+    /* Optional: add a subtle brightness boost */
+    filter: brightness(1.05);
+}
+
 
 /* --- THREE COLUMN LAYOUT --- */
 .dashboard-grid {
@@ -206,8 +216,17 @@ body {
     display: flex;
     gap: 15px;
     overflow-x: auto;
-    padding-bottom: 10px;
+    padding-bottom: 15px; /* Increased padding for hover space */
+    padding-top: 10px; /* Add padding top so outline doesn't get cut off */
+    
+    /* Hide scrollbar for cleaner look */
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
 }
+.gallery-container::-webkit-scrollbar { 
+    display: none;
+}
+
 
 .gallery-card {
     flex: 1;
@@ -217,13 +236,19 @@ body {
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* Adjusted transition for smoother effect */
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border: 3px solid transparent; 
 }
 
+/* GALLERY HOVER EFFECT */
 .gallery-card:hover {
-    transform: scale(1.05) translateY(-5px);
+    /* Scale and lift */
+    transform: scale(1.05) translateY(-10px);
     z-index: 10;
+    /* Add the outline effect using box-shadow for smoother corners */
+    box-shadow: 0 0 0 4px var(--primary-blue), 0 25px 40px rgba(108, 138, 241, 0.25);
 }
 
 .gallery-card img {
@@ -244,7 +269,7 @@ body {
     font-weight: 600;
 }
 
-/* INTERESTS COLUMN - UPDATED */
+/* INTERESTS COLUMN */
 .search-list {
     display: flex;
     flex-direction: column;
@@ -257,7 +282,7 @@ body {
     border-radius: 40px;
     display: flex;
     align-items: center;
-    justify-content: center; /* Centered text since icon is gone */
+    justify-content: center;
     color: var(--primary-dark);
     font-weight: 600;
     font-size: 0.9rem;
@@ -266,11 +291,11 @@ body {
     text-align: center;
 }
 
-/* Consistent Hover Effect for all pills */
 .search-pill:hover {
     background: var(--primary-blue);
     color: white;
     transform: translateY(-2px);
+    border-color: var(--primary-dark);
 }
 
 /* INFO CARDS COLUMN */
@@ -289,11 +314,13 @@ body {
     gap: 15px;
     box-shadow: 0 5px 25px rgba(0,0,0,0.05);
     transition: 0.3s;
+    border: 1px solid transparent;
 }
 
 .info-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border-color: #e0e0e0;
 }
 
 .info-img {
@@ -363,10 +390,13 @@ body {
         bottom: auto; 
         width: 200px;
         height: 200px; 
+        opacity: 1; 
     }
     
     .gallery-container {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        overflow-x: visible; 
     }
 }
