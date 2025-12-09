@@ -243,7 +243,7 @@ body {
 }
 
 .hero-img-wrapper img {
-    height: 120%;
+    height: 110%;
     width: auto;
     object-fit: contain;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
