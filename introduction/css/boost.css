@@ -64,10 +64,7 @@ body {
     font-size: 1.2rem;
 }
 
-.icon-box:hover { 
-    color: var(--primary-blue); 
-    transform: translateY(-2px); 
-}
+.icon-box:hover { color: var(--primary-blue); transform: translateY(-2px); }
 
 .nav-menu {
     font-weight: 600;
@@ -108,15 +105,19 @@ body {
     box-shadow: 0 5px 15px rgba(59, 77, 128, 0.3);
 }
 
-.btn-pill:hover { 
-    transform: translateY(-2px); 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1); 
-}
+.btn-pill:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
 
 /* --- HERO BANNER --- */
 .hero-banner {
     position: relative;
-    background: linear-gradient(135deg, #8ba4f5 0%, #a0b9fa 50%, #c4d7fc 100%);
+    
+    /* BACKGROUND IMAGE / GIF SETTINGS */
+    /* Remember to change this URL to your local file if needed */
+    background-image: url('https://i.pinimg.com/originals/e5/40/08/e54008fec896ec085da559cf537d6f32.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
     border-radius: var(--radius-xl);
     padding: 60px;
     height: 380px;
@@ -136,12 +137,14 @@ body {
     background-size: 50px 50px;
     opacity: 0.3;
     border-radius: var(--radius-xl);
+    z-index: 1; 
 }
 
 .hero-text {
     position: relative;
     z-index: 2;
     max-width: 55%;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
 .hero-text h1 {
@@ -171,11 +174,11 @@ body {
     position: absolute;
     right: 50px;
     bottom: 0;
-    height: 110%; 
+    height: 110%;
     display: flex;
     align-items: flex-end;
     z-index: 3;
-    pointer-events: none; 
+    pointer-events: none;
 }
 
 .hero-img-wrapper img {
@@ -201,17 +204,17 @@ body {
     justify-content: space-between;
 }
 
-/* 1. ARTWORK / GALLERY COLUMN */
+/* GALLERY COLUMN */
 .gallery-container {
     display: flex;
     gap: 15px;
-    overflow-x: auto; 
+    overflow-x: auto;
     padding-bottom: 10px;
 }
 
 .gallery-card {
     flex: 1;
-    min-width: 130px; 
+    min-width: 130px;
     height: 200px;
     border-radius: var(--radius-lg);
     position: relative;
@@ -244,7 +247,7 @@ body {
     font-weight: 600;
 }
 
-/* 2. RECENT SEARCH / INTERESTS COLUMN */
+/* INTERESTS COLUMN */
 .search-list {
     display: flex;
     flex-direction: column;
@@ -252,7 +255,7 @@ body {
 }
 
 .search-pill {
-    background: #dfe6f2; 
+    background: #dfe6f2;
     padding: 15px 20px;
     border-radius: 40px;
     display: flex;
@@ -265,7 +268,7 @@ body {
 }
 
 .search-pill.active {
-    background: #3b4d80; 
+    background: #3b4d80;
     color: white;
 }
 
@@ -280,7 +283,7 @@ body {
     opacity: 0.7;
 }
 
-/* 3. INFO CARDS COLUMN */
+/* INFO CARDS COLUMN */
 .info-list {
     display: flex;
     flex-direction: column;
@@ -331,10 +334,9 @@ body {
 
 /* --- RESPONSIVENESS MEDIA QUERIES --- */
 
-/* Tablet: Stack layout slightly differently */
 @media (max-width: 992px) {
     .dashboard-grid {
-        grid-template-columns: 1fr 1fr; 
+        grid-template-columns: 1fr 1fr;
     }
     
     .col-gallery {
@@ -346,13 +348,12 @@ body {
     .hero-img-wrapper { height: 100%; width: 40%; opacity: 0.8; }
 }
 
-/* Mobile: Full Stack */
 @media (max-width: 768px) {
     .nav-bar { flex-direction: column; gap: 15px; }
     .nav-menu { display: none; }
     
     .dashboard-grid {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
         gap: 40px;
     }
 
@@ -376,6 +377,6 @@ body {
     
     .gallery-container {
         display: grid;
-        grid-template-columns: 1fr 1fr; 
+        grid-template-columns: 1fr 1fr;
     }
 }
