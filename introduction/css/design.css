@@ -1,14 +1,34 @@
 :root {
+    /* DEFAULT (LIGHT MODE) VARIABLES */
     --bg-color: #f2f4f8; 
     --card-white: #ffffff;
     --primary-blue: #6c8af1; 
     --primary-dark: #3b4d80;
     --text-main: #2c3e50;
     --text-light: #8fa1b3;
+    --pill-bg: #dfe6f2;
     --radius-xl: 35px;
     --radius-lg: 25px;
     --radius-md: 18px;
     --shadow-soft: 0 10px 40px rgba(108, 138, 241, 0.15);
+    
+    /* Background Image for Light Mode */
+    --body-bg-image: url('https://png.pngtree.com/background/20210715/original/pngtree-white-simple-texture-background-picture-image_1323742.jpg');
+}
+
+/* --- DARK MODE OVERRIDES --- */
+body.dark-mode {
+    --bg-color: #1a1a2e;        /* Dark Navy Background */
+    --card-white: #16213e;      /* Darker Card Background */
+    --primary-blue: #5373e0;    
+    --primary-dark: #e94560;    /* Accent color change for dark mode (Pinkish Red) */
+    --text-main: #e0e0e0;       /* Light Text */
+    --text-light: #a0a0c0;
+    --pill-bg: #252f4f;         /* Dark Pill Background */
+    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.5);
+    
+    /* Remove the white texture image in dark mode */
+    --body-bg-image: none;
 }
 
 * {
@@ -19,7 +39,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-image: url('https://png.pngtree.com/background/20210715/original/pngtree-white-simple-texture-background-picture-image_1323742.jpg');
+    background-image: var(--body-bg-image);
     background-color: var(--bg-color); 
     background-attachment: fixed; 
     background-size: cover; 
@@ -30,6 +50,9 @@ body {
     justify-content: center;
     align-items: flex-start; /* Aligns to top to allow scrolling */
     padding: 20px;
+    
+    /* Smooth Transition for Dark Mode */
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* MAIN APP WRAPPER */
@@ -119,13 +142,14 @@ body {
 
 .nav-left-icons {
     display: flex;
+    align-items: center;
     gap: 15px;
 }
 
 .icon-box {
     width: 45px;
     height: 45px;
-    background: white;
+    background: var(--card-white); /* Changed to variable */
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -164,12 +188,18 @@ body {
     font-size: 0.9rem;
     cursor: pointer;
     transition: 0.3s;
+    text-align: center;
 }
 
 .btn-outline {
-    background: white;
+    background: var(--card-white);
     color: var(--text-main);
     border: 1px solid #e0e0e0;
+}
+
+/* Update border for dark mode compatibility */
+body.dark-mode .btn-outline {
+    border: 1px solid var(--text-light);
 }
 
 .btn-fill {
@@ -243,7 +273,7 @@ body {
 }
 
 .hero-img-wrapper img {
-    height: 145%; /* CHANGED: Reduced to 145% */
+    height: 145%; 
     width: auto;
     object-fit: contain;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
@@ -327,7 +357,7 @@ body {
 }
 
 .search-pill {
-    background: #dfe6f2;
+    background: var(--pill-bg); /* Use variable for dark mode */
     padding: 15px 20px;
     border-radius: 40px;
     display: flex;
@@ -339,6 +369,11 @@ body {
     cursor: pointer;
     transition: 0.2s;
     text-align: center;
+}
+
+/* Adjust pill text color for dark mode to be readable */
+body.dark-mode .search-pill {
+    color: var(--text-main);
 }
 
 .search-pill:hover {
@@ -356,7 +391,7 @@ body {
 }
 
 .info-card {
-    background: white;
+    background: var(--card-white); /* Use variable */
     border-radius: var(--radius-lg);
     padding: 20px;
     display: flex;
@@ -383,6 +418,11 @@ body {
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
+}
+
+/* Adjust info-img background for dark mode */
+body.dark-mode .info-img {
+    background: #252f4f;
 }
 
 .info-content h4 {
@@ -472,7 +512,7 @@ body {
     }
 
     .hero-img-wrapper img {
-        height: 95%; /* CHANGED: Reduced to 95% */
+        height: 95%; 
         width: auto;
     }
     
