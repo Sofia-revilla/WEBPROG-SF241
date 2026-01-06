@@ -18,17 +18,17 @@
 
 /* --- DARK MODE OVERRIDES --- */
 body.dark-mode {
-    --bg-color: #1a1a2e;        /* Dark Navy Background */
+    --bg-color: #1c1c28;        /* Dark Navy Background */
     --card-white: #16213e;      /* Darker Card Background */
     --primary-blue: #5373e0;    
-    --primary-dark: #e94560;    /* Accent color change for dark mode (Pinkish Red) */
+    --primary-dark: #ffe6ea;    /* Accent color change for dark mode (Pinkish Red) */
     --text-main: #e0e0e0;       /* Light Text */
-    --text-light: #a0a0c0;
-    --pill-bg: #252f4f;         /* Dark Pill Background */
+    --text-light: #41417c;
+    --pill-bg: #606988;         /* Dark Pill Background */
     --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.5);
     
-    /* Remove the white texture image in dark mode */
-    --body-bg-image: none;
+    /*Background Image dark mode */
+    --body-bg-image: url('https://t3.ftcdn.net/jpg/09/12/29/86/360_F_912298681_wuJImyfezuIKQkITidmtuCdphVWRWoUj.jpg');
 }
 
 * {
