@@ -12,19 +12,25 @@
     --radius-md: 18px;
     --shadow-soft: 0 10px 40px rgba(108, 138, 241, 0.15);
     --body-bg-image: url('https://png.pngtree.com/background/20210715/original/pngtree-white-simple-texture-background-picture-image_1323742.jpg');
+    
+    /* Hero Banner GIF (Light Mode) */
+    --hero-bg: url('https://i.pinimg.com/originals/e5/40/08/e54008fec896ec085da559cf537d6f32.gif');
 }
 
-/* Dark Mode Overrides */
+/* Dark Mode Overrides - Facebook/Instagram Style */
 body.dark-mode {
-    --bg-color: #151520;        /* Navy Base */
-    --card-white: #1e1e2d;      /* Desaturated Card */
-    --primary-blue: #7a91dd;    /* Periwinkle */
-    --primary-dark: #829dac;    /* Soft Coral Accent */
-    --text-main: #ebebf5;       /* Off-white */
-    --text-light: #8f90a6;      
-    --pill-bg: #262a40;         
-    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.4);
-    --body-bg-image: none;
+    --bg-color: #18191a;        /*  Dark Background */
+    --card-white: #242526;      /* Card Background */
+    --primary-blue: #5e67e7;    /* Vivid Blue Accent */
+    --primary-dark: #3a3b3c;    /* Dark Gray Element Background */
+    --text-main: #e4e6eb;       /* High Contrast Off-White */
+    --text-light: #b0b3b8;      /* Secondary Text Gray */
+    --pill-bg: #3a3b3c;         /* Pill background matching cards/inputs */
+    --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.5);
+    --body-bg-image: none;     
+    
+    /* Hero Banner GIF*/
+    --hero-bg: url('https://i.pinimg.com/originals/60/75/52/607552369e43a57329efd27366bff13b.gif');
 }
 
 /* Reset & Base Styles */
@@ -190,7 +196,7 @@ body {
 }
 
 body.dark-mode .btn-outline {
-    border: 1px solid var(--text-light);
+    border: 1px solid #3e4042; /* Darker border for dark mode */
 }
 
 .btn-fill {
@@ -202,7 +208,8 @@ body.dark-mode .btn-outline {
 /* Hero Banner */
 .hero-banner {
     position: relative;
-    background-image: url('https://i.pinimg.com/originals/e5/40/08/e54008fec896ec085da559cf537d6f32.gif');
+    /* CHANGED: Uses variable to switch image in dark mode */
+    background-image: var(--hero-bg); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -215,6 +222,7 @@ body.dark-mode .btn-outline {
     overflow: visible;
     margin-bottom: 40px;
     box-shadow: var(--shadow-soft);
+    transition: background-image 0.5s ease; /* Smooth transition for the image */
 }
 
 .hero-banner::before {
@@ -386,7 +394,7 @@ body.dark-mode .search-pill {
 .info-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    border-color: #e0e0e0;
+    border-color: #3e4042;
 }
 
 .info-img {
@@ -402,7 +410,7 @@ body.dark-mode .search-pill {
 }
 
 body.dark-mode .info-img {
-    background: #252f4f;
+    background: #3a3b3c;
 }
 
 .info-content h4 {
