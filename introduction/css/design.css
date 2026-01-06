@@ -14,7 +14,7 @@
     --body-bg-image: url('https://png.pngtree.com/background/20210715/original/pngtree-white-simple-texture-background-picture-image_1323742.jpg');
     
     /* Hero Banner GIF (Light Mode) */
-    --hero-bg: url('https://i.pinimg.com/originals/00/d5/f6/00d5f6b33d9d90b59dd007a939eb6378.gif');
+    --hero-bg: url('https://i.pinimg.com/originals/50/c7/38/50c738083fa2175842f6448e2e610b45.gif');
 }
 
 /* Dark Mode  */
@@ -30,7 +30,7 @@ body.dark-mode {
     --body-bg-image: none;     
     
     /* Hero Banner GIF (Dark Mode) */
-    --hero-bg: url('https://i.pinimg.com/originals/ed/23/9d/ed239ddc0e23afd424de14db792c6bf8.gif');
+    --hero-bg: url('https://i.pinimg.com/originals/e5/40/08/e54008fec896ec085da559cf537d6f32.gif');
 }
 
 /* Reset & Base Styles */
