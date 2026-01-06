@@ -1,17 +1,12 @@
 //try adding java for effects (Inspired from the internet)
 
-// --- LIGHTBOX FUNCTIONALITY ---
-
-// Get elements
+// --- LIGHTBOX ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const captionText = document.getElementById('caption');
 const closeBtn = document.querySelector('.close-btn');
-
-// Select all gallery images
 const galleryImages = document.querySelectorAll('.gallery-card img');
 
-// Add click event to each image
 galleryImages.forEach(img => {
     img.addEventListener('click', () => {
         lightbox.style.display = "flex";
@@ -20,12 +15,10 @@ galleryImages.forEach(img => {
     });
 });
 
-// Close when clicking the X
 closeBtn.addEventListener('click', () => {
     lightbox.style.display = "none";
 });
 
-// Close when clicking outside the image
 lightbox.addEventListener('click', (e) => {
     if (e.target !== lightboxImg) {
         lightbox.style.display = "none";
@@ -34,21 +27,34 @@ lightbox.addEventListener('click', (e) => {
 
 
 // --- DARK MODE TOGGLE ---
-
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = themeToggle.querySelector('i');
 const body = document.body;
 
 themeToggle.addEventListener('click', () => {
-    // 1. Toggle the class on the body
     body.classList.toggle('dark-mode');
 
-    // 2. Switch the Icon (Moon <-> Sun)
     if(body.classList.contains('dark-mode')) {
         themeIcon.classList.remove('bi-moon');
         themeIcon.classList.add('bi-sun');
     } else {
         themeIcon.classList.remove('bi-sun');
         themeIcon.classList.add('bi-moon');
+    }
+});
+
+
+// --- RESUME TOGGLE ---
+const resumeBtn = document.getElementById('resumeToggle');
+const resumeContent = document.getElementById('resumeContent');
+
+resumeBtn.addEventListener('click', () => {
+    resumeContent.classList.toggle('active');
+    
+    // Optional: Change button text based on state
+    if(resumeContent.classList.contains('active')) {
+        resumeBtn.innerHTML = '<i class="bi bi-chevron-up"></i> CLOSE PROFILE';
+    } else {
+        resumeBtn.innerHTML = '<i class="bi bi-file-earmark-person"></i> KNOW MORE ABOUT ME (Click to Open)';
     }
 });
