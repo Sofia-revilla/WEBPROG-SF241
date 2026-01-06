@@ -27,8 +27,8 @@ body.dark-mode {
     --pill-bg: #606988;         /* Dark Pill Background */
     --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.5);
     
-    /*Background Image dark mode */
-    --body-bg-image: url('https://t3.ftcdn.net/jpg/09/12/29/86/360_F_912298681_wuJImyfezuIKQkITidmtuCdphVWRWoUj.jpg');
+    /* Remove the white texture image in dark mode */
+    --body-bg-image: none;
 }
 
 * {
