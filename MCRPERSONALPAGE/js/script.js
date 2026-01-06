@@ -1,5 +1,4 @@
 //try adding java for effects (Inspired from the internet)
-
 // --- LIGHTBOX ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
