@@ -21,7 +21,7 @@ body.dark-mode {
     --bg-color: #1a1a2e;        /* Dark Navy Background */
     --card-white: #16213e;      /* Darker Card Background */
     --primary-blue: #5373e0;    
-    --primary-dark: #e94560;    /* Accent color change for dark mode (Pinkish Red) */
+    --primary-dark: #818387;    /* Accent color change for dark mode (Pinkish Red) */
     --text-main: #e0e0e0;       /* Light Text */
     --text-light: #a0a0c0;
     --pill-bg: #252f4f;         /* Dark Pill Background */
