@@ -1,6 +1,6 @@
 //try adding java for effects (Inspired from the internet)
 
-/// --- LIGHTBOX FUNCTIONALITY ---
+// --- LIGHTBOX FUNCTIONALITY ---
 
 // Get elements
 const lightbox = document.getElementById('lightbox');

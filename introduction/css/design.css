@@ -18,13 +18,13 @@
 
 /* --- DARK MODE OVERRIDES --- */
 body.dark-mode {
-    --bg-color: #1c1c28;        /* Dark Navy Background */
+    --bg-color: #1a1a2e;        /* Dark Navy Background */
     --card-white: #16213e;      /* Darker Card Background */
     --primary-blue: #5373e0;    
-    --primary-dark: #ffe6ea;    /* Accent color change for dark mode (Pinkish Red) */
+    --primary-dark: #e94560;    /* Accent color change for dark mode (Pinkish Red) */
     --text-main: #e0e0e0;       /* Light Text */
-    --text-light: #41417c;
-    --pill-bg: #606988;         /* Dark Pill Background */
+    --text-light: #a0a0c0;
+    --pill-bg: #252f4f;         /* Dark Pill Background */
     --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.5);
     
     /* Remove the white texture image in dark mode */
@@ -356,8 +356,9 @@ body.dark-mode .btn-outline {
     gap: 12px;
 }
 
+/* Updated to look like static tags, not buttons */
 .search-pill {
-    background: var(--pill-bg); /* Use variable for dark mode */
+    background: var(--pill-bg); 
     padding: 15px 20px;
     border-radius: 40px;
     display: flex;
@@ -366,21 +367,13 @@ body.dark-mode .btn-outline {
     color: var(--primary-dark);
     font-weight: 600;
     font-size: 0.9rem;
-    cursor: pointer;
-    transition: 0.2s;
+    cursor: default; /* No pointer hand */
     text-align: center;
 }
 
 /* Adjust pill text color for dark mode to be readable */
 body.dark-mode .search-pill {
     color: var(--text-main);
-}
-
-.search-pill:hover {
-    background: var(--primary-blue);
-    color: white;
-    transform: translateY(-2px);
-    border-color: var(--primary-dark);
 }
 
 /* INFO CARDS COLUMN */
