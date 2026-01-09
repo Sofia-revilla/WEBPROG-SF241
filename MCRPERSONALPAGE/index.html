@@ -10,24 +10,16 @@
     
     <link rel="stylesheet" href="css/design.css">
     <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body class="loading">
 
-<div class="col-gallery">
-    <div class="section-header">
-        M Gallery <small>(Click to Transition)</small>
-    </div>
-    <div id="art-gallery-container">
-        <div class="art-ui">
-            <h3 id="art-title">My Life</h3>
-            <p id="art-artist">BSCS STUDENT</p>
+    <div id="loader">
+        <div class="loader-content">
+            <h2>MSACR</h2>
+            <p>Initializing Profile...</p>
+            <div class="spinner"></div>
         </div>
     </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="js/gallery.js"></script>
-</head>
-<body>
 
     <div id="lightbox" class="lightbox">
         <span class="close-btn">&times;</span>
@@ -39,15 +31,13 @@
         
         <nav class="nav-bar">
             <div class="nav-left-icons">
-                <a href="https://www.linkedin.com/in/ma-sofia-anne-revilla-" target="_blank" class="icon-box" style="text-decoration: none; color: inherit;">
+                <a href="https://www.linkedin.com/in/ma-sofia-anne-revilla-" target="_blank" class="icon-box" title="LinkedIn">
                     <i class="bi bi-person"></i>
                 </a>
-                
                 <div class="icon-box" id="theme-toggle" title="Toggle Dark Mode">
                     <i class="bi bi-moon"></i>
                 </div>
-
-                <a href="https://github.com/Sofia-revilla/WEBPROG-SF241/tree/feature/3_MSACR_customize_my_website" target="_blank" class="btn-pill btn-fill" style="margin-left: 10px; font-size: 0.8rem; text-decoration: none; display: inline-block;">
+                <a href="https://github.com/Sofia-revilla/WEBPROG-SF241/tree/feature/3_MSACR_customize_my_website" target="_blank" class="btn-pill btn-fill" style="margin-left: 10px; font-size: 0.8rem; text-decoration: none;">
                     WEBPROG
                 </a>
             </div>
@@ -57,11 +47,10 @@
             </div>
 
             <div class="nav-auth-buttons">
-                <a href="https://www.linkedin.com/in/ma-sofia-anne-revilla-" target="_blank" class="btn-pill btn-outline" style="text-decoration: none; display: inline-block;">
+                <a href="https://www.linkedin.com/in/ma-sofia-anne-revilla-" target="_blank" class="btn-pill btn-outline" style="text-decoration: none;">
                     Revilla
                 </a>
-
-                <a href="https://github.com/Sofia-revilla" target="_blank" class="btn-pill btn-fill" style="text-decoration: none; display: inline-block;">
+                <a href="https://github.com/Sofia-revilla" target="_blank" class="btn-pill btn-fill" style="text-decoration: none;">
                     GitHub
                 </a>
             </div>
@@ -89,147 +78,97 @@
                         <h2>ABOUT ME</h2>
                         <p>CONFIDENTIAL | STUDENT PROFILE</p>
                     </div>
-                    
                     <div class="paper-grid">
                         <div class="resume-item">
                             <span class="resume-label">Full Name</span>
                             <span class="resume-value">Ma. Sofia Anne C. Revilla</span>
                         </div>
                         <div class="resume-item">
-                            <span class="resume-label">Nickname</span>
-                            <span class="resume-value">Sof or Pia</span>
-                        </div>
-                        <div class="resume-item">
-                            <span class="resume-label">Age / Birthdate</span>
+                            <span class="resume-label">Age</span>
                             <span class="resume-value">20 (April 26, 2005)</span>
                         </div>
-                         <div class="resume-item">
-                            <span class="resume-label">Senior High School</span>
-                            <span class="resume-value">Asia Pacific College, Makati City</span>
-                        </div>
-                        
                         <div class="resume-item full-width">
                             <span class="resume-label">Course</span>
-                            <span class="resume-value">Bachelor of Science in Computer Science with a specialization in Cybersecurity and Forensics</span>
+                            <span class="resume-value">BS Computer Science - Cybersecurity and Forensics</span>
                         </div>
-
-                        <div class="resume-item">
-                            <span class="resume-label">Scholarship</span>
-                            <span class="resume-value">Yes, 60% (AFP-OLC Scholarship / Armed Forces Scholarship).</span>
-                        </div>
-                        <div class="resume-item">
-                            <span class="resume-label">Transferee?</span>
-                            <span class="resume-value">N/A</span>
-                        </div>
-
                         <div class="resume-item full-width">
-                            <span class="resume-label">Did you choose this course?</span>
-                            <span class="resume-value">
-                                Yes and no. I chose practicality over passion, partially because tech-related courses are in high demand and I plan to join military cyber operations someday. I also thought knowledge of ethical hacking would be interesting. However, my original choice was to take a veterinary course.
-                            </span>
-                        </div>
-
-                        <div class="resume-item">
-                            <span class="resume-label">Alternative Course Choice</span>
-                            <span class="resume-value">Veterinary Medicine</span>
-                        </div>
-
-                         <div class="resume-item">
-                            <span class="resume-label">Hobbies / Interests</span>
-                            <span class="resume-value">Painting, gaming, studying animals, watching movies and documentaries (especially crime-related films), eating, walking, and running alone.</span>
-                        </div>
-
-                        <div class="resume-item full-width">
-                            <span class="resume-label">I.T. Experience</span>
-                            <span class="resume-value">Some experience with programming, gaming, Linux fundamentals, MySQL Workbench, and UI/UX design.</span>
+                            <span class="resume-label">Philosophy</span>
+                            <span class="resume-value">Choosing practicality over passion for military cyber operations, though my original choice was Veterinary Medicine.</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="col-gallery-wide">
+            <div class="section-header">
+                My Life Gallery <small style="font-size: 0.8rem; opacity: 0.6; font-weight: normal;">(Interactive WebGL)</small>
+            </div>
+            <div id="art-gallery-container" class="art-container">
+                <div class="art-ui">
+                    <h2 id="art-title">Loading Art...</h2>
+                    <p id="art-artist">MA. SOFIA ANNE</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="projects-grid" style="margin-top: 30px; margin-bottom: 30px;">
+            <div class="project-card">
+                <div class="p-icon"><i class="bi bi-code-slash"></i></div>
+                <h3>TechZone DB</h3>
+                <p>Database Management System Project for Inventory Control.</p>
+            </div>
+            <div class="project-card">
+                <div class="p-icon"><i class="bi bi-shield-lock"></i></div>
+                <h3>Cyber Lab</h3>
+                <p>Ubuntu & Kali Linux Network Security Simulation.</p>
+            </div>
+            <div class="project-card">
+                <div class="p-icon"><i class="bi bi-trophy"></i></div>
+                <h3>AFP Scholar</h3>
+                <p>Awarded 60% AFP-OLC Scholarship for Academic Excellence.</p>
+            </div>
+        </div>
+
         <div class="dashboard-grid">
 
             <div class="col-gallery">
                 <div class="section-header">
-                    Gallery <small style="font-size: 0.8rem; opacity: 0.6; font-weight: normal; margin-left: 5px;">(Click image)</small>
+                    Quick Snaps <small style="font-size: 0.8rem; opacity: 0.6;">(Click to view)</small>
                 </div>
                 <div class="gallery-container">
-                    <div class="gallery-card">
-                        <img src="image/draww.png" alt="Drawing">
-                        <div class="gallery-overlay">hehe</div>
-                    </div>
-                    <div class="gallery-card">
-                         <img src="image/family.jpg" alt="My Family">
-                        <div class="gallery-overlay">Family</div>
-                    </div>
-                    <div class="gallery-card">
-                        <img src="image/shs.jpg" alt="SHS Days">
-                        <div class="gallery-overlay">Me</div>
-                    </div>
-
-                    <div class="gallery-card">
-                        <img src="image/kel.jpg" alt="Pet Photo">
-                        <div class="gallery-overlay">Twinkel</div>
-                    </div>
-                    <div class="gallery-card">
-                        <img src="image/pet2.jpg" alt="My Pets">
-                        <div class="gallery-overlay">Mother dog</div>
-                    </div>
-                    <div class="gallery-card">
-                         <img src="image/pet3.jpg" alt="My Pets">
-                         <div class="gallery-overlay">Kalikid</div>
-                    </div>
-                    <div class="gallery-card">
-                         <img src="image/tal.jpg" alt="My Pets">
-                         <div class="gallery-overlay">Talia</div>
-                    </div>
-                    <div class="gallery-card">
-                         <img src="image/nat.jpg" alt="My Pets">
-                         <div class="gallery-overlay">Nat-Nat</div>
-                    </div>
+                    <div class="gallery-card"><img src="image/draww.png" alt="Drawing"><div class="gallery-overlay">Art</div></div>
+                    <div class="gallery-card"><img src="image/family.jpg" alt="Family"><div class="gallery-overlay">Family</div></div>
+                    <div class="gallery-card"><img src="image/shs.jpg" alt="SHS"><div class="gallery-overlay">Me</div></div>
+                    <div class="gallery-card"><img src="image/kel.jpg" alt="Twinkel"><div class="gallery-overlay">Twinkel</div></div>
                 </div>
             </div>
 
             <div class="col-search">
-                <div class="section-header">
-                    Skills & Interests
-                </div>
+                <div class="section-header">Skills & Interests</div>
                 <div class="search-list">
                     <div class="search-pill">Python & CSS</div>
                     <div class="search-pill">Cyber Security</div>
-                    <div class="search-pill">Painting & Gaming</div>
-                    <div class="search-pill">Helping Animals</div>
-                    <div class="search-pill">Crime Docs</div>
+                    <div class="search-pill">Painting</div>
+                    <div class="search-pill">Animal Rescue</div>
                 </div>
             </div>
 
             <div class="col-info">
-                <div class="section-header">
-                    About
-                </div>
+                <div class="section-header">Goals</div>
                 <div class="info-list">
                     <div class="info-card">
                         <div class="info-img">🎯</div>
                         <div class="info-content">
                             <h4>Life Goal</h4>
-                            <p>Financial stability to support loved ones.</p>
+                            <p>Financial stability for loved ones.</p>
                         </div>
                     </div>
-
                     <div class="info-card">
                         <div class="info-img">🐾</div>
                         <div class="info-content">
                             <h4>Dream Project</h4>
-                            <p>To build a large animal rescue shelter.</p>
-                        </div>
-                    </div>
-
-                    <div class="info-card">
-                        <div class="info-img">💻</div>
-                        <div class="info-content">
-                            <h4>Experience</h4>
-                            <p>Linux, MySQL, Agile, Project Management.</p>
-                            <p>css, html</p>                
+                            <p>Build a large animal rescue shelter.</p>
                         </div>
                     </div>
                 </div>
@@ -243,7 +182,10 @@
 
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/gallery.js"></script>
 
 </body>
 </html>
