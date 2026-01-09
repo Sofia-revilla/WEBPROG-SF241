@@ -1,23 +1,23 @@
-.gallery-feature-wrapper {
-    margin-bottom: 40px;
-}
-
-.wide-banner {
+/* Centerpiece Styling - Matches Hero Banner Size Exactly */
+.wide-banner-match {
     width: 100%;
-    height: 380px; /* MATCHES HERO BANNER */
-    border-radius: var(--radius-xl);
+    height: 380px; 
+    border-radius: var(--radius-xl); /* 35px from design.css */
     position: relative;
     overflow: hidden;
     cursor: pointer;
     box-shadow: var(--shadow-soft);
+    background: #000;
+    margin-bottom: 40px;
 }
 
 .art-container canvas {
+    display: block;
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover;
 }
 
+/* UI Overlay styling inside the gallery */
 .art-ui {
     position: absolute;
     bottom: 0; left: 0; width: 100%;
@@ -28,29 +28,38 @@
     z-index: 5;
 }
 
-.art-ui h2 { font-size: 2rem; margin: 0; font-family: 'Georgia', serif; }
+.art-ui h2 { font-size: 2.5rem; margin: 0; font-family: 'Georgia', serif; }
+.art-ui p { opacity: 0.8; letter-spacing: 2px; text-transform: uppercase; font-size: 0.75rem; }
 
-/* Grid Modal Styles */
+/* Grid Layout for Bottom Section */
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* Modal View All Grid */
 .gallery-grid-content {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
     width: 90%;
-    max-width: 1100px;
-    padding: 50px 0;
+    max-width: 1000px;
+    margin-top: 50px;
 }
 
 .grid-item {
+    width: 100%;
     aspect-ratio: 1/1;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     overflow: hidden;
-    border: 3px solid transparent;
+    border: 2px solid transparent;
     transition: 0.3s;
 }
 
 .grid-item:hover {
     border-color: var(--primary-blue);
-    transform: translateY(-10px);
+    transform: translateY(-5px);
 }
 
 .grid-item img { width: 100%; height: 100%; object-fit: cover; }
