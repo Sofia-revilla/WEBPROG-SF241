@@ -15,6 +15,7 @@
 
     <audio id="sfx-click" src="audio/typewriter-click.mp3" preload="auto"></audio>
     <audio id="sfx-pop" src="audio/firework.mp3" preload="auto"></audio>
+    <audio id="bg-music" loop></audio>
 
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
@@ -22,15 +23,18 @@
 
     <div id="side-nav-toggle" class="sfx-trigger"><i class="bi bi-list"></i></div>
     <div id="side-nav">
-        <span class="close-nav">&times;</span>
-        <h3>Navigation</h3>
-        <a href="#" onclick="scrollToSection('hero')">Home</a>
-        <a href="#" onclick="scrollToSection('resume-section')">Resume</a>
-        <a href="#" onclick="scrollToSection('gallery-row')">Galleries</a>
-        <a href="#" onclick="scrollToSection('projects')">Projects</a>
+        <span class="close-nav sfx-trigger">&times;</span>
+        <h3>MENU</h3>
+        <div class="nav-links">
+            <a href="#" onclick="scrollToSection('hero')">Home</a>
+            <a href="#" onclick="scrollToSection('resume-section')">Who Is Me?</a>
+            <a href="#" onclick="scrollToSection('gallery-row')">Life & Music</a>
+            <a href="#" onclick="scrollToSection('projects')">Projects</a>
+            <a href="#" onclick="scrollToSection('guestbook')">Leave a Note</a>
+        </div>
         
         <div class="nav-contact-bonus">
-            <h4>Contact Info</h4>
+            <h4>CONTACT</h4>
             <p><i class="bi bi-envelope"></i> sofia.revilla@example.com</p>
             <p><i class="bi bi-linkedin"></i> linkedin.com/in/sofia-revilla</p>
             <p><i class="bi bi-geo-alt"></i> Clark Air Base</p>
@@ -48,17 +52,17 @@
 
     <div id="info-modal" class="modal-overlay">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <span class="close-modal sfx-trigger">&times;</span>
             <h2 id="modal-title">Title</h2>
             <div id="modal-body">Message...</div>
         </div>
     </div>
 
     <div id="lightbox" class="lightbox">
-        <span class="close-btn">&times;</span>
-        <div class="lightbox-nav prev-btn"><i class="bi bi-chevron-left"></i></div>
+        <span class="close-btn sfx-trigger">&times;</span>
+        <div class="lightbox-nav prev-btn sfx-trigger"><i class="bi bi-chevron-left"></i></div>
         <img class="lightbox-content" id="lightbox-img">
-        <div class="lightbox-nav next-btn"><i class="bi bi-chevron-right"></i></div>
+        <div class="lightbox-nav next-btn sfx-trigger"><i class="bi bi-chevron-right"></i></div>
         <div id="caption"></div>
         <div id="album-counter">1 / 1</div>
     </div>
@@ -88,52 +92,71 @@
             </div>
         </section>
 
-        <div style="text-align: center; max-width: 800px; margin: 0 auto 40px auto; line-height: 1.8; color: var(--text-main);">
-            <p>I am a 2nd Year BSCS student at Asia Pacific College. My journey balances technical rigor with deep compassion. From saving my puppy from Parvo through sleepless nights during exam week, to mastering Linux fundamentals—dedication drives everything I do.</p>
-        </div>
-
         <div class="resume-section" id="resume-section">
             <button class="resume-toggle-btn sfx-trigger" id="resumeToggle">
-                <i class="bi bi-file-earmark-person"></i> VIEW FULL BIO & RESUME
+                <i class="bi bi-file-earmark-person"></i> WHO IS ME? (Click to Open)
             </button>
             
             <div class="resume-content" id="resumeContent">
                 <div class="paper-sheet">
                     <div class="paper-header">
-                        <h2>CURRICULUM VITAE</h2>
-                        <p>MA. SOFIA ANNE C. REVILLA</p>
+                        <h2>WHO IS ME?</h2>
+                        <p>CONFIDENTIAL | STUDENT PROFILE</p>
                     </div>
                     <div class="paper-grid">
                         <div class="resume-item">
-                            <span class="resume-label">Personal Details</span>
-                            <span class="resume-value">Age: 20 (April 26, 2005)<br>City: Makati / Clark Air Base</span>
-                        </div>
-                        <div class="resume-item">
-                            <span class="resume-label">Education</span>
-                            <span class="resume-value">SHS: Asia Pacific College<br>College: BS Computer Science (Cybersecurity & Forensics)</span>
-                        </div>
-                        <div class="resume-item full-width">
-                            <span class="resume-label">Scholarship</span>
-                            <span class="resume-value">AFP-OLC Scholarship (60% Armed Forces Scholarship)</span>
-                        </div>
-                        <div class="resume-item full-width">
-                            <span class="resume-label">Why this course?</span>
-                            <div class="experience-box">
-                                "I chose practicality. Tech is in high demand, and I plan to join military cyber operations. I originally wanted Veterinary Medicine, but found the ethical hacking specialization intriguing."
-                            </div>
-                        </div>
-                        <div class="resume-item full-width">
-                            <span class="resume-label">Skills & Hobbies</span>
+                            <span class="resume-label">Identity</span>
                             <span class="resume-value">
-                                <strong>Tech:</strong> Linux, MySQL Workbench, UI/UX, Python, Video Editing.<br>
-                                <strong>Hobbies:</strong> Shooting Range, Cafe Exploring, Arts, Documentaries (Crime).
+                                <strong>Name:</strong> Ma. Sofia Anne C. Revilla<br>
+                                <strong>Nickname:</strong> Sof or Pia<br>
+                                <strong>Age:</strong> 20 (April 26, 2005)<br>
+                                <strong>City:</strong> Makati / Clark Air Base
                             </span>
                         </div>
+                        <div class="resume-item">
+                            <span class="resume-label">Academic Background</span>
+                            <span class="resume-value">
+                                <strong>SHS:</strong> Asia Pacific College<br>
+                                <strong>College:</strong> BS Computer Science (Cybersecurity & Forensics)<br>
+                                <strong>Scholarship:</strong> Yes, 60% (AFP-OLC Armed Forces Scholarship)
+                            </span>
+                        </div>
+                        
                         <div class="resume-item full-width">
-                            <span class="resume-label">Life Highlight</span>
-                            <div class="experience-box" style="border-left: 3px solid #6c8af1; padding-left: 10px;">
-                                Successfully nursed my puppy back to health from Parvo for two weeks while simultaneously passing my exams. It taught me resilience and dedication.
+                            <span class="resume-label">The "Why"</span>
+                            <div class="experience-box">
+                                "Yes and no. I chose practicality over passion. Tech is in high demand, and I plan to join military cyber operations. However, my original choice was Veterinary Medicine. I found the ethical hacking specialization intriguing and cool, so I went for it."
                             </div>
+                        </div>
+
+                        <div class="resume-item">
+                            <span class="resume-label">Life Goals</span>
+                            <span class="resume-value">
+                                1. Financial Stability for my family.<br>
+                                2. Build a large Animal Rescue Shelter.<br>
+                                3. Work in Military Cyber Operations.<br>
+                                4. Multiple sources of income (Business/Tech).
+                            </span>
+                        </div>
+
+                        <div class="resume-item">
+                            <span class="resume-label">IT Experience</span>
+                            <span class="resume-value">Programming, Gaming, Linux Fundamentals, MySQL Workbench, UI/UX Design.</span>
+                        </div>
+
+                        <div class="resume-item full-width">
+                            <span class="resume-label">Life Highlight (Resilience)</span>
+                            <div class="experience-box" style="border-left: 4px solid #d14444; padding-left: 15px;">
+                                "I was able to save our puppy who had Parvo. It was almost two weeks of sleepless nights taking care of him while finishing a project and reviewing for exams. Even while sick myself, I checked his dextrose every minute. My dedication kept me going, and now he is fully recovered, active, and lively."
+                            </div>
+                        </div>
+
+                        <div class="resume-item full-width">
+                            <span class="resume-label">Hobbies & Skills</span>
+                            <span class="resume-value">
+                                Video Editing, Photoshop, Drawing/Painting, Custom Designing, Pet Care.<br>
+                                <em>Interests:</em> Cafe Exploring, Shooting Range, Crime Documentaries, Walking/Running alone.
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -142,9 +165,9 @@
 
         <div class="gallery-row" id="gallery-row">
             
-            <div class="gallery-column">
+            <div class="gallery-half">
                 <div class="section-header">Life Gallery <small>(Memories)</small></div>
-                <div id="art-gallery-container" class="art-container vertical-art">
+                <div id="art-gallery-container" class="art-container">
                     <div class="art-ui">
                         <h2 id="art-title">Loading...</h2>
                         <p id="art-artist">MY LIFE</p>
@@ -152,12 +175,21 @@
                 </div>
             </div>
 
-            <div class="gallery-column">
-                <div class="section-header">Skills & Badges <small>(Tech Stack)</small></div>
-                <div id="skill-gallery-container" class="art-container vertical-art">
-                    <div class="art-ui">
-                        <h2 id="skill-title">Loading...</h2>
-                        <p id="skill-artist">ACHIEVEMENTS</p>
+            <div class="gallery-half">
+                <div class="section-header">Vibe Check <small>(Music)</small></div>
+                <div class="music-player-container">
+                    <div class="vinyl-disc" id="vinyl">
+                        <div class="vinyl-cover" id="album-art"></div>
+                        <div class="vinyl-center"></div>
+                    </div>
+                    <div class="music-info">
+                        <h3 id="song-title">Select a Track</h3>
+                        <p id="song-artist">My Playlist</p>
+                    </div>
+                    <div class="music-controls">
+                        <button class="ctrl-btn sfx-trigger" id="prev-song"><i class="bi bi-skip-start-fill"></i></button>
+                        <button class="ctrl-btn play-btn sfx-trigger" id="play-pause"><i class="bi bi-play-fill"></i></button>
+                        <button class="ctrl-btn sfx-trigger" id="next-song"><i class="bi bi-skip-end-fill"></i></button>
                     </div>
                 </div>
             </div>
@@ -193,52 +225,37 @@
             <div class="col-gallery">
                 <div class="section-header">Quick Snaps</div>
                 <div class="polaroid-container">
-                    
                     <div class="polaroid sfx-trigger" data-album="pets" style="--r:-3deg;">
                         <div class="polaroid-img"><img src="image/kel.jpg" alt="Pets"></div>
                         <span>Fur Babies</span>
                     </div>
-
                     <div class="polaroid sfx-trigger" data-album="art" style="--r:2deg;">
                         <div class="polaroid-img"><img src="image/draww.png" alt="Art"></div>
                         <span>Artworks</span>
                     </div>
-
                     <div class="polaroid sfx-trigger" data-album="family" style="--r:-2deg;">
                         <div class="polaroid-img"><img src="image/family.jpg" alt="Family"></div>
                         <span>Family</span>
                     </div>
-
                     <div class="polaroid sfx-trigger" data-album="hobbies" style="--r:4deg;">
                         <div class="polaroid-img"><img src="image/shs.jpg" alt="Hobbies"></div>
                         <span>Hobbies</span>
                     </div>
-
                     <div class="polaroid sfx-trigger" data-album="memories" style="--r:-4deg;">
                         <div class="polaroid-img"><img src="image/me.png" alt="Me"></div>
                         <span>Memories</span>
                     </div>
-
                 </div>
             </div>
 
-            <div class="details-column">
-                <div class="col-info">
-                    <div class="section-header">Goals</div>
-                    <div class="info-list">
-                        <div class="info-card sfx-trigger">
-                            <div class="info-img">🎯</div>
-                            <div class="info-content"><h4>Goal</h4><p>Financial stability for my family.</p></div>
+            <div class="col-search" id="guestbook">
+                <div class="section-header">Guestbook</div>
+                <div class="guestbook-container">
+                    <p style="font-size: 0.8rem; margin-bottom: 10px;">Leave a note for the owner!</p>
+                    <textarea id="guest-note" placeholder="Write something nice..."></textarea>
+                    <button id="save-note-btn" class="btn-pill btn-fill sfx-trigger" style="width:100%; margin-top:10px;">Post Note</button>
+                    <div id="notes-display">
                         </div>
-                        <div class="info-card sfx-trigger">
-                            <div class="info-img">🐾</div>
-                            <div class="info-content"><h4>Dream</h4><p>Build a large animal rescue shelter.</p></div>
-                        </div>
-                        <div class="info-card sfx-trigger">
-                            <div class="info-img">🛡️</div>
-                            <div class="info-content"><h4>Career</h4><p>Military Cyber Operations.</p></div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -256,10 +273,10 @@
     <script src="js/gallery.js"></script>
 
     <script>
-        // Inline helper for scrolling
+        // Inline helpers
         function scrollToSection(id) {
             document.getElementById(id).scrollIntoView({behavior: 'smooth'});
-            document.getElementById('side-nav').classList.remove('active'); // Close nav
+            document.getElementById('side-nav').classList.remove('active'); 
         }
         function openProject(title, desc) {
             const modal = document.getElementById('info-modal');

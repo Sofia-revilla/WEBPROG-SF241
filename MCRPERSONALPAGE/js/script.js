@@ -1,67 +1,98 @@
-// --- ALBUM DATA ---
-// You must have these images in your folder!
-const albums = {
-    'pets': ['image/kel.jpg', 'image/pet2.jpg', 'image/tal.jpg', 'image/nat.jpg'],
-    'art': ['image/draww.png', 'image/draww.png', 'image/draww.png'],
-    'family': ['image/family.jpg', 'image/family.jpg'],
-    'hobbies': ['image/shs.jpg', 'image/shs.jpg'],
-    'memories': ['image/me.png', 'image/shs.jpg']
-};
-
-let currentAlbum = [];
-let currentImgIndex = 0;
-
-// --- SOUNDS ---
+// --- AUDIO SYSTEM ---
 const clickSound = document.getElementById('sfx-click');
 const popSound = document.getElementById('sfx-pop');
 
-// --- CURSOR FIREWORKS ---
-const clickCanvas = document.getElementById('click-canvas');
-const clickCtx = clickCanvas.getContext('2d');
-clickCanvas.width = window.innerWidth;
-clickCanvas.height = window.innerHeight;
-let clickParticles = [];
-
-function createClickFirework(x, y) {
-    for (let i = 0; i < 12; i++) {
-        clickParticles.push({
-            x: x, y: y,
-            vx: (Math.random() - 0.5) * 8,
-            vy: (Math.random() - 0.5) * 8,
-            life: 1,
-            color: `hsl(${Math.random() * 360}, 100%, 60%)`
-        });
+function playClick() {
+    if(clickSound) {
+        clickSound.currentTime = 0;
+        clickSound.play().catch(() => {});
     }
 }
 
-function animateClickFireworks() {
-    clickCtx.clearRect(0, 0, clickCanvas.width, clickCanvas.height);
-    clickParticles.forEach((p, i) => {
-        p.x += p.vx; p.y += p.vy;
-        p.life -= 0.05;
-        clickCtx.fillStyle = p.color;
-        clickCtx.globalAlpha = p.life;
-        clickCtx.beginPath();
-        clickCtx.arc(p.x, p.y, 3, 0, Math.PI * 2);
-        clickCtx.fill();
-        if(p.life <= 0) clickParticles.splice(i, 1);
-    });
-    if(clickParticles.length > 0) requestAnimationFrame(animateClickFireworks);
-}
-
-// Mouse Down Event for Firework
-window.addEventListener('mousedown', (e) => {
-    createClickFirework(e.clientX, e.clientY);
-    animateClickFireworks();
-    
-    // Play Click Sound Safely
-    if(clickSound) {
-        clickSound.currentTime = 0;
-        clickSound.play().catch(()=>{});
+// Attach Sound to all 'sfx-trigger' elements
+document.addEventListener('click', (e) => {
+    if(e.target.closest('.sfx-trigger')) {
+        playClick();
     }
 });
 
-// --- CUSTOM CURSOR MOVEMENT ---
+// --- MUSIC PLAYER LOGIC ---
+const songs = [
+    { title: "Chill Beats", artist: "LoFi", src: "audio/song1.mp3" }, // CHANGE THESE PATHS
+    { title: "Cyber Vibe", artist: "Synth", src: "audio/song2.mp3" }
+];
+let songIndex = 0;
+const bgMusic = document.getElementById('bg-music');
+const playBtn = document.getElementById('play-pause');
+const vinyl = document.getElementById('vinyl');
+const titleEl = document.getElementById('song-title');
+const artistEl = document.getElementById('song-artist');
+let isPlaying = false;
+
+// Initialize Player
+if(songs.length > 0) {
+    bgMusic.src = songs[0].src;
+}
+
+playBtn.addEventListener('click', () => {
+    if(isPlaying) {
+        bgMusic.pause();
+        playBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
+        document.querySelector('.music-player-container').classList.remove('playing');
+        isPlaying = false;
+    } else {
+        bgMusic.play().catch(e => console.log("Add MP3 files to audio/ folder!"));
+        playBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
+        document.querySelector('.music-player-container').classList.add('playing');
+        isPlaying = true;
+    }
+});
+
+// Next/Prev Logic
+document.getElementById('next-song').addEventListener('click', () => {
+    songIndex = (songIndex + 1) % songs.length;
+    updateSong();
+});
+document.getElementById('prev-song').addEventListener('click', () => {
+    songIndex = (songIndex - 1 + songs.length) % songs.length;
+    updateSong();
+});
+
+function updateSong() {
+    titleEl.innerText = songs[songIndex].title;
+    artistEl.innerText = songs[songIndex].artist;
+    bgMusic.src = songs[songIndex].src;
+    if(isPlaying) bgMusic.play();
+}
+
+// --- GUESTBOOK (Local Storage) ---
+const noteInput = document.getElementById('guest-note');
+const saveBtn = document.getElementById('save-note-btn');
+const notesDisplay = document.getElementById('notes-display');
+
+// Load Notes on Start
+const savedNotes = JSON.parse(localStorage.getItem('myGuestbook')) || [];
+savedNotes.forEach(note => displayNote(note));
+
+saveBtn.addEventListener('click', () => {
+    const text = noteInput.value;
+    if(text.trim() !== "") {
+        const noteObj = { text: text, date: new Date().toLocaleDateString() };
+        savedNotes.push(noteObj);
+        localStorage.setItem('myGuestbook', JSON.stringify(savedNotes));
+        displayNote(noteObj);
+        noteInput.value = ""; // Clear input
+    }
+});
+
+function displayNote(note) {
+    const div = document.createElement('div');
+    div.className = 'saved-note';
+    div.innerHTML = `<strong>Guest (${note.date}):</strong><br>${note.text}`;
+    notesDisplay.prepend(div);
+}
+
+// --- CURSOR & FIREWORKS ---
 const cursorDot = document.querySelector('[data-cursor-dot]');
 const cursorOutline = document.querySelector('[data-cursor-outline]');
 window.addEventListener('mousemove', (e) => {
@@ -70,117 +101,89 @@ window.addEventListener('mousemove', (e) => {
     cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
 });
 
-// --- POLAROID CLICK LOGIC (Open Album) ---
-document.querySelectorAll('.polaroid').forEach(card => {
-    card.addEventListener('click', () => {
-        const albumKey = card.getAttribute('data-album');
-        if(albums[albumKey]) {
-            currentAlbum = albums[albumKey];
-            currentImgIndex = 0;
-            openLightbox();
-        }
-    });
+// Click Fireworks
+const clickCanvas = document.getElementById('click-canvas');
+const clickCtx = clickCanvas.getContext('2d');
+clickCanvas.width = window.innerWidth; clickCanvas.height = window.innerHeight;
+let particles = [];
+
+window.addEventListener('mousedown', (e) => {
+    createParticles(e.clientX, e.clientY);
 });
 
-// --- LIGHTBOX NAVIGATION ---
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const caption = document.getElementById('caption');
-const counter = document.getElementById('album-counter');
-
-function openLightbox() {
-    lightbox.style.display = "flex";
-    updateLightboxImage();
-}
-
-function updateLightboxImage() {
-    lightboxImg.src = currentAlbum[currentImgIndex];
-    caption.innerText = "Viewing Album";
-    counter.innerText = `${currentImgIndex + 1} / ${currentAlbum.length}`;
-}
-
-document.querySelector('.next-btn').addEventListener('click', (e) => {
-    e.stopPropagation();
-    currentImgIndex = (currentImgIndex + 1) % currentAlbum.length;
-    updateLightboxImage();
-});
-
-document.querySelector('.prev-btn').addEventListener('click', (e) => {
-    e.stopPropagation();
-    currentImgIndex = (currentImgIndex - 1 + currentAlbum.length) % currentAlbum.length;
-    updateLightboxImage();
-});
-
-document.querySelector('.close-btn').onclick = () => lightbox.style.display = "none";
-lightbox.onclick = (e) => { 
-    if(e.target === lightbox) lightbox.style.display = "none"; 
-};
-
-// --- WELCOME SCREEN (Unlocks Audio) ---
-const enterBtn = document.getElementById('enter-btn');
-const welcomeScreen = document.getElementById('welcome-screen');
-const fireworkCanvas = document.getElementById('fireworks-canvas');
-const fwCtx = fireworkCanvas.getContext('2d');
-fireworkCanvas.width = window.innerWidth; fireworkCanvas.height = window.innerHeight;
-let fwParticles = [];
-
-enterBtn.addEventListener('click', () => {
-    // UNLOCK AUDIO
-    if(popSound) { popSound.volume = 0.5; popSound.play().catch(e => console.log("Audio Error:", e)); }
-    
-    // Big Fireworks
-    createBigFirework();
-    animateBigFireworks();
-
-    setTimeout(() => {
-        document.body.classList.remove('locked');
-        document.body.classList.add('active');
-    }, 1200);
-});
-
-function createBigFirework() {
-    for(let i=0; i<80; i++) {
-        fwParticles.push({
-            x: window.innerWidth/2, y: window.innerHeight/2,
-            vx: (Math.random()-0.5)*15, vy: (Math.random()-0.5)*15,
-            alpha: 1, color: '#fff'
+function createParticles(x, y) {
+    for(let i=0; i<10; i++) {
+        particles.push({
+            x: x, y: y,
+            vx: (Math.random()-0.5)*5, vy: (Math.random()-0.5)*5,
+            life: 1, color: `hsl(${Math.random()*360}, 100%, 50%)`
         });
     }
 }
 
-function animateBigFireworks() {
-    fwCtx.globalCompositeOperation = 'destination-out';
-    fwCtx.fillStyle = 'rgba(0,0,0,0.1)';
-    fwCtx.fillRect(0,0, fireworkCanvas.width, fireworkCanvas.height);
-    fwCtx.globalCompositeOperation = 'lighter';
-    
-    fwParticles.forEach((p, i) => {
-        p.x += p.vx; p.y += p.vy; p.alpha -= 0.01;
-        fwCtx.fillStyle = p.color; fwCtx.globalAlpha = p.alpha;
-        fwCtx.beginPath(); fwCtx.arc(p.x, p.y, 4, 0, Math.PI*2); fwCtx.fill();
-        if(p.alpha<=0) fwParticles.splice(i,1);
+function animateParticles() {
+    clickCtx.clearRect(0,0,clickCanvas.width, clickCanvas.height);
+    particles.forEach((p,i) => {
+        p.x += p.vx; p.y += p.vy; p.life -= 0.05;
+        clickCtx.fillStyle = p.color; clickCtx.globalAlpha = p.life;
+        clickCtx.beginPath(); clickCtx.arc(p.x, p.y, 3, 0, Math.PI*2); clickCtx.fill();
+        if(p.life<=0) particles.splice(i,1);
     });
-    
-    if(fwParticles.length > 0) requestAnimationFrame(animateBigFireworks);
+    requestAnimationFrame(animateParticles);
 }
+animateParticles();
 
-// --- WEAKNESS BTN ---
-const weaknessBtn = document.getElementById('weakness-btn');
-let wStep = 0;
-weaknessBtn.addEventListener('click', () => {
-    if(wStep === 0) { weaknessBtn.innerText = "👉 YOU"; wStep=1; }
-    else if(wStep === 1) { weaknessBtn.innerText = "✖️ MATH"; weaknessBtn.classList.add('btn-fill'); weaknessBtn.classList.remove('btn-outline'); wStep=2; }
-    else { weaknessBtn.innerText = "View Weakness ⚠️"; weaknessBtn.classList.remove('btn-fill'); weaknessBtn.classList.add('btn-outline'); wStep=0; }
-});
+// --- SIDE NAV ---
+const sideNav = document.getElementById('side-nav');
+document.getElementById('side-nav-toggle').onclick = () => sideNav.classList.add('active');
+document.querySelector('.close-nav').onclick = () => sideNav.classList.remove('active');
 
-// --- TOGGLES ---
-document.getElementById('theme-toggle').onclick = () => document.body.classList.toggle('dark-mode');
+// --- RESUME TOGGLE ---
 document.getElementById('resumeToggle').onclick = () => document.getElementById('resumeContent').classList.toggle('active');
 
-// --- RESIZE HANDLER ---
-window.addEventListener('resize', () => {
-    clickCanvas.width = window.innerWidth;
-    clickCanvas.height = window.innerHeight;
-    fireworkCanvas.width = window.innerWidth;
-    fireworkCanvas.height = window.innerHeight;
+// --- WELCOME SCREEN ---
+document.getElementById('enter-btn').addEventListener('click', () => {
+    if(popSound) popSound.play().catch(()=>{});
+    setTimeout(() => {
+        document.body.classList.remove('locked');
+        document.getElementById('welcome-screen').style.opacity = '0';
+        document.getElementById('welcome-screen').style.pointerEvents = 'none';
+    }, 500);
 });
+
+// --- LIGHTBOX LOGIC ---
+const albums = {
+    'pets': ['image/kel.jpg', 'image/pet2.jpg', 'image/tal.jpg', 'image/nat.jpg'],
+    'art': ['image/draww.png', 'image/draww.png'],
+    'family': ['image/family.jpg'],
+    'hobbies': ['image/shs.jpg'],
+    'memories': ['image/me.png']
+};
+let currentAlbum = [];
+let idx = 0;
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lightbox-img');
+
+document.querySelectorAll('.polaroid').forEach(card => {
+    card.addEventListener('click', () => {
+        const key = card.getAttribute('data-album');
+        if(albums[key]) {
+            currentAlbum = albums[key];
+            idx = 0;
+            lbImg.src = currentAlbum[idx];
+            lightbox.style.display = 'flex';
+        }
+    });
+});
+
+document.querySelector('.next-btn').onclick = (e) => {
+    e.stopPropagation();
+    idx = (idx + 1) % currentAlbum.length;
+    lbImg.src = currentAlbum[idx];
+};
+document.querySelector('.prev-btn').onclick = (e) => {
+    e.stopPropagation();
+    idx = (idx - 1 + currentAlbum.length) % currentAlbum.length;
+    lbImg.src = currentAlbum[idx];
+};
+document.querySelector('.close-btn').onclick = () => lightbox.style.display = 'none';
