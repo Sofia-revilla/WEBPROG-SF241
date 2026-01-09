@@ -1,33 +1,59 @@
-// --- PRELOADER LOGIC ---
-window.addEventListener('load', () => {
-    const preloader = document.getElementById('preloader');
-    setTimeout(() => {
-        preloader.style.opacity = '0';
-        setTimeout(() => {
-            preloader.style.display = 'none';
-            document.body.classList.remove('loading');
-        }, 800);
-    }, 1500); // 1.5s delay to show the welcome message
+//try adding java for effects (Inspired from the internet)
+// --- LIGHTBOX ---
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const captionText = document.getElementById('caption');
+const closeBtn = document.querySelector('.close-btn');
+const galleryImages = document.querySelectorAll('.gallery-card img');
+
+galleryImages.forEach(img => {
+    img.addEventListener('click', () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+        captionText.innerHTML = img.alt;
+    });
 });
 
-// --- LIGHTBOX & THEME TOGGLE ---
-// (Keep your existing Dark Mode and Resume Toggle logic here...)
+closeBtn.addEventListener('click', () => {
+    lightbox.style.display = "none";
+});
+
+lightbox.addEventListener('click', (e) => {
+    if (e.target !== lightboxImg) {
+        lightbox.style.display = "none";
+    }
+});
+
+
+// --- DARK MODE TOGGLE ---
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = themeToggle.querySelector('i');
 const body = document.body;
 
 themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
-    themeIcon.classList.toggle('bi-moon');
-    themeIcon.classList.toggle('bi-sun');
+
+    if(body.classList.contains('dark-mode')) {
+        themeIcon.classList.remove('bi-moon');
+        themeIcon.classList.add('bi-sun');
+    } else {
+        themeIcon.classList.remove('bi-sun');
+        themeIcon.classList.add('bi-moon');
+    }
 });
 
+
+// --- RESUME TOGGLE ---
 const resumeBtn = document.getElementById('resumeToggle');
 const resumeContent = document.getElementById('resumeContent');
 
 resumeBtn.addEventListener('click', () => {
     resumeContent.classList.toggle('active');
-    resumeBtn.innerHTML = resumeContent.classList.contains('active') ? 
-        '<i class="bi bi-chevron-up"></i> CLOSE PROFILE' : 
-        '<i class="bi bi-file-earmark-person"></i> KNOW MORE ABOUT ME (Click to Open)';
+    
+    // Optional: Change button text based on state
+    if(resumeContent.classList.contains('active')) {
+        resumeBtn.innerHTML = '<i class="bi bi-chevron-up"></i> CLOSE PROFILE';
+    } else {
+        resumeBtn.innerHTML = '<i class="bi bi-file-earmark-person"></i> KNOW MORE ABOUT ME (Click to Open)';
+    }
 });

@@ -1,44 +1,4 @@
-/* Centerpiece Styling - Matches Hero Banner Size Exactly */
-.wide-banner-match {
-    width: 100%;
-    height: 380px; 
-    border-radius: var(--radius-xl); /* 35px from design.css */
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: var(--shadow-soft);
-    background: #000;
-    margin-bottom: 40px;
-}
-
-.art-container canvas {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-/* UI Overlay styling inside the gallery */
-.art-ui {
-    position: absolute;
-    bottom: 0; left: 0; width: 100%;
-    padding: 40px;
-    background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
-    color: white;
-    pointer-events: none;
-    z-index: 5;
-}
-
-.art-ui h2 { font-size: 2.5rem; margin: 0; font-family: 'Georgia', serif; }
-.art-ui p { opacity: 0.8; letter-spacing: 2px; text-transform: uppercase; font-size: 0.75rem; }
-
-/* Grid Layout for Bottom Section */
-.details-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-}
-
-/* Modal View All Grid */
+/* Gallery Grid Modal Styles */
 .gallery-grid-content {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -53,13 +13,27 @@
     aspect-ratio: 1/1;
     border-radius: var(--radius-md);
     overflow: hidden;
+    cursor: pointer;
     border: 2px solid transparent;
     transition: 0.3s;
 }
 
 .grid-item:hover {
     border-color: var(--primary-blue);
-    transform: translateY(-5px);
+    transform: scale(1.05);
 }
 
-.grid-item img { width: 100%; height: 100%; object-fit: cover; }
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.close-gallery {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
