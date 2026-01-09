@@ -18,11 +18,13 @@
 
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
-    <canvas id="click-canvas"></canvas> <div id="welcome-screen">
+    <canvas id="click-canvas"></canvas>
+
+    <div id="welcome-screen">
         <canvas id="fireworks-canvas"></canvas>
         <div class="welcome-content">
             <h1>MA. SOFIA ANNE</h1>
-            <p style="letter-spacing: 3px; opacity: 0.8;">PORTFOLIO 2025</p>
+            <p style="letter-spacing: 3px; opacity: 0.8; margin-bottom: 20px;">PORTFOLIO 2025</p>
             <button id="enter-btn">ENTER PROFILE</button>
         </div>
     </div>
@@ -38,9 +40,10 @@
     <div id="contact-modal" class="modal-overlay">
         <div class="modal-content contact-style">
             <span class="close-modal" onclick="document.getElementById('contact-modal').style.display='none'">&times;</span>
-            <h2>Get in Touch</h2>
+            <h2><i class="bi bi-envelope"></i> Get in Touch</h2>
             <p><strong>Email:</strong> sofia.revilla@example.com</p>
             <p><strong>Phone:</strong> +63 900 000 0000</p>
+            <p><strong>Location:</strong> Clark Air Base, Philippines</p>
         </div>
     </div>
 
@@ -50,7 +53,7 @@
         <img class="lightbox-content" id="lightbox-img">
         <div class="lightbox-nav next-btn"><i class="bi bi-chevron-right"></i></div>
         <div id="caption"></div>
-        <div id="album-counter">1 / 5</div>
+        <div id="album-counter">1 / 1</div>
     </div>
 
     <div class="app-container">
@@ -61,9 +64,11 @@
                 <div class="icon-box sfx-trigger" id="theme-toggle"><i class="bi bi-moon"></i></div>
                 <a href="#" class="btn-pill btn-fill sfx-trigger" id="ref-btn" style="margin-left: 10px; font-size: 0.8rem; text-decoration: none;">REFERENCES</a>
             </div>
+            
             <div class="nav-menu"><span class="active">Personal Webpage</span></div>
+
             <div class="nav-auth-buttons">
-                <button class="btn-pill btn-outline sfx-trigger" onclick="document.getElementById('contact-modal').style.display='flex'">Contact</button>
+                <button class="btn-pill btn-outline sfx-trigger" onclick="document.getElementById('contact-modal').style.display='flex'">Contact Me</button>
                 <a href="https://github.com/Sofia-revilla" target="_blank" class="btn-pill btn-fill sfx-trigger" style="text-decoration: none;">GitHub</a>
             </div>
         </nav>
@@ -74,33 +79,41 @@
                 <p>BSCS-SF Student specializing in Cyber Security.<br>Future Veterinarian & Web Programmer.</p>
                 <button id="weakness-btn" class="btn-pill btn-outline sfx-trigger" style="margin-top:10px;">View Weakness ⚠️</button>
             </div>
-            <div class="hero-img-wrapper"><img src="image/me.png" alt="Profile"></div>
+            <div class="hero-img-wrapper">
+                <img src="image/me.png" alt="Profile Character">
+            </div>
         </section>
 
         <div class="resume-section">
             <button class="resume-toggle-btn sfx-trigger" id="resumeToggle">
                 <i class="bi bi-file-earmark-person"></i> VIEW FULL RESUME & BADGES
             </button>
+            
             <div class="resume-content" id="resumeContent">
                 <div class="paper-sheet">
-                    <div class="paper-header"><h2>CURRICULUM VITAE</h2><p>MA. SOFIA ANNE C. REVILLA</p></div>
+                    <div class="paper-header">
+                        <h2>CURRICULUM VITAE</h2>
+                        <p>MA. SOFIA ANNE C. REVILLA</p>
+                    </div>
                     <div class="paper-grid">
                         <div class="resume-item full-width">
                             <span class="resume-label">Experience</span>
                             <div class="experience-box">
                                 <strong>Head of Arts Committee (2 Years)</strong><br>Clark Air Base Youth Club<br>
-                                <em>Led artistic initiatives and events.</em>
+                                <em>Led artistic initiatives, managed events, and coordinated youth activities.</em>
                             </div>
                         </div>
                         <div class="resume-item full-width">
-                            <span class="resume-label">Certifications</span>
-                            <div class="badge-grid clickable-section" onclick="openProject('Badges', 'Full list of IBM and Cisco certifications.')">
+                            <span class="resume-label">Professional Badges</span>
+                            <div class="badge-grid clickable-section" onclick="openProject('Certifications', 'Full verified list available on LinkedIn.')">
                                 <div class="badge-item">Agile Explorer</div>
                                 <div class="badge-item">Explore Emerging Tech</div>
-                                <div class="badge-item">Project Mgmt</div>
-                                <div class="badge-item">UX Design</div>
-                                <div class="badge-item">Networking Basics</div>
+                                <div class="badge-item">Project Mgmt Fundamentals</div>
+                                <div class="badge-item">User Experience Design</div>
+                                <div class="badge-item">Networking Basics (Cisco)</div>
                                 <div class="badge-item">Scrum Foundation</div>
+                                <div class="badge-item">Lifelong Learning</div>
+                                <div class="badge-item">Professional Skills</div>
                             </div>
                         </div>
                     </div>
@@ -109,7 +122,7 @@
         </div>
 
         <div class="col-gallery-wide centered-gallery">
-            <div class="section-header">My Life Gallery <small>(Vertical Portrait Mode)</small></div>
+            <div class="section-header">My Life Gallery <small style="opacity: 0.6; font-weight: normal;">(Vertical Portrait Mode)</small></div>
             <div id="art-gallery-container" class="art-container">
                 <div class="art-ui">
                     <h2 id="art-title">Loading...</h2>
@@ -120,22 +133,22 @@
 
         <div class="section-header">Projects</div>
         <div class="projects-grid">
-            <div class="project-card sfx-trigger" onclick="openProject('Face Track', 'Attendance face tracker using Python/OpenCV.')">
+            <div class="project-card sfx-trigger" onclick="openProject('Face Track', 'Attendance face tracker for school used by LeanTech. Built with Python and OpenCV.')">
                 <div class="p-icon"><i class="bi bi-person-bounding-box"></i></div>
                 <h3>Face Track</h3>
                 <p>Attendance System</p>
             </div>
-            <div class="project-card sfx-trigger" onclick="openProject('TechZone DB', 'Inventory System using MySQL/PHP.')">
+            <div class="project-card sfx-trigger" onclick="openProject('TechZone DB', 'A complete Database Management System for inventory and sales. Built with MySQL and PHP.')">
                 <div class="p-icon"><i class="bi bi-database"></i></div>
                 <h3>TechZone DB</h3>
                 <p>Database Management</p>
             </div>
-            <div class="project-card sfx-trigger" onclick="openProject('Cyber Lab', 'Network Packet Analysis with Linux.')">
+            <div class="project-card sfx-trigger" onclick="openProject('Cyber Lab', 'Network Security Simulation and Packet Analysis project using Linux tools.')">
                 <div class="p-icon"><i class="bi bi-shield-lock"></i></div>
                 <h3>Cyber Lab</h3>
                 <p>Security Simulation</p>
             </div>
-            <div class="project-card sfx-trigger" onclick="openProject('Achievements', 'Coming Soon...')">
+            <div class="project-card sfx-trigger" onclick="openProject('Achievement Board', 'Coming Soon...')">
                 <div class="p-icon"><i class="bi bi-trophy"></i></div>
                 <h3>Achievement Board</h3>
                 <p>Future Module</p>
@@ -143,8 +156,9 @@
         </div>
 
         <div class="dashboard-grid">
+
             <div class="col-gallery">
-                <div class="section-header">Quick Snaps <small>(Click to Open Album)</small></div>
+                <div class="section-header">Quick Snaps <small style="font-size:0.8rem;">(Click to Open Album)</small></div>
                 <div class="polaroid-container">
                     
                     <div class="polaroid sfx-trigger" data-album="pets" style="--r:-3deg;">
@@ -203,11 +217,13 @@
                     </div>
                 </div>
             </div>
+
         </div> 
         
         <div style="text-align: center; margin-top: 50px; margin-bottom: 20px; color: var(--text-light); font-size: 0.8rem;">
             WEBPROG SF241 | © 2025 Ma. Sofia Anne Revilla
         </div>
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
