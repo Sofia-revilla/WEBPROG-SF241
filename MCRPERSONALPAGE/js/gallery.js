@@ -1,10 +1,9 @@
 (function() {
-    // --- IMAGES FOR VERTICAL GALLERY ---
-    // These should be your best shots
     const images = [
         { url: 'image/pet2.jpg', title: 'Happiness', artist: 'MY PETS' },
         { url: 'image/draww.png', title: 'Creativity', artist: 'ARTWORKS' },
         { url: 'image/family.jpg', title: 'Support', artist: 'FAMILY' },
+        { url: 'image/kel.jpg', title: 'Twinkel', artist: 'FUR BABY' },
         { url: 'image/shs.jpg', title: 'Memories', artist: 'SCHOOL DAYS' },
         { url: 'image/tal.jpg', title: 'Talia', artist: 'COMPANION' }
     ];
@@ -15,16 +14,13 @@
 
     if (!container) return;
 
-    // --- THREE.JS SETUP ---
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     
-    // Initial Size
     renderer.setSize(container.offsetWidth, container.offsetHeight);
     container.appendChild(renderer.domElement);
 
-    // --- TEXTURE LOADER ---
     const loader = new THREE.TextureLoader();
     const textures = images.map(img => {
         return loader.load(img.url, undefined, undefined, (err) => {
@@ -32,7 +28,6 @@
         });
     });
 
-    // --- SHADER (Liquid Distortion) ---
     const vertexShader = `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
     const fragmentShader = `
         varying vec2 vUv;
@@ -41,7 +36,6 @@
         uniform float dispFactor;
         void main() {
             vec2 uv = vUv;
-            // Wave distortion effect
             vec2 dist1 = vec2(uv.x + dispFactor * (sin(uv.y * 10.0 + dispFactor) * 0.1), uv.y);
             vec2 dist2 = vec2(uv.x - (1.0 - dispFactor) * (sin(uv.y * 10.0 + dispFactor) * 0.1), uv.y);
             gl_FragColor = mix(texture2D(texture1, dist1), texture2D(texture2, dist2), dispFactor);
@@ -62,7 +56,6 @@
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
     scene.add(mesh);
 
-    // --- AUTOMATION LOGIC ---
     let currentIdx = 0;
     let isAnimating = false;
 
@@ -89,11 +82,9 @@
         if(artistEl) artistEl.innerText = images[nextIdx].artist;
     }
 
-    // Auto-change every 5 seconds
     setInterval(nextSlide, 5000);
     container.addEventListener('click', nextSlide);
 
-    // --- RESPONSIVE RESIZE ---
     window.addEventListener('resize', () => {
         const width = container.offsetWidth;
         const height = container.offsetHeight;
