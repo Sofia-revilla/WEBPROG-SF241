@@ -16,11 +16,32 @@
     <audio id="sfx-click" src="audio/typewriter-click.mp3" preload="auto"></audio>
     <audio id="sfx-pop" src="audio/firework.mp3" preload="auto"></audio>
 
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
     <div id="welcome-screen">
         <canvas id="fireworks-canvas"></canvas>
         <div class="welcome-content">
             <h1>MA. SOFIA ANNE</h1>
             <button id="enter-btn">CLICK TO ENTER PROFILE</button>
+        </div>
+    </div>
+
+    <div id="info-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Title</h2>
+            <div id="modal-body">Message goes here...</div>
+        </div>
+    </div>
+
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-content contact-style">
+            <span class="close-modal" onclick="document.getElementById('contact-modal').style.display='none'">&times;</span>
+            <h2><i class="bi bi-person-lines-fill"></i> Get in Touch</h2>
+            <p>Email: sofia.revilla@example.com</p>
+            <p>Phone: +63 900 000 0000</p>
+            <p>Location: Clark Air Base, Philippines</p>
         </div>
     </div>
 
@@ -40,8 +61,8 @@
                 <div class="icon-box sfx-trigger" id="theme-toggle" title="Toggle Dark Mode">
                     <i class="bi bi-moon"></i>
                 </div>
-                <a href="#" class="btn-pill btn-fill sfx-trigger" style="margin-left: 10px; font-size: 0.8rem; text-decoration: none;">
-                    WEBPROG
+                <a href="#" class="btn-pill btn-fill sfx-trigger" id="ref-btn" style="margin-left: 10px; font-size: 0.8rem; text-decoration: none;">
+                    REFERENCES
                 </a>
             </div>
             
@@ -50,9 +71,9 @@
             </div>
 
             <div class="nav-auth-buttons">
-                <a href="#" class="btn-pill btn-outline sfx-trigger" style="text-decoration: none;">
-                    Revilla
-                </a>
+                <button class="btn-pill btn-outline sfx-trigger" onclick="document.getElementById('contact-modal').style.display='flex'">
+                    Contact Me
+                </button>
                 <a href="https://github.com/Sofia-revilla" target="_blank" class="btn-pill btn-fill sfx-trigger" style="text-decoration: none;">
                     GitHub
                 </a>
@@ -64,6 +85,9 @@
                 <h1>Ma. Sofia Anne</h1>
                 <p>BSCS-SF Student specializing in Cyber Security.<br>
                 Future Veterinarian & Web Programmer.</p>
+                <button id="weakness-btn" class="btn-pill btn-outline sfx-trigger" style="margin-top:10px;">
+                    View Weakness ⚠️
+                </button>
             </div>
             <div class="hero-img-wrapper">
                 <img src="image/me.png" alt="Profile Character">
@@ -81,18 +105,38 @@
                         <h2>ABOUT ME</h2>
                         <p>CONFIDENTIAL | STUDENT PROFILE</p>
                     </div>
+                    
                     <div class="paper-grid">
                         <div class="resume-item">
-                            <span class="resume-label">Full Name</span>
-                            <span class="resume-value">Ma. Sofia Anne C. Revilla</span>
+                            <span class="resume-label">Experience</span>
+                            <span class="resume-value">2 Years Head of Arts Committee<br>Clark Air Base Youth Club</span>
                         </div>
                         <div class="resume-item">
-                            <span class="resume-label">Age</span>
-                            <span class="resume-value">20 (April 26, 2005)</span>
+                            <span class="resume-label">Hobbies</span>
+                            <span class="resume-value">Cafe Exploring, Shooting Range, Arts, Painting, Taking care of pets</span>
                         </div>
+                        
                         <div class="resume-item full-width">
-                            <span class="resume-label">Course</span>
-                            <span class="resume-value">BS Computer Science - Cybersecurity and Forensics</span>
+                            <span class="resume-label">Certifications & Badges (IBM / Cisco / Certiprof)</span>
+                            <div class="badge-grid clickable-section" data-section="Achievements">
+                                <div class="badge-item">Agile Explorer</div>
+                                <div class="badge-item">Explore Emerging Tech</div>
+                                <div class="badge-item">Project Mgmt Fundamentals</div>
+                                <div class="badge-item">User Experience Design</div>
+                                <div class="badge-item">Networking Basics (Cisco)</div>
+                                <div class="badge-item">Scrum Foundation</div>
+                                <div class="badge-item">Lifelong Learning</div>
+                                <div class="badge-item">Professional Skills</div>
+                            </div>
+                        </div>
+
+                        <div class="resume-item full-width">
+                            <span class="resume-label">Tech Stack</span>
+                            <div class="tech-tags clickable-section" data-section="Skills">
+                                <span>Python</span> <span>JavaScript</span> <span>HTML/CSS</span> 
+                                <span>MySQL</span> <span>Linux</span> <span>Canva</span> 
+                                <span>UI/UX</span> <span>Procreate</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -111,7 +155,13 @@
             </div>
         </div>
 
-        <div class="projects-grid">
+        <div class="section-header">Projects</div>
+        <div class="projects-grid clickable-section" data-section="Projects">
+            <div class="project-card sfx-trigger">
+                <div class="p-icon"><i class="bi bi-person-bounding-box"></i></div>
+                <h3>Face Track (LeanTech)</h3>
+                <p>Attendance Face Tracker for School.</p>
+            </div>
             <div class="project-card sfx-trigger">
                 <div class="p-icon"><i class="bi bi-code-slash"></i></div>
                 <h3>TechZone DB</h3>
@@ -122,31 +172,40 @@
                 <h3>Cyber Lab</h3>
                 <p>Network Security Simulation.</p>
             </div>
-            <div class="project-card sfx-trigger">
-                <div class="p-icon"><i class="bi bi-trophy"></i></div>
-                <h3>Scholarship</h3>
-                <p>AFP-OLC Academic Scholar.</p>
-            </div>
         </div>
 
         <div class="dashboard-grid">
 
             <div class="col-gallery">
                 <div class="section-header">Quick Snaps</div>
-                <div class="gallery-container">
-                    <div class="gallery-card"><img src="image/draww.png" alt="Drawing"><div class="gallery-overlay">Art</div></div>
-                    <div class="gallery-card"><img src="image/family.jpg" alt="Family"><div class="gallery-overlay">Family</div></div>
-                    <div class="gallery-card"><img src="image/shs.jpg" alt="SHS"><div class="gallery-overlay">Me</div></div>
-                    <div class="gallery-card"><img src="image/kel.jpg" alt="Twinkel"><div class="gallery-overlay">Twinkel</div></div>
+                <div class="photo-stack-container">
+                    <div class="photo-card" style="--i:1; --r:-5deg;">
+                        <img src="image/pet2.jpg" alt="Happiness">
+                        <span>Happiness</span>
+                    </div>
+                    <div class="photo-card" style="--i:2; --r:3deg;">
+                        <img src="image/draww.png" alt="Artworks">
+                        <span>Artworks</span>
+                    </div>
+                    <div class="photo-card" style="--i:3; --r:-2deg;">
+                        <img src="image/family.jpg" alt="Family">
+                        <span>Family</span>
+                    </div>
+                    <div class="photo-card" style="--i:4; --r:5deg;">
+                        <img src="image/kel.jpg" alt="Fur Babies">
+                        <span>Fur Babies</span>
+                    </div>
                 </div>
             </div>
 
             <div class="col-search">
                 <div class="section-header">Skills</div>
-                <div class="search-list">
-                    <div class="search-pill">Python & CSS</div>
-                    <div class="search-pill">Cyber Security</div>
-                    <div class="search-pill">Painting</div>
+                <div class="search-list clickable-section" data-section="Skills">
+                    <div class="search-pill">Video Editing</div>
+                    <div class="search-pill">Photoshop</div>
+                    <div class="search-pill">Custom Design</div>
+                    <div class="search-pill">Pet Care</div>
+                    <div class="search-pill">Python & JS</div>
                 </div>
             </div>
 
