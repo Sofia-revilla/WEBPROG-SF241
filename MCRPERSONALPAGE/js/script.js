@@ -12,6 +12,7 @@ let currentImgIndex = 0;
 
 const clickSound = document.getElementById('sfx-click');
 const popSound = document.getElementById('sfx-pop');
+const bgMusic = document.getElementById('bg-music');
 
 // --- CURSOR FIREWORKS ---
 const clickCanvas = document.getElementById('click-canvas');
@@ -119,6 +120,8 @@ enterBtn.addEventListener('click', () => {
     if(popSound) { popSound.volume = 0.5; popSound.play().catch(e => console.log("Audio Error:", e)); }
     document.body.classList.remove('locked');
     document.body.classList.add('active');
+    // Start BG Music on interaction
+    if(bgMusic) { bgMusic.volume = 0.3; bgMusic.play().catch(()=>{}); }
 });
 
 // --- INTERACTIONS ---
@@ -166,6 +169,7 @@ lightbox.onclick = (e) => {
     if(e.target === lightbox) lightbox.style.display = "none"; 
 };
 
+// --- MISC ---
 const weaknessBtn = document.getElementById('weakness-btn');
 let wStep = 0;
 weaknessBtn.addEventListener('click', () => {
@@ -176,6 +180,38 @@ weaknessBtn.addEventListener('click', () => {
 
 document.getElementById('theme-toggle').onclick = () => document.body.classList.toggle('dark-mode');
 document.getElementById('resumeToggle').onclick = () => document.getElementById('resumeContent').classList.toggle('active');
+
+// --- SIDE NAV & HEART ---
+const heartBtn = document.getElementById('heart-nav-toggle');
+const sideNav = document.getElementById('side-nav');
+const closeNav = document.querySelector('.close-nav');
+
+heartBtn.addEventListener('click', () => {
+    sideNav.classList.add('active');
+});
+closeNav.addEventListener('click', () => {
+    sideNav.classList.remove('active');
+});
+
+// --- REFERENCES MODAL ---
+document.getElementById('ref-btn').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('ref-modal').style.display = 'flex';
+});
+
+// --- MUSIC PLAYER ---
+const playPauseBtn = document.getElementById('play-pause-btn');
+playPauseBtn.addEventListener('click', () => {
+    if(bgMusic.paused) {
+        bgMusic.play();
+        playPauseBtn.classList.remove('bi-play-circle-fill');
+        playPauseBtn.classList.add('bi-pause-circle-fill');
+    } else {
+        bgMusic.pause();
+        playPauseBtn.classList.remove('bi-pause-circle-fill');
+        playPauseBtn.classList.add('bi-play-circle-fill');
+    }
+});
 
 window.addEventListener('resize', () => {
     clickCanvas.width = window.innerWidth;

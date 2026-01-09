@@ -17,10 +17,27 @@
 
     <audio id="sfx-click" src="audio/typewriter-click.mp3" preload="auto"></audio>
     <audio id="sfx-pop" src="audio/firework.mp3" preload="auto"></audio>
+    <audio id="bg-music" src="audio/lofi-beat.mp3" loop></audio>
 
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
     <canvas id="click-canvas"></canvas>
+
+    <div id="heart-nav-toggle" class="heart-fab sfx-trigger">
+        <img src="https://media.tenor.com/images/1c303db5c04df62908200632b73bc733/tenor.gif" alt="Heart Nav">
+    </div>
+
+    <div id="side-nav">
+        <span class="close-nav">&times;</span>
+        <h3>Menu</h3>
+        <a href="#" onclick="scrollToSection('hero')">Home</a>
+        <a href="#" onclick="scrollToSection('resume-section')">Resume</a>
+        <a href="#" onclick="scrollToSection('projects')">Projects</a>
+        <a href="#" onclick="scrollToSection('gallery-section')">Life Gallery</a>
+        <div class="nav-contact-bonus">
+            <p><i class="bi bi-envelope"></i> sofia.revilla@example.com</p>
+        </div>
+    </div>
 
     <div id="welcome-screen">
         <div class="slot-machine-container">
@@ -54,6 +71,20 @@
         </div>
     </div>
 
+    <div id="ref-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" onclick="document.getElementById('ref-modal').style.display='none'">&times;</span>
+            <h2><i class="bi bi-folder2-open"></i> References</h2>
+            <p style="margin-bottom: 20px;">External Links & Resources</p>
+            <div class="ref-links-container">
+                <a href="#" class="ref-link-item"><i class="bi bi-file-pdf"></i> Resume.pdf</a>
+                <a href="#" class="ref-link-item"><i class="bi bi-github"></i> GitHub Repos</a>
+                <a href="#" class="ref-link-item"><i class="bi bi-linkedin"></i> LinkedIn Profile</a>
+                <a href="#" class="ref-link-item"><i class="bi bi-award"></i> Certificates Folder</a>
+            </div>
+        </div>
+    </div>
+
     <div id="lightbox" class="lightbox">
         <span class="close-btn">&times;</span>
         <div class="lightbox-nav prev-btn"><i class="bi bi-chevron-left"></i></div>
@@ -78,22 +109,20 @@
             </div>
         </nav>
 
-        <section class="hero-banner">
+        <section class="hero-banner" id="hero">
             <div class="hero-text">
                 <h1>Ma. Sofia Anne</h1>
                 <p><strong>Future Military Cyber Specialist & Veterinarian</strong><br>
                 "Practicality over passion, but passion always finds a way."</p>
                 <button id="weakness-btn" class="btn-pill btn-outline sfx-trigger" style="margin-top:10px;">View Weakness ⚠️</button>
             </div>
-            
             <div class="hero-img-wrapper">
                 <img src="image/me.png" alt="Active Character" class="char-light">
                 <img src="image/mesleep.png" alt="Sleeping Character" class="char-dark">
             </div>
         </section>
-        
 
-        <div class="resume-section">
+        <div class="resume-section" id="resume-section">
             <button class="resume-toggle-btn sfx-trigger" id="resumeToggle">
                 <i class="bi bi-file-earmark-person"></i> VIEW FULL BIO & RESUME
             </button>
@@ -153,7 +182,6 @@
 
             <div id="vue-capabilities-app" style="background: var(--primary-dark); padding: 30px; border-radius: var(--radius-lg); color: white; height: 350px; position: relative; overflow: hidden;">
                 <div class="section-header" style="color: white; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px;">Capabilities</div>
-                
                 <div class="scrolling-wrapper">
                     <div class="scroll-content" :style="{ transform: 'translateY(' + scrollY + 'px)' }">
                         <div v-for="(item, index) in capabilities" :key="index" class="cap-item">
@@ -175,7 +203,7 @@
             </div>
         </div>
 
-        <div class="section-header">Projects</div>
+        <div class="section-header" id="projects">Projects</div>
         <div class="projects-grid">
             <div class="project-card sfx-trigger" onclick="openProject('Face Track', 'Attendance face tracker for school used by LeanTech. Built with Python and OpenCV.')">
                 <div class="p-icon"><i class="bi bi-person-bounding-box"></i></div>
@@ -244,15 +272,49 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-info" style="margin-top: 30px;">
+                    <div class="section-header">Hobbies</div>
+                    <div class="info-list">
+                        <div class="info-card sfx-trigger">
+                            <div class="info-img">☕</div>
+                            <div class="info-content"><h4>Exploration</h4><p>Cafe hopping & relaxing.</p></div>
+                        </div>
+                        <div class="info-card sfx-trigger">
+                            <div class="info-img">🔫</div>
+                            <div class="info-content"><h4>Shooting Range</h4><p>Target practice.</p></div>
+                        </div>
+                        <div class="info-card sfx-trigger">
+                            <div class="info-img">🎨</div>
+                            <div class="info-content"><h4>Arts</h4><p>Drawing, Painting & Design.</p></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div> 
         
-        <div class="col-gallery-wide centered-gallery" style="margin-top: 50px;">
+        <div class="col-gallery-wide centered-gallery" id="gallery-section" style="margin-top: 50px;">
             <div class="section-header">Life Gallery <small style="opacity: 0.6; font-weight: normal;">(Landscape Mode)</small></div>
             <div id="art-gallery-container" class="art-container landscape-art">
                 <div class="art-ui">
                     <h2 id="art-title">Loading...</h2>
                     <p id="art-artist">MEMORIES</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="music-player-wrapper">
+            <div class="music-player">
+                <div class="player-thumb"><img src="image/draww.png" alt="Music"></div>
+                <div class="player-info">
+                    <h5>Portfolio Vibes</h5>
+                    <p>Relaxing Lofi</p>
+                    <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+                <div class="player-controls">
+                    <i class="bi bi-skip-backward-fill"></i>
+                    <i class="bi bi-play-circle-fill" id="play-pause-btn"></i>
+                    <i class="bi bi-skip-forward-fill"></i>
                 </div>
             </div>
         </div>
@@ -275,7 +337,6 @@
             data() {
                 return {
                     scrollY: 0,
-                    // These act as "Cards" with icons/images
                     capabilities: [
                         { title: 'Web Development', desc: 'HTML, CSS, JS, Vue', icon: '💻' },
                         { title: 'Cyber Security', desc: 'Forensics, Linux', icon: '🔐' },
@@ -287,11 +348,8 @@
                 }
             },
             mounted() {
-                // Auto Scroll Logic (Looping)
                 setInterval(() => {
-                    this.scrollY -= 0.8; // Adjust speed here
-                    // Reset if scrolled past the first set of items (approx height calculation)
-                    // 6 items * approx 90px height each = 540px
+                    this.scrollY -= 0.8; 
                     if (this.scrollY < -540) {
                         this.scrollY = 0;
                     }
@@ -304,6 +362,12 @@
             document.getElementById('modal-title').innerText = title;
             document.getElementById('modal-body').innerHTML = desc;
             modal.style.display = 'flex';
+        }
+
+        // SCROLL HELPER
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+            document.getElementById('side-nav').classList.remove('active');
         }
     </script>
 </body>
