@@ -528,3 +528,107 @@ body.dark-mode .info-img { background: #3a3b3c; }
     .paper-grid { grid-template-columns: 1fr; }
     .full-width { grid-column: span 1; }
 }
+/* --- WELCOME SCREEN OVERLAY --- */
+body.locked {
+    overflow: hidden; /* Stop scrolling before entering */
+}
+
+#welcome-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #0a0a0a; /* Dark background */
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#fireworks-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.welcome-content {
+    text-align: center;
+    z-index: 2;
+    color: white;
+}
+
+.welcome-content h1 {
+    font-size: 3.5rem;
+    letter-spacing: 5px;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+#enter-btn {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#enter-btn:hover {
+    background: white;
+    color: black;
+    box-shadow: 0 0 20px rgba(255,255,255,0.5);
+}
+
+/* Hide screen class */
+body.active #welcome-screen {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* --- RESPONSIVE FIXES --- */
+/* Projects Grid margin */
+.projects-grid {
+    margin-top: 30px; 
+    margin-bottom: 30px;
+}
+
+/* On Phone (Portrait) */
+@media (max-width: 768px) {
+    .hero-banner {
+        height: auto;
+        padding: 40px 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-img-wrapper {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        height: 250px;
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    .hero-img-wrapper img {
+        height: 100%;
+        width: auto;
+    }
+
+    /* Fix Gallery Sizing on Phone */
+    .art-container {
+        height: 250px !important; /* Smaller height for mobile */
+        border-radius: 20px;
+    }
+
+    .art-ui h2 { font-size: 1.5rem; }
+    .art-ui p { font-size: 0.7rem; }
+
+    .welcome-content h1 { font-size: 2rem; }
+    #enter-btn { padding: 10px 20px; font-size: 0.9rem; }
+}
