@@ -23,6 +23,7 @@
         <canvas id="fireworks-canvas"></canvas>
         <div class="welcome-content">
             <h1>MA. SOFIA ANNE</h1>
+            <p style="letter-spacing: 3px; font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px;">PORTFOLIO 2025</p>
             <button id="enter-btn">CLICK TO ENTER PROFILE</button>
         </div>
     </div>
@@ -39,9 +40,9 @@
         <div class="modal-content contact-style">
             <span class="close-modal" onclick="document.getElementById('contact-modal').style.display='none'">&times;</span>
             <h2><i class="bi bi-person-lines-fill"></i> Get in Touch</h2>
-            <p>Email: sofia.revilla@example.com</p>
-            <p>Phone: +63 900 000 0000</p>
-            <p>Location: Clark Air Base, Philippines</p>
+            <p><strong>Email:</strong> sofia.revilla@example.com</p>
+            <p><strong>Phone:</strong> +63 900 000 0000</p>
+            <p><strong>Location:</strong> Clark Air Base, Philippines</p>
         </div>
     </div>
 
@@ -96,46 +97,44 @@
 
         <div class="resume-section">
             <button class="resume-toggle-btn sfx-trigger" id="resumeToggle">
-                <i class="bi bi-file-earmark-person"></i> KNOW MORE ABOUT ME (Click to Open)
+                <i class="bi bi-file-earmark-person"></i> VIEW FULL RESUME & BADGES
             </button>
             
             <div class="resume-content" id="resumeContent">
                 <div class="paper-sheet">
                     <div class="paper-header">
-                        <h2>ABOUT ME</h2>
-                        <p>CONFIDENTIAL | STUDENT PROFILE</p>
+                        <h2>CURRICULUM VITAE</h2>
+                        <p>MA. SOFIA ANNE C. REVILLA</p>
                     </div>
                     
                     <div class="paper-grid">
-                        <div class="resume-item">
-                            <span class="resume-label">Experience</span>
-                            <span class="resume-value">2 Years Head of Arts Committee<br>Clark Air Base Youth Club</span>
-                        </div>
-                        <div class="resume-item">
-                            <span class="resume-label">Hobbies</span>
-                            <span class="resume-value">Cafe Exploring, Shooting Range, Arts, Painting, Taking care of pets</span>
-                        </div>
-                        
                         <div class="resume-item full-width">
-                            <span class="resume-label">Certifications & Badges (IBM / Cisco / Certiprof)</span>
-                            <div class="badge-grid clickable-section" data-section="Achievements">
-                                <div class="badge-item">Agile Explorer</div>
-                                <div class="badge-item">Explore Emerging Tech</div>
-                                <div class="badge-item">Project Mgmt Fundamentals</div>
-                                <div class="badge-item">User Experience Design</div>
-                                <div class="badge-item">Networking Basics (Cisco)</div>
-                                <div class="badge-item">Scrum Foundation</div>
-                                <div class="badge-item">Lifelong Learning</div>
-                                <div class="badge-item">Professional Skills</div>
+                            <span class="resume-label">Experience</span>
+                            <div class="experience-box">
+                                <strong>Head of Arts Committee (2 Years)</strong><br>
+                                Clark Air Base Youth Club<br>
+                                <em style="font-size: 0.8rem;">Led artistic initiatives, managed events, and coordinated youth activities.</em>
                             </div>
                         </div>
 
                         <div class="resume-item full-width">
-                            <span class="resume-label">Tech Stack</span>
-                            <div class="tech-tags clickable-section" data-section="Skills">
-                                <span>Python</span> <span>JavaScript</span> <span>HTML/CSS</span> 
-                                <span>MySQL</span> <span>Linux</span> <span>Canva</span> 
-                                <span>UI/UX</span> <span>Procreate</span>
+                            <span class="resume-label">Hobbies & Interests</span>
+                            <span class="resume-value">
+                                Cafe Exploring • Going to Shooting Range • Doing Arts • Painting • Custom Designing • Taking Care of Pets
+                            </span>
+                        </div>
+                        
+                        <div class="resume-item full-width">
+                            <span class="resume-label">Certifications & Badges</span>
+                            <div class="badge-grid clickable-section" data-section="Achievements">
+                                <div class="badge-item">Agile Explorer (IBM)</div>
+                                <div class="badge-item">Explore Emerging Tech (IBM)</div>
+                                <div class="badge-item">Project Mgmt Fundamentals</div>
+                                <div class="badge-item">User Experience Design</div>
+                                <div class="badge-item">Networking Basics (Cisco)</div>
+                                <div class="badge-item">Scrum Foundation (SFPC)</div>
+                                <div class="badge-item">Lifelong Learning (Certiprof)</div>
+                                <div class="badge-item">Professional Skills (IBM)</div>
                             </div>
                         </div>
                     </div>
@@ -145,7 +144,7 @@
 
         <div class="col-gallery-wide">
             <div class="section-header">
-                My Life Gallery <small style="font-size: 0.8rem; opacity: 0.6; font-weight: normal;">(Auto-playing)</small>
+                My Life Gallery <small style="font-size: 0.8rem; opacity: 0.6; font-weight: normal; margin-left: 10px;">(Auto-playing • Click to Next)</small>
             </div>
             <div id="art-gallery-container" class="art-container">
                 <div class="art-ui">
@@ -155,78 +154,82 @@
             </div>
         </div>
 
-        <div class="section-header">Projects</div>
-        <div class="projects-grid clickable-section" data-section="Projects">
-            <div class="project-card sfx-trigger">
+        <div class="section-header">Projects <small style="font-size: 0.8rem; opacity: 0.6; font-weight: normal; margin-left: 10px;">(Click for details)</small></div>
+        <div class="projects-grid">
+            <div class="project-card sfx-trigger" onclick="openProject('Face Track', 'Attendance face tracker for school used by LeanTech. Built with Python and OpenCV.')">
                 <div class="p-icon"><i class="bi bi-person-bounding-box"></i></div>
-                <h3>Face Track (LeanTech)</h3>
-                <p>Attendance Face Tracker for School.</p>
+                <h3>Face Track</h3>
+                <p>Attendance Face Tracker (LeanTech)</p>
             </div>
-            <div class="project-card sfx-trigger">
-                <div class="p-icon"><i class="bi bi-code-slash"></i></div>
+            <div class="project-card sfx-trigger" onclick="openProject('TechZone DB', 'A complete Database Management System for inventory and sales. Built with MySQL and PHP.')">
+                <div class="p-icon"><i class="bi bi-database"></i></div>
                 <h3>TechZone DB</h3>
-                <p>Database Management System.</p>
+                <p>Database Management System</p>
             </div>
-            <div class="project-card sfx-trigger">
+            <div class="project-card sfx-trigger" onclick="openProject('Cyber Lab', 'Network Security Simulation and Packet Analysis project using Linux tools.')">
                 <div class="p-icon"><i class="bi bi-shield-lock"></i></div>
                 <h3>Cyber Lab</h3>
-                <p>Network Security Simulation.</p>
+                <p>Network Security Simulation</p>
+            </div>
+            <div class="project-card sfx-trigger" onclick="openProject('Achievement Board', 'Coming Soon...')">
+                <div class="p-icon"><i class="bi bi-trophy"></i></div>
+                <h3>Achievement Board</h3>
+                <p>Future Module</p>
             </div>
         </div>
 
         <div class="dashboard-grid">
 
             <div class="col-gallery">
-                <div class="section-header">Quick Snaps</div>
-                <div class="photo-stack-container">
-                    <div class="photo-card" style="--i:1; --r:-5deg;">
-                        <img src="image/pet2.jpg" alt="Happiness">
-                        <span>Happiness</span>
-                    </div>
-                    <div class="photo-card" style="--i:2; --r:3deg;">
-                        <img src="image/draww.png" alt="Artworks">
-                        <span>Artworks</span>
-                    </div>
-                    <div class="photo-card" style="--i:3; --r:-2deg;">
-                        <img src="image/family.jpg" alt="Family">
-                        <span>Family</span>
-                    </div>
-                    <div class="photo-card" style="--i:4; --r:5deg;">
-                        <img src="image/kel.jpg" alt="Fur Babies">
-                        <span>Fur Babies</span>
-                    </div>
+                <div class="section-header">Quick Snaps <small style="font-size:0.8rem;">(Click to view)</small></div>
+                <div class="quick-snaps-grid">
+                    <div class="snap-item"><img src="image/pet2.jpg" alt="Happiness"></div>
+                    <div class="snap-item"><img src="image/draww.png" alt="Artworks"></div>
+                    <div class="snap-item"><img src="image/family.jpg" alt="Family"></div>
+                    <div class="snap-item"><img src="image/kel.jpg" alt="Fur Babies"></div>
+                    <div class="snap-item"><img src="image/tal.jpg" alt="Talia"></div>
+                    <div class="snap-item"><img src="image/nat.jpg" alt="Nat-Nat"></div>
+                    <div class="snap-item"><img src="image/shs.jpg" alt="Memories"></div>
+                    <div class="snap-item"><img src="image/me.png" alt="Portrait"></div>
                 </div>
             </div>
 
-            <div class="col-search">
-                <div class="section-header">Skills</div>
-                <div class="search-list clickable-section" data-section="Skills">
-                    <div class="search-pill">Video Editing</div>
-                    <div class="search-pill">Photoshop</div>
-                    <div class="search-pill">Custom Design</div>
-                    <div class="search-pill">Pet Care</div>
-                    <div class="search-pill">Python & JS</div>
+            <div class="details-column">
+                
+                <div class="col-search">
+                    <div class="section-header">Skills</div>
+                    <div class="search-list clickable-section" onclick="openProject('Full Skill Set', 'Coming Soon: Detailed breakdown of proficiency levels.')">
+                        <div class="search-pill">Python & JS</div>
+                        <div class="search-pill">HTML & CSS</div>
+                        <div class="search-pill">MySQL & Linux</div>
+                        <div class="search-pill">Video Editing</div>
+                        <div class="search-pill">Photoshop</div>
+                        <div class="search-pill">Procreate</div>
+                        <div class="search-pill">UI/UX Design</div>
+                        <div class="search-pill">Canva</div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-info">
-                <div class="section-header">About</div>
-                <div class="info-list">
-                    <div class="info-card sfx-trigger">
-                        <div class="info-img">🎯</div>
-                        <div class="info-content">
-                            <h4>Life Goal</h4>
-                            <p>Financial stability.</p>
+                <div class="col-info" style="margin-top: 30px;">
+                    <div class="section-header">Goals</div>
+                    <div class="info-list">
+                        <div class="info-card sfx-trigger">
+                            <div class="info-img">🎯</div>
+                            <div class="info-content">
+                                <h4>Life Goal</h4>
+                                <p>Financial stability.</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="info-card sfx-trigger">
-                        <div class="info-img">🐾</div>
-                        <div class="info-content">
-                            <h4>Dream</h4>
-                            <p>Animal rescue shelter.</p>
+                        <div class="info-card sfx-trigger">
+                            <div class="info-img">🐾</div>
+                            <div class="info-content">
+                                <h4>Dream Project</h4>
+                                <p>Animal rescue shelter.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
 
         </div> 
@@ -242,5 +245,13 @@
     <script src="js/script.js"></script>
     <script src="js/gallery.js"></script>
 
+    <script>
+        function openProject(title, desc) {
+            const modal = document.getElementById('info-modal');
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-body').innerText = desc;
+            modal.style.display = 'flex';
+        }
+    </script>
 </body>
 </html>

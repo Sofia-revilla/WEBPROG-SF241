@@ -1,15 +1,15 @@
 (function() {
-    // --- CONFIGURATION ---
-    // Make sure these files exist in your 'gallery' folder!
+    // --- IMAGES CONFIGURATION (6+ Images) ---
+    // Ensure these file names match what you have in your folder
     const images = [
-        { url: 'image/draww.png', title: 'My Life', artist: 'MEMORIES' }, 
-        { url: 'gallery/img2.jpg', title: 'Adventure', artist: 'TRAVEL' },
-        { url: 'gallery/img3.jpg', title: 'Family', artist: 'LOVE' },
-        { url: 'gallery/img4.jpg', title: 'Friends', artist: 'FUN' }
+        { url: 'image/pet2.jpg', title: 'Happiness', artist: 'MY PETS' },
+        { url: 'image/draww.png', title: 'Creativity', artist: 'ARTWORKS' },
+        { url: 'image/family.jpg', title: 'Support', artist: 'FAMILY' },
+        { url: 'image/kel.jpg', title: 'Twinkel', artist: 'FUR BABY' },
+        { url: 'image/shs.jpg', title: 'Memories', artist: 'SCHOOL DAYS' },
+        { url: 'image/tal.jpg', title: 'Talia', artist: 'COMPANION' }
     ];
 
-    // Fallback if images fail (using placeholders if you haven't uploaded yet)
-    // You can remove this check once you have your real images.
     const container = document.getElementById('art-gallery-container');
     const titleEl = document.getElementById('art-title');
     const artistEl = document.getElementById('art-artist');
@@ -28,9 +28,8 @@
     // --- TEXTURE LOADER ---
     const loader = new THREE.TextureLoader();
     const textures = images.map(img => {
-        // Load image, add error handling to replace with placeholder if missing
         return loader.load(img.url, undefined, undefined, (err) => {
-            console.warn(`Could not load ${img.url}. Check folder name!`);
+            console.warn(`Could not load ${img.url}.`);
         });
     });
 
@@ -92,10 +91,12 @@
 
     // Auto-change every 5 seconds
     setInterval(nextSlide, 5000);
+    
+    // Also allow click to change
+    container.addEventListener('click', nextSlide);
 
     // --- RESPONSIVE RESIZE ---
     window.addEventListener('resize', () => {
-        // Essential for mobile: Update renderer size when window changes
         const width = container.offsetWidth;
         const height = container.offsetHeight;
         renderer.setSize(width, height);
@@ -107,7 +108,6 @@
     }
     animate();
     
-    // Set initial text
     if(titleEl) titleEl.innerText = images[0].title;
     if(artistEl) artistEl.innerText = images[0].artist;
 })();

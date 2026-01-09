@@ -9,7 +9,8 @@ function playClickSound() {
     }
 }
 
-document.querySelectorAll('.sfx-trigger, button, a, .project-card, .search-pill').forEach(el => {
+// Attach sound to interactive elements
+document.querySelectorAll('.sfx-trigger, button, a, .project-card, .search-pill, .snap-item').forEach(el => {
     el.addEventListener('click', playClickSound);
 });
 
@@ -30,8 +31,17 @@ window.addEventListener('mousemove', (e) => {
     }, { duration: 500, fill: "forwards" });
 });
 
-// Add hover effect to interactive elements
-const interactiveElements = document.querySelectorAll('a, button, .project-card, .photo-card');
+// Click Burst Effect
+window.addEventListener('mousedown', () => {
+    cursorOutline.classList.add('click-active');
+});
+
+window.addEventListener('mouseup', () => {
+    cursorOutline.classList.remove('click-active');
+});
+
+// Hover States
+const interactiveElements = document.querySelectorAll('a, button, .project-card, .snap-item, .clickable-section');
 interactiveElements.forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
@@ -47,11 +57,10 @@ weaknessBtn.addEventListener('click', () => {
         weaknessStep = 1;
     } else if (weaknessStep === 1) {
         weaknessBtn.innerText = "✖️ MATH";
-        weaknessBtn.classList.add('btn-fill'); // Make it red/filled
+        weaknessBtn.classList.add('btn-fill'); 
         weaknessBtn.classList.remove('btn-outline');
         weaknessStep = 2;
     } else {
-        // Reset
         weaknessBtn.innerText = "View Weakness ⚠️";
         weaknessBtn.classList.remove('btn-fill');
         weaknessBtn.classList.add('btn-outline');
@@ -59,32 +68,33 @@ weaknessBtn.addEventListener('click', () => {
     }
 });
 
-// --- COMING SOON MODAL LOGIC ---
+// --- LIGHTBOX LOGIC FOR QUICK SNAPS ---
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const captionText = document.getElementById('caption');
+const closeBtn = document.querySelector('.close-btn');
+const snapImages = document.querySelectorAll('.snap-item img'); 
+
+snapImages.forEach(img => {
+    img.addEventListener('click', () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+        captionText.innerHTML = img.alt;
+    });
+});
+
+if(closeBtn) closeBtn.onclick = () => lightbox.style.display = "none";
+if(lightbox) lightbox.onclick = (e) => { if(e.target !== lightboxImg) lightbox.style.display = "none"; };
+
+
+// --- MODAL LOGIC (References & Contact) ---
 const infoModal = document.getElementById('info-modal');
 const modalTitle = document.getElementById('modal-title');
 const modalBody = document.getElementById('modal-body');
 const closeModal = infoModal.querySelector('.close-modal');
 
-// Close Logic
 closeModal.onclick = () => infoModal.style.display = 'none';
 window.onclick = (e) => { if (e.target == infoModal) infoModal.style.display = 'none'; }
-
-// Attach to specific sections
-const clickableSections = document.querySelectorAll('.clickable-section, .project-card');
-
-clickableSections.forEach(item => {
-    item.addEventListener('click', function() {
-        infoModal.style.display = 'flex';
-        modalTitle.innerText = "Coming Soon";
-        modalBody.innerText = "This section is under construction. Stay tuned for jaw-dropping updates!";
-        
-        // Use logic to detect which section was clicked if you want specific messages
-        if(this.dataset.section === "Skills") {
-             modalTitle.innerText = "Skills Detail";
-             modalBody.innerText = "Detailed breakdown of my tech stack coming soon!";
-        }
-    });
-});
 
 // Reference Button
 document.getElementById('ref-btn').addEventListener('click', (e) => {
@@ -99,7 +109,7 @@ document.getElementById('ref-btn').addEventListener('click', (e) => {
 });
 
 
-// --- ENTER SCREEN & FIREWORKS ---
+// --- WELCOME SCREEN ---
 const enterBtn = document.getElementById('enter-btn');
 const welcomeScreen = document.getElementById('welcome-screen');
 const canvas = document.getElementById('fireworks-canvas');
@@ -152,7 +162,6 @@ enterBtn.addEventListener('click', () => {
     if(popSound) popSound.play();
     createFirework(window.innerWidth / 2, window.innerHeight / 2);
     createFirework(window.innerWidth / 3, window.innerHeight / 3);
-    createFirework(window.innerWidth * 0.7, window.innerHeight * 0.6);
     animateFireworks();
     setTimeout(() => {
         document.body.classList.remove('locked');
