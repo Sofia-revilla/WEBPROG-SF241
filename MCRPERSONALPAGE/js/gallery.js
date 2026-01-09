@@ -1,6 +1,4 @@
 (function() {
-    // --- IMAGES CONFIGURATION (6+ Images) ---
-    // Ensure these file names match what you have in your folder
     const images = [
         { url: 'image/pet2.jpg', title: 'Happiness', artist: 'MY PETS' },
         { url: 'image/draww.png', title: 'Creativity', artist: 'ARTWORKS' },
@@ -16,16 +14,13 @@
 
     if (!container) return;
 
-    // --- THREE.JS SETUP ---
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     
-    // Initial Size
     renderer.setSize(container.offsetWidth, container.offsetHeight);
     container.appendChild(renderer.domElement);
 
-    // --- TEXTURE LOADER ---
     const loader = new THREE.TextureLoader();
     const textures = images.map(img => {
         return loader.load(img.url, undefined, undefined, (err) => {
@@ -33,7 +28,6 @@
         });
     });
 
-    // --- SHADER (Liquid Distortion) ---
     const vertexShader = `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
     const fragmentShader = `
         varying vec2 vUv;
@@ -62,7 +56,6 @@
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
     scene.add(mesh);
 
-    // --- AUTOMATION LOGIC ---
     let currentIdx = 0;
     let isAnimating = false;
 
@@ -89,13 +82,9 @@
         if(artistEl) artistEl.innerText = images[nextIdx].artist;
     }
 
-    // Auto-change every 5 seconds
     setInterval(nextSlide, 5000);
-    
-    // Also allow click to change
     container.addEventListener('click', nextSlide);
 
-    // --- RESPONSIVE RESIZE ---
     window.addEventListener('resize', () => {
         const width = container.offsetWidth;
         const height = container.offsetHeight;

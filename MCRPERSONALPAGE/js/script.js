@@ -1,5 +1,3 @@
-// --- ALBUM DATA ---
-// You must have these images in your folder!
 const albums = {
     'pets': ['image/kel.jpg', 'image/pet2.jpg', 'image/tal.jpg', 'image/nat.jpg'],
     'art': ['image/draww.png', 'image/draww.png', 'image/draww.png'],
@@ -11,11 +9,9 @@ const albums = {
 let currentAlbum = [];
 let currentImgIndex = 0;
 
-// --- SOUNDS ---
 const clickSound = document.getElementById('sfx-click');
 const popSound = document.getElementById('sfx-pop');
 
-// --- CURSOR FIREWORKS ---
 const clickCanvas = document.getElementById('click-canvas');
 const clickCtx = clickCanvas.getContext('2d');
 clickCanvas.width = window.innerWidth;
@@ -49,19 +45,15 @@ function animateClickFireworks() {
     if(clickParticles.length > 0) requestAnimationFrame(animateClickFireworks);
 }
 
-// Mouse Down Event for Firework
 window.addEventListener('mousedown', (e) => {
     createClickFirework(e.clientX, e.clientY);
     animateClickFireworks();
-    
-    // Play Click Sound Safely
     if(clickSound) {
         clickSound.currentTime = 0;
         clickSound.play().catch(()=>{});
     }
 });
 
-// --- CUSTOM CURSOR MOVEMENT ---
 const cursorDot = document.querySelector('[data-cursor-dot]');
 const cursorOutline = document.querySelector('[data-cursor-outline]');
 window.addEventListener('mousemove', (e) => {
@@ -70,7 +62,6 @@ window.addEventListener('mousemove', (e) => {
     cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
 });
 
-// --- POLAROID CLICK LOGIC (Open Album) ---
 document.querySelectorAll('.polaroid').forEach(card => {
     card.addEventListener('click', () => {
         const albumKey = card.getAttribute('data-album');
@@ -82,7 +73,6 @@ document.querySelectorAll('.polaroid').forEach(card => {
     });
 });
 
-// --- LIGHTBOX NAVIGATION ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const caption = document.getElementById('caption');
@@ -116,7 +106,6 @@ lightbox.onclick = (e) => {
     if(e.target === lightbox) lightbox.style.display = "none"; 
 };
 
-// --- WELCOME SCREEN (Unlocks Audio) ---
 const enterBtn = document.getElementById('enter-btn');
 const welcomeScreen = document.getElementById('welcome-screen');
 const fireworkCanvas = document.getElementById('fireworks-canvas');
@@ -125,13 +114,9 @@ fireworkCanvas.width = window.innerWidth; fireworkCanvas.height = window.innerHe
 let fwParticles = [];
 
 enterBtn.addEventListener('click', () => {
-    // UNLOCK AUDIO
     if(popSound) { popSound.volume = 0.5; popSound.play().catch(e => console.log("Audio Error:", e)); }
-    
-    // Big Fireworks
     createBigFirework();
     animateBigFireworks();
-
     setTimeout(() => {
         document.body.classList.remove('locked');
         document.body.classList.add('active');
@@ -164,7 +149,6 @@ function animateBigFireworks() {
     if(fwParticles.length > 0) requestAnimationFrame(animateBigFireworks);
 }
 
-// --- WEAKNESS BTN ---
 const weaknessBtn = document.getElementById('weakness-btn');
 let wStep = 0;
 weaknessBtn.addEventListener('click', () => {
@@ -173,5 +157,12 @@ weaknessBtn.addEventListener('click', () => {
     else { weaknessBtn.innerText = "View Weakness ⚠️"; weaknessBtn.classList.remove('btn-fill'); weaknessBtn.classList.add('btn-outline'); wStep=0; }
 });
 
-// --- TOGGLES ---
-document.getElementById('theme-
+document.getElementById('theme-toggle').onclick = () => document.body.classList.toggle('dark-mode');
+document.getElementById('resumeToggle').onclick = () => document.getElementById('resumeContent').classList.toggle('active');
+
+window.addEventListener('resize', () => {
+    clickCanvas.width = window.innerWidth;
+    clickCanvas.height = window.innerHeight;
+    fireworkCanvas.width = window.innerWidth;
+    fireworkCanvas.height = window.innerHeight;
+});
