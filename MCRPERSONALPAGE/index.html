@@ -6,7 +6,7 @@
     <title>Ma. Sofia Anne - Portfolio</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/design.css">
     <link rel="stylesheet" href="css/gallery.css">
@@ -20,32 +20,11 @@
     <div class="cursor-outline" data-cursor-outline></div>
     <canvas id="click-canvas"></canvas>
 
-    <div id="side-nav-toggle" class="sfx-trigger"><i class="bi bi-list"></i></div>
-
-    <div id="side-nav">
-        <span class="close-nav">&times;</span>
-        <div class="nav-content">
-            <h3>Menu</h3>
-            <a href="#" onclick="scrollToSection('hero')">Home</a>
-            <a href="#" onclick="scrollToSection('resume-section')">Who Is Me?</a>
-            <a href="#" onclick="scrollToSection('gallery-area')">Galleries</a>
-            <a href="#" onclick="scrollToSection('guestbook')">Guestbook</a>
-            
-            <div class="nav-contact-bonus">
-                <h4>Contact Info</h4>
-                <p><i class="bi bi-envelope-fill"></i> sofia.revilla@example.com</p>
-                <p><i class="bi bi-linkedin"></i> linkedin.com/in/sofia-revilla</p>
-                <p><i class="bi bi-geo-alt-fill"></i> Clark Air Base, Philippines</p>
-                <p class="quote">"Future Military Cyber Specialist"</p>
-            </div>
-        </div>
-    </div>
-
     <div id="welcome-screen">
         <canvas id="fireworks-canvas"></canvas>
         <div class="welcome-content">
             <h1>MA. SOFIA ANNE</h1>
-            <p style="letter-spacing: 3px; opacity: 0.8; margin-bottom: 20px;">PORTFOLIO 2026</p>
+            <p style="letter-spacing: 3px; opacity: 0.8; margin-bottom: 20px;">PORTFOLIO 2025</p>
             <button id="enter-btn">ENTER PROFILE</button>
         </div>
     </div>
@@ -55,6 +34,16 @@
             <span class="close-modal">&times;</span>
             <h2 id="modal-title">Title</h2>
             <div id="modal-body">Message...</div>
+        </div>
+    </div>
+
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-content contact-style">
+            <span class="close-modal" onclick="document.getElementById('contact-modal').style.display='none'">&times;</span>
+            <h2><i class="bi bi-envelope"></i> Get in Touch</h2>
+            <p><strong>Email:</strong> sofia.revilla@example.com</p>
+            <p><strong>Phone:</strong> +63 900 000 0000</p>
+            <p><strong>Location:</strong> Clark Air Base, Philippines</p>
         </div>
     </div>
 
@@ -73,18 +62,21 @@
             <div class="nav-left-icons">
                 <a href="https://www.linkedin.com/in/ma-sofia-anne-revilla-" target="_blank" class="icon-box sfx-trigger"><i class="bi bi-linkedin"></i></a>
                 <div class="icon-box sfx-trigger" id="theme-toggle"><i class="bi bi-moon"></i></div>
+                <a href="#" class="btn-pill btn-fill sfx-trigger" id="ref-btn" style="margin-left: 10px; font-size: 0.8rem; text-decoration: none;">REFERENCES</a>
             </div>
-            <div class="nav-menu"><span class="active">BSCS-SF Student Profile</span></div>
+            
+            <div class="nav-menu"><span class="active">Personal Webpage</span></div>
+
             <div class="nav-auth-buttons">
+                <button class="btn-pill btn-outline sfx-trigger" onclick="document.getElementById('contact-modal').style.display='flex'">Contact Me</button>
                 <a href="https://github.com/Sofia-revilla" target="_blank" class="btn-pill btn-fill sfx-trigger" style="text-decoration: none;">GitHub</a>
             </div>
         </nav>
 
-        <section class="hero-banner" id="hero">
+        <section class="hero-banner">
             <div class="hero-text">
                 <h1>Ma. Sofia Anne</h1>
-                <p><strong>Cybersecurity Student & Future Veterinarian</strong><br>
-                "Passion fuels the journey, but discipline ensures the destination."</p>
+                <p>BSCS-SF Student specializing in Cyber Security.<br>Future Veterinarian & Web Programmer.</p>
                 <button id="weakness-btn" class="btn-pill btn-outline sfx-trigger" style="margin-top:10px;">View Weakness ⚠️</button>
             </div>
             <div class="hero-img-wrapper">
@@ -92,71 +84,36 @@
             </div>
         </section>
 
-        <div style="text-align: center; max-width: 800px; margin: 0 auto 50px auto; line-height: 1.8; color: var(--text-main);">
-            <p>I am a 20-year-old BSCS student specializing in Forensics at Asia Pacific College. Balancing the technical world of ethical hacking with a deep love for animals, I aim to secure cyberspace today and build a rescue shelter tomorrow.</p>
-        </div>
-
-        <div class="resume-section" id="resume-section">
+        <div class="resume-section">
             <button class="resume-toggle-btn sfx-trigger" id="resumeToggle">
-                <i class="bi bi-folder2-open"></i> WHO IS ME? (Click to Open)
+                <i class="bi bi-file-earmark-person"></i> VIEW FULL RESUME & BADGES
             </button>
             
             <div class="resume-content" id="resumeContent">
                 <div class="paper-sheet">
                     <div class="paper-header">
-                        <h2>CONFIDENTIAL PROFILE</h2>
-                        <p>SUBJECT: MA. SOFIA ANNE C. REVILLA</p>
+                        <h2>CURRICULUM VITAE</h2>
+                        <p>MA. SOFIA ANNE C. REVILLA</p>
                     </div>
-                    
                     <div class="paper-grid">
-                        <div class="resume-col">
-                            <div class="resume-item">
-                                <span class="resume-label">Alias</span>
-                                <span class="resume-value">Sof or Pia</span>
-                            </div>
-                            <div class="resume-item">
-                                <span class="resume-label">Stats</span>
-                                <span class="resume-value">Age: 20 | April 26, 2005</span>
-                            </div>
-                            <div class="resume-item">
-                                <span class="resume-label">Base of Operations</span>
-                                <span class="resume-value">Makati / Clark Air Base</span>
-                            </div>
-                            <div class="resume-item">
-                                <span class="resume-label">Education</span>
-                                <span class="resume-value">Asia Pacific College (BSCS-SF)<br>60% AFP-OLC Scholar</span>
-                            </div>
-                        </div>
-
-                        <div class="resume-col">
-                            <div class="resume-item">
-                                <span class="resume-label">Active Skills</span>
-                                <div class="search-list" style="justify-content: flex-start;">
-                                    <span class="search-pill">Video Editing</span>
-                                    <span class="search-pill">Photoshop</span>
-                                    <span class="search-pill">Drawing</span>
-                                    <span class="search-pill">Linux</span>
-                                    <span class="search-pill">MySQL</span>
-                                </div>
-                            </div>
-                            <div class="resume-item">
-                                <span class="resume-label">Hobbies</span>
-                                <span class="resume-value">Shooting Range, Cafe Exploring, Watching Crime Docs, Running Alone.</span>
-                            </div>
-                        </div>
-
                         <div class="resume-item full-width">
-                            <span class="resume-label">Mission: Practicality vs. Passion</span>
+                            <span class="resume-label">Experience</span>
                             <div class="experience-box">
-                                "I chose CS for practicality. Tech is in high demand, and I plan to join <strong>Military Cyber Operations</strong>. I originally wanted Veterinary Medicine, but found ethical hacking intriguing. My ultimate dream is to have a stable job that funds my future <strong>Animal Rescue Shelter</strong>."
+                                <strong>Head of Arts Committee (2 Years)</strong><br>Clark Air Base Youth Club<br>
+                                <em>Led artistic initiatives, managed events, and coordinated youth activities.</em>
                             </div>
                         </div>
-
                         <div class="resume-item full-width">
-                            <span class="resume-label">Life Event: The Survivor</span>
-                            <div class="experience-box highlight-box">
-                                <i class="bi bi-heart-pulse-fill" style="color: #d14444;"></i> 
-                                <strong>Saving My Puppy:</strong> For two weeks, I had sleepless nights nursing my puppy through Parvo while simultaneously studying for exam week. Checking dextrose drips while sick myself—it was hard, but my dedication kept me going. He is now fully recovered, active, and lively.
+                            <span class="resume-label">Professional Badges</span>
+                            <div class="badge-grid clickable-section" onclick="openProject('Certifications', 'Full verified list available on LinkedIn.')">
+                                <div class="badge-item">Agile Explorer</div>
+                                <div class="badge-item">Explore Emerging Tech</div>
+                                <div class="badge-item">Project Mgmt Fundamentals</div>
+                                <div class="badge-item">User Experience Design</div>
+                                <div class="badge-item">Networking Basics (Cisco)</div>
+                                <div class="badge-item">Scrum Foundation</div>
+                                <div class="badge-item">Lifelong Learning</div>
+                                <div class="badge-item">Professional Skills</div>
                             </div>
                         </div>
                     </div>
@@ -164,51 +121,17 @@
             </div>
         </div>
 
-        <div class="gallery-dual-container" id="gallery-area">
-            
-            <div class="gallery-column">
-                <div class="section-header">Life Gallery</div>
-                <div id="art-gallery-container" class="art-container vertical-art">
-                    <div class="art-ui">
-                        <h2 id="art-title">Loading...</h2>
-                        <p id="art-artist">MY LIFE</p>
-                    </div>
+        <div class="col-gallery-wide centered-gallery">
+            <div class="section-header">My Life Gallery <small style="opacity: 0.6; font-weight: normal;">(Vertical Portrait Mode)</small></div>
+            <div id="art-gallery-container" class="art-container">
+                <div class="art-ui">
+                    <h2 id="art-title">Loading...</h2>
+                    <p id="art-artist">MEMORIES</p>
                 </div>
             </div>
-
-            <div class="gallery-column">
-                <div class="section-header">Vibe Check</div>
-                
-                <div class="music-player-card">
-                    <div class="album-art">
-                        <img src="image/me.png" alt="Album Art"> <div class="vinyl-center"></div>
-                    </div>
-                    <div class="song-info">
-                        <h3>Simula at Wakas</h3>
-                        <p>SB19 - Pagtatag!</p>
-                    </div>
-                    <div class="progress-container">
-                        <div class="progress-bar"></div>
-                    </div>
-                    <div class="controls">
-                        <i class="bi bi-skip-backward-fill sfx-trigger"></i>
-                        <i class="bi bi-play-circle-fill play-btn sfx-trigger" id="music-toggle"></i>
-                        <i class="bi bi-skip-forward-fill sfx-trigger"></i>
-                    </div>
-                </div>
-
-                <div class="tech-stack-mini" style="margin-top: 20px;">
-                    <span class="badge">Python</span>
-                    <span class="badge">HTML/CSS</span>
-                    <span class="badge">Linux</span>
-                    <span class="badge">UI/UX</span>
-                    <span class="badge">Canva</span>
-                </div>
-            </div>
-
         </div>
 
-        <div class="section-header" id="projects">Projects</div>
+        <div class="section-header">Projects</div>
         <div class="projects-grid">
             <div class="project-card sfx-trigger" onclick="openProject('Face Track', 'Attendance face tracker for school used by LeanTech. Built with Python and OpenCV.')">
                 <div class="p-icon"><i class="bi bi-person-bounding-box"></i></div>
@@ -225,7 +148,7 @@
                 <h3>Cyber Lab</h3>
                 <p>Security Simulation</p>
             </div>
-            <div class="project-card sfx-trigger" onclick="openProject('Achievement Board', 'Coming Soon... Tracking all my badges and certifications.')">
+            <div class="project-card sfx-trigger" onclick="openProject('Achievement Board', 'Coming Soon...')">
                 <div class="p-icon"><i class="bi bi-trophy"></i></div>
                 <h3>Achievement Board</h3>
                 <p>Future Module</p>
@@ -235,46 +158,70 @@
         <div class="dashboard-grid">
 
             <div class="col-gallery">
-                <div class="section-header">Quick Snaps (Polaroids)</div>
+                <div class="section-header">Quick Snaps <small style="font-size:0.8rem;">(Click to Open Album)</small></div>
                 <div class="polaroid-container">
                     
                     <div class="polaroid sfx-trigger" data-album="pets" style="--r:-3deg;">
                         <div class="polaroid-img"><img src="image/kel.jpg" alt="Pets"></div>
-                        <span>Fur Babies</span>
+                        <span>Fur Babies 🐾</span>
                     </div>
 
                     <div class="polaroid sfx-trigger" data-album="art" style="--r:2deg;">
                         <div class="polaroid-img"><img src="image/draww.png" alt="Art"></div>
-                        <span>Artworks</span>
+                        <span>Artworks 🎨</span>
                     </div>
 
                     <div class="polaroid sfx-trigger" data-album="family" style="--r:-2deg;">
                         <div class="polaroid-img"><img src="image/family.jpg" alt="Family"></div>
-                        <span>Family</span>
+                        <span>Family ❤️</span>
                     </div>
 
-                    <div class="polaroid sfx-trigger" data-album="memories" style="--r:4deg;">
-                        <div class="polaroid-img"><img src="image/me.png" alt="Me"></div>
-                        <span>Memories</span>
+                    <div class="polaroid sfx-trigger" data-album="hobbies" style="--r:4deg;">
+                        <div class="polaroid-img"><img src="image/shs.jpg" alt="Hobbies"></div>
+                        <span>Hobbies 🔫</span>
                     </div>
+
+                    <div class="polaroid sfx-trigger" data-album="memories" style="--r:-4deg;">
+                        <div class="polaroid-img"><img src="image/me.png" alt="Me"></div>
+                        <span>Memories ✨</span>
+                    </div>
+
                 </div>
             </div>
 
-            <div class="col-info" id="guestbook">
-                <div class="section-header">Leave a Note</div>
-                <div class="guestbook-card paper-sheet" style="padding: 20px;">
-                    <textarea id="guest-msg" placeholder="Write a message for Sofia..."></textarea>
-                    <button id="guest-send" class="btn-pill btn-fill" style="width: 100%; margin-top: 10px;">Send Note</button>
-                    
-                    <div id="guest-list" class="guest-list">
+            <div class="details-column">
+                <div class="col-search">
+                    <div class="section-header">Skills</div>
+                    <div class="search-list">
+                        <div class="search-pill">Python & JS</div>
+                        <div class="search-pill">Video Editing</div>
+                        <div class="search-pill">Photoshop</div>
+                        <div class="search-pill">Procreate</div>
+                        <div class="search-pill">Pet Care</div>
+                        <div class="search-pill">Shooting Range</div>
+                        <div class="search-pill">Custom Design</div>
+                    </div>
+                </div>
+
+                <div class="col-info" style="margin-top: 30px;">
+                    <div class="section-header">Goals</div>
+                    <div class="info-list">
+                        <div class="info-card sfx-trigger">
+                            <div class="info-img">🎯</div>
+                            <div class="info-content"><h4>Life Goal</h4><p>Financial stability.</p></div>
                         </div>
+                        <div class="info-card sfx-trigger">
+                            <div class="info-img">🐾</div>
+                            <div class="info-content"><h4>Dream</h4><p>Animal rescue shelter.</p></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div> 
         
         <div style="text-align: center; margin-top: 50px; margin-bottom: 20px; color: var(--text-light); font-size: 0.8rem;">
-            WEBPROG SF241 | © 2026 Ma. Sofia Anne Revilla
+            WEBPROG SF241 | © 2025 Ma. Sofia Anne Revilla
         </div>
 
     </div>
@@ -285,10 +232,6 @@
     <script src="js/gallery.js"></script>
 
     <script>
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({behavior: 'smooth'});
-            document.getElementById('side-nav').classList.remove('active');
-        }
         function openProject(title, desc) {
             const modal = document.getElementById('info-modal');
             document.getElementById('modal-title').innerText = title;
