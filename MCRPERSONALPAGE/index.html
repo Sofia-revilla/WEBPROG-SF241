@@ -28,7 +28,6 @@
         <a href="#" onclick="scrollToSection('resume-section')">Resume</a>
         <a href="#" onclick="scrollToSection('gallery-row')">Galleries</a>
         <a href="#" onclick="scrollToSection('projects')">Projects</a>
-        
         <div class="nav-contact-bonus">
             <h4>Contact Info</h4>
             <p><i class="bi bi-envelope"></i> sofia.revilla@example.com</p>
@@ -51,6 +50,15 @@
             <span class="close-modal">&times;</span>
             <h2 id="modal-title">Title</h2>
             <div id="modal-body">Message...</div>
+        </div>
+    </div>
+
+    <div id="contact-modal" class="modal-overlay">
+        <div class="modal-content contact-style">
+            <span class="close-modal" onclick="document.getElementById('contact-modal').style.display='none'">&times;</span>
+            <h2>Get in Touch</h2>
+            <p><strong>Email:</strong> sofia.revilla@example.com</p>
+            <p><strong>Phone:</strong> +63 900 000 0000</p>
         </div>
     </div>
 
@@ -88,15 +96,10 @@
             </div>
         </section>
 
-        <div style="text-align: center; max-width: 800px; margin: 0 auto 40px auto; line-height: 1.8; color: var(--text-main);">
-            <p>I am a 2nd Year BSCS student at Asia Pacific College. My journey balances technical rigor with deep compassion. From saving my puppy from Parvo through sleepless nights during exam week, to mastering Linux fundamentals—dedication drives everything I do.</p>
-        </div>
-
         <div class="resume-section" id="resume-section">
             <button class="resume-toggle-btn sfx-trigger" id="resumeToggle">
-                <i class="bi bi-file-earmark-person"></i> VIEW FULL BIO & RESUME
+                <i class="bi bi-file-earmark-person"></i> WHO IS ME?
             </button>
-            
             <div class="resume-content" id="resumeContent">
                 <div class="paper-sheet">
                     <div class="paper-header">
@@ -118,22 +121,11 @@
                         </div>
                         <div class="resume-item full-width">
                             <span class="resume-label">Why this course?</span>
-                            <div class="experience-box">
-                                "I chose practicality. Tech is in high demand, and I plan to join military cyber operations. I originally wanted Veterinary Medicine, but found the ethical hacking specialization intriguing."
-                            </div>
+                            <div class="experience-box">"I chose practicality. Tech is in high demand, and I plan to join military cyber operations. I originally wanted Veterinary Medicine, but found the ethical hacking specialization intriguing."</div>
                         </div>
                         <div class="resume-item full-width">
                             <span class="resume-label">Skills & Hobbies</span>
-                            <span class="resume-value">
-                                <strong>Tech:</strong> Linux, MySQL Workbench, UI/UX, Python, Video Editing.<br>
-                                <strong>Hobbies:</strong> Shooting Range, Cafe Exploring, Arts, Documentaries (Crime).
-                            </span>
-                        </div>
-                        <div class="resume-item full-width">
-                            <span class="resume-label">Life Highlight</span>
-                            <div class="experience-box" style="border-left: 3px solid #6c8af1; padding-left: 10px;">
-                                Successfully nursed my puppy back to health from Parvo for two weeks while simultaneously passing my exams. It taught me resilience and dedication.
-                            </div>
+                            <span class="resume-value"><strong>Tech:</strong> Linux, MySQL, UI/UX, Python, Video Editing.<br><strong>Hobbies:</strong> Shooting Range, Cafe Exploring, Arts, Crime Docs.</span>
                         </div>
                     </div>
                 </div>
@@ -142,9 +134,9 @@
 
         <div class="gallery-row" id="gallery-row">
             
-            <div class="gallery-column">
+            <div class="gallery-column wide-col">
                 <div class="section-header">Life Gallery <small>(Memories)</small></div>
-                <div id="art-gallery-container" class="art-container vertical-art">
+                <div id="art-gallery-container" class="art-container landscape-art">
                     <div class="art-ui">
                         <h2 id="art-title">Loading...</h2>
                         <p id="art-artist">MY LIFE</p>
@@ -152,16 +144,21 @@
                 </div>
             </div>
 
-            <div class="gallery-column">
-                <div class="section-header">Skills & Badges <small>(Tech Stack)</small></div>
-                <div id="skill-gallery-container" class="art-container vertical-art">
+            <div class="gallery-column tall-col">
+                <div class="section-header">Achievements <small>(Badges)</small></div>
+                <div id="skill-gallery-container" class="art-container portrait-art">
                     <div class="art-ui">
                         <h2 id="skill-title">Loading...</h2>
-                        <p id="skill-artist">ACHIEVEMENTS</p>
+                        <p id="skill-artist">CERTIFIED</p>
                     </div>
                 </div>
             </div>
 
+        </div>
+
+        <div class="bio-blurb">
+            <h3>About Me</h3>
+            <p>I am a 2nd Year BSCS student at Asia Pacific College. My journey balances technical rigor with deep compassion. From saving my puppy from Parvo through sleepless nights during exam week, to mastering Linux fundamentals—dedication drives everything I do.</p>
         </div>
 
         <div class="section-header" id="projects">Projects</div>
@@ -171,12 +168,12 @@
                 <h3>Face Track</h3>
                 <p>Attendance System</p>
             </div>
-            <div class="project-card sfx-trigger" onclick="openProject('TechZone DB', 'A complete Database Management System for inventory and sales. Built with MySQL and PHP.')">
+            <div class="project-card sfx-trigger" onclick="openProject('TechZone DB', 'Inventory System using MySQL and PHP.')">
                 <div class="p-icon"><i class="bi bi-database"></i></div>
                 <h3>TechZone DB</h3>
                 <p>Database Management</p>
             </div>
-            <div class="project-card sfx-trigger" onclick="openProject('Cyber Lab', 'Network Security Simulation and Packet Analysis project using Linux tools.')">
+            <div class="project-card sfx-trigger" onclick="openProject('Cyber Lab', 'Network Packet Analysis using Linux tools.')">
                 <div class="p-icon"><i class="bi bi-shield-lock"></i></div>
                 <h3>Cyber Lab</h3>
                 <p>Security Simulation</p>
@@ -191,30 +188,30 @@
         <div class="dashboard-grid">
 
             <div class="col-gallery">
-                <div class="section-header">Quick Snaps</div>
-                <div class="polaroid-container">
+                <div class="section-header">Quick Snaps </div>
+                <div class="polaroid-stack-wrapper">
                     
-                    <div class="polaroid sfx-trigger" data-album="pets" style="--r:-3deg;">
+                    <div class="polaroid sfx-trigger" data-album="pets">
                         <div class="polaroid-img"><img src="image/kel.jpg" alt="Pets"></div>
                         <span>Fur Babies</span>
                     </div>
 
-                    <div class="polaroid sfx-trigger" data-album="art" style="--r:2deg;">
+                    <div class="polaroid sfx-trigger" data-album="art">
                         <div class="polaroid-img"><img src="image/draww.png" alt="Art"></div>
                         <span>Artworks</span>
                     </div>
 
-                    <div class="polaroid sfx-trigger" data-album="family" style="--r:-2deg;">
+                    <div class="polaroid sfx-trigger" data-album="family">
                         <div class="polaroid-img"><img src="image/family.jpg" alt="Family"></div>
                         <span>Family</span>
                     </div>
 
-                    <div class="polaroid sfx-trigger" data-album="hobbies" style="--r:4deg;">
+                    <div class="polaroid sfx-trigger" data-album="hobbies">
                         <div class="polaroid-img"><img src="image/shs.jpg" alt="Hobbies"></div>
                         <span>Hobbies</span>
                     </div>
 
-                    <div class="polaroid sfx-trigger" data-album="memories" style="--r:-4deg;">
+                    <div class="polaroid sfx-trigger" data-album="memories">
                         <div class="polaroid-img"><img src="image/me.png" alt="Me"></div>
                         <span>Memories</span>
                     </div>
@@ -234,10 +231,6 @@
                             <div class="info-img">🐾</div>
                             <div class="info-content"><h4>Dream</h4><p>Build a large animal rescue shelter.</p></div>
                         </div>
-                        <div class="info-card sfx-trigger">
-                            <div class="info-img">🛡️</div>
-                            <div class="info-content"><h4>Career</h4><p>Military Cyber Operations.</p></div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -256,10 +249,9 @@
     <script src="js/gallery.js"></script>
 
     <script>
-        // Inline helper for scrolling
         function scrollToSection(id) {
             document.getElementById(id).scrollIntoView({behavior: 'smooth'});
-            document.getElementById('side-nav').classList.remove('active'); // Close nav
+            document.getElementById('side-nav').classList.remove('active');
         }
         function openProject(title, desc) {
             const modal = document.getElementById('info-modal');

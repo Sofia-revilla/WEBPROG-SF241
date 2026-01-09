@@ -1,20 +1,19 @@
 (function() {
-    // --- 1. LIFE GALLERY IMAGES (Left Side) ---
+    // --- 1. LIFE GALLERY IMAGES (Left - Landscape) ---
     const lifeImages = [
         { url: 'image/pet2.jpg', title: 'Happiness', artist: 'MY PETS' },
         { url: 'image/draww.png', title: 'Creativity', artist: 'ARTWORKS' },
         { url: 'image/family.jpg', title: 'Support', artist: 'FAMILY' }
     ];
 
-    // --- 2. SKILLS GALLERY IMAGES (Right Side) ---
-    // You should upload images of your badges/logos here
+    // --- 2. SKILLS GALLERY IMAGES (Right - Portrait) ---
+    // Use images of your badges/logos here
     const skillImages = [
         { url: 'image/shs.jpg', title: 'Certified', artist: 'IBM SKILLS' },
         { url: 'image/me.png', title: 'Tech Stack', artist: 'PYTHON & JS' },
         { url: 'image/kel.jpg', title: 'Security', artist: 'CYBER LAB' }
     ];
 
-    // Function to create a gallery instance
     function initGallery(containerId, titleId, artistId, imageSet) {
         const container = document.getElementById(containerId);
         const titleEl = document.getElementById(titleId);
@@ -74,7 +73,7 @@
             if(artistEl) artistEl.innerText = imageSet[nextIdx].artist;
         }
 
-        setInterval(nextSlide, 4000 + Math.random() * 2000); // Random offset so they don't change at exact same time
+        setInterval(nextSlide, 4000 + Math.random() * 2000); 
         container.addEventListener('click', nextSlide);
 
         function animate() {
@@ -83,13 +82,10 @@
         }
         animate();
         
-        // Initial Text
         if(titleEl) titleEl.innerText = imageSet[0].title;
         if(artistEl) artistEl.innerText = imageSet[0].artist;
     }
 
-    // Initialize both galleries
     initGallery('art-gallery-container', 'art-title', 'art-artist', lifeImages);
     initGallery('skill-gallery-container', 'skill-title', 'skill-artist', skillImages);
-
 })();
