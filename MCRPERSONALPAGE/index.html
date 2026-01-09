@@ -11,7 +11,15 @@
     <link rel="stylesheet" href="css/design.css">
     <link rel="stylesheet" href="css/gallery.css">
 </head>
-<body>
+<body class="loading">
+
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <h1>Welcome, I am Sofia</h1>
+            <p>Initializing Secure Dashboard...</p>
+        </div>
+    </div>
 
     <div id="lightbox" class="lightbox">
         <span class="close-btn">&times;</span>
@@ -34,12 +42,11 @@
                 <div class="icon-box" id="theme-toggle" title="Toggle Dark Mode">
                     <i class="bi bi-moon"></i>
                 </div>
-                <a href="#" class="btn-pill btn-fill" style="margin-left: 10px; font-size: 0.8rem; text-decoration: none;">WEBPROG</a>
+                <div class="btn-pill btn-fill" style="margin-left: 10px; font-size: 0.8rem;">WEBPROG</div>
             </div>
             <div class="nav-menu"><span class="active">Personal Webpage</span></div>
             <div class="nav-auth-buttons">
-                <a href="#" class="btn-pill btn-outline" style="text-decoration: none;">Revilla</a>
-                <a href="#" class="btn-pill btn-fill" style="text-decoration: none;">GitHub</a>
+                <a href="https://github.com/Sofia-revilla" target="_blank" class="btn-pill btn-fill">GitHub</a>
             </div>
         </nav>
 
@@ -74,14 +81,43 @@
 
         <div class="gallery-feature-wrapper">
             <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
-                My Little Gallery
+                My Little Gallery <small>(Click to Transition)</small>
                 <button id="view-all-btn" class="btn-pill btn-outline" style="padding: 5px 15px; font-size: 0.7rem;">VIEW ALL</button>
             </div>
-            <div id="mini-art-gallery" class="art-container wide-banner-match">
+            <div id="mini-art-gallery" class="wide-banner-container">
                 <div class="art-ui">
                     <h2 id="mini-art-title">My Collection</h2>
                     <p id="art-artist">Ma. Sofia Anne | Photography & Art</p>
                 </div>
+            </div>
+        </div>
+
+        <div class="interaction-grid">
+            <div class="col-projects">
+                <div class="section-header"><i class="bi bi-kanban"></i> Featured Projects</div>
+                <div class="project-card">
+                    <div class="project-icon">🛡️</div>
+                    <div class="project-info">
+                        <h4>Cybersecurity Lab</h4>
+                        <p>Ubuntu & Kali Linux implementation for network security.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon">🎄</div>
+                    <div class="project-info">
+                        <h4>Arduino LED Tree</h4>
+                        <p>Circuit design and C++ programming for festive light patterns.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-achievements">
+                <div class="section-header"><i class="bi bi-trophy"></i> Achievements</div>
+                <ul class="achievement-list">
+                    <li><i class="bi bi-patch-check-fill"></i> Agile Explorer Certification</li>
+                    <li><i class="bi bi-patch-check-fill"></i> IBM Project Management Fundamentals</li>
+                    <li><i class="bi bi-patch-check-fill"></i> User Experience Design Fund.</li>
+                </ul>
             </div>
         </div>
 
@@ -91,8 +127,8 @@
                 <div class="search-list">
                     <div class="search-pill">Python & CSS</div>
                     <div class="search-pill">Cyber Security</div>
-                    <div class="search-pill">Painting & Gaming</div>
-                    <div class="search-pill">Helping Animals</div>
+                    <div class="search-pill">Painting</div>
+                    <div class="search-pill">Animal Welfare</div>
                 </div>
             </div>
 
@@ -101,7 +137,7 @@
                 <div class="info-list">
                     <div class="info-card">
                         <div class="info-img">🎯</div>
-                        <div class="info-content"><h4>Goal</h4><p>Financial stability.</p></div>
+                        <div class="info-content"><h4>Goal</h4><p>Financial stability for family.</p></div>
                     </div>
                     <div class="info-card">
                         <div class="info-img">🐾</div>
@@ -111,14 +147,13 @@
             </div>
         </div>
 
-        <div style="text-align: center; margin: 50px 0 20px 0; color: var(--text-light); font-size: 0.8rem;">
+        <div class="footer">
             WEBPROG SF241 | © 2026 Ma. Sofia Anne Revilla
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    
     <script src="js/script.js"></script>
     <script src="js/gallery.js"></script>
 </body>

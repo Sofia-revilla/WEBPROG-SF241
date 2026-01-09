@@ -1,72 +1,89 @@
-/* ... Keep your existing :root and Dark Mode variables ... */
+/* --- Preloader / Welcome Screen --- */
+#preloader {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #18191a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    transition: opacity 0.8s ease, visibility 0.8s;
+}
 
-/* New Details Grid for Bottom Section */
-.details-grid {
+.loader-content { text-align: center; color: white; }
+.spinner {
+    width: 50px; height: 50px;
+    border: 5px solid rgba(255,255,255,0.1);
+    border-top-color: var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* --- Wide Banner Gallery (FB Cover Style) --- */
+.wide-banner-container {
+    width: 100%;
+    height: 380px; /* Adjust this to change banner height */
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow-soft);
+    background: #242526;
+    margin-bottom: 30px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.wide-banner-container:hover {
+    border-color: var(--primary-blue);
+}
+
+/* --- Interaction Grid (Projects/Achievements) --- */
+.interaction-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.5fr 1fr;
     gap: 30px;
+    margin-bottom: 30px;
 }
 
-/* --- Improved Skills Design (Glassmorphism) --- */
-.search-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 15px;
-}
-
-.search-pill {
-    background: rgba(108, 138, 241, 0.1);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(108, 138, 241, 0.2);
-    padding: 20px 10px;
-    border-radius: var(--radius-md);
-    text-align: center;
-    font-weight: 600;
-    color: var(--primary-blue);
-    transition: all 0.4s ease;
-    cursor: default;
-}
-
-.search-pill:hover {
-    background: var(--primary-blue);
-    color: white;
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 20px rgba(108, 138, 241, 0.3);
-}
-
-/* --- Improved About Design (3D Hover Cards) --- */
-.info-card {
+.project-card {
     background: var(--card-white);
+    padding: 20px;
     border-radius: var(--radius-lg);
-    padding: 25px;
-    margin-bottom: 15px;
     display: flex;
     align-items: center;
-    gap: 20px;
-    box-shadow: var(--shadow-soft);
-    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    gap: 15px;
+    margin-bottom: 15px;
+    transition: 0.3s ease;
     border: 1px solid transparent;
 }
 
-.info-card:hover {
-    transform: translateX(10px) rotateY(5deg);
+.project-card:hover {
+    transform: translateY(-5px);
     border-color: var(--primary-blue);
-    background: linear-gradient(to right, var(--card-white), rgba(108, 138, 241, 0.05));
+    box-shadow: var(--shadow-soft);
 }
 
-.info-img {
-    font-size: 2rem;
-    filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
-}
+.project-icon { font-size: 2rem; }
 
-.footer {
-    text-align: center; 
-    margin: 50px 0 20px 0; 
-    color: var(--text-light); 
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+.achievement-list { list-style: none; padding-top: 10px; }
+.achievement-list li {
+    padding: 15px;
+    background: var(--card-white);
+    border-radius: var(--radius-md);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-main);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
 }
+.achievement-list li i { color: #f1c40f; font-size: 1.2rem; }
 
+/* --- Layout Responsiveness --- */
 @media (max-width: 768px) {
-    .details-grid { grid-template-columns: 1fr; }
+    .interaction-grid { grid-template-columns: 1fr; }
+    .wide-banner-container { height: 250px; }
 }
