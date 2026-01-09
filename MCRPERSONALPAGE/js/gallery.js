@@ -1,113 +1,91 @@
 (function() {
-    // --- IMAGES CONFIGURATION (6+ Images) ---
-    // Ensure these file names match what you have in your folder
-    const images = [
+    // --- 1. LIFE GALLERY IMAGES (Left - Landscape) ---
+    const lifeImages = [
         { url: 'image/pet2.jpg', title: 'Happiness', artist: 'MY PETS' },
         { url: 'image/draww.png', title: 'Creativity', artist: 'ARTWORKS' },
-        { url: 'image/family.jpg', title: 'Support', artist: 'FAMILY' },
-        { url: 'image/kel.jpg', title: 'Twinkel', artist: 'FUR BABY' },
-        { url: 'image/shs.jpg', title: 'Memories', artist: 'SCHOOL DAYS' },
-        { url: 'image/tal.jpg', title: 'Talia', artist: 'COMPANION' }
+        { url: 'image/family.jpg', title: 'Support', artist: 'FAMILY' }
     ];
 
-    const container = document.getElementById('art-gallery-container');
-    const titleEl = document.getElementById('art-title');
-    const artistEl = document.getElementById('art-artist');
+    // --- 2. SKILLS GALLERY IMAGES (Right - Portrait) ---
+    // Use images of your badges/logos here
+    const skillImages = [
+        { url: 'image/shs.jpg', title: 'Certified', artist: 'IBM SKILLS' },
+        { url: 'image/me.png', title: 'Tech Stack', artist: 'PYTHON & JS' },
+        { url: 'image/kel.jpg', title: 'Security', artist: 'CYBER LAB' }
+    ];
 
-    if (!container) return;
+    function initGallery(containerId, titleId, artistId, imageSet) {
+        const container = document.getElementById(containerId);
+        const titleEl = document.getElementById(titleId);
+        const artistEl = document.getElementById(artistId);
 
-    // --- THREE.JS SETUP ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    
-    // Initial Size
-    renderer.setSize(container.offsetWidth, container.offsetHeight);
-    container.appendChild(renderer.domElement);
+        if (!container) return;
 
-    // --- TEXTURE LOADER ---
-    const loader = new THREE.TextureLoader();
-    const textures = images.map(img => {
-        return loader.load(img.url, undefined, undefined, (err) => {
-            console.warn(`Could not load ${img.url}.`);
-        });
-    });
+        const scene = new THREE.Scene();
+        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        
+        renderer.setSize(container.offsetWidth, container.offsetHeight);
+        container.appendChild(renderer.domElement);
 
-    // --- SHADER (Liquid Distortion) ---
-    const vertexShader = `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
-    const fragmentShader = `
-        varying vec2 vUv;
-        uniform sampler2D texture1;
-        uniform sampler2D texture2;
-        uniform float dispFactor;
-        void main() {
-            vec2 uv = vUv;
-            vec2 dist1 = vec2(uv.x + dispFactor * (sin(uv.y * 10.0 + dispFactor) * 0.1), uv.y);
-            vec2 dist2 = vec2(uv.x - (1.0 - dispFactor) * (sin(uv.y * 10.0 + dispFactor) * 0.1), uv.y);
-            gl_FragColor = mix(texture2D(texture1, dist1), texture2D(texture2, dist2), dispFactor);
-        }
-    `;
+        const loader = new THREE.TextureLoader();
+        const textures = imageSet.map(img => loader.load(img.url));
 
-    const material = new THREE.ShaderMaterial({
-        uniforms: {
-            dispFactor: { value: 0.0 },
-            texture1: { value: textures[0] },
-            texture2: { value: textures[1] }
-        },
-        vertexShader,
-        fragmentShader,
-        transparent: true
-    });
-
-    const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
-    scene.add(mesh);
-
-    // --- AUTOMATION LOGIC ---
-    let currentIdx = 0;
-    let isAnimating = false;
-
-    function nextSlide() {
-        if (isAnimating) return;
-        isAnimating = true;
-
-        const nextIdx = (currentIdx + 1) % images.length;
-        material.uniforms.texture2.value = textures[nextIdx];
-
-        gsap.to(material.uniforms.dispFactor, {
-            value: 1,
-            duration: 1.5,
-            ease: "expo.inOut",
-            onComplete: () => {
-                material.uniforms.texture1.value = textures[nextIdx];
-                material.uniforms.dispFactor.value = 0;
-                currentIdx = nextIdx;
-                isAnimating = false;
+        const vertexShader = `varying vec2 vUv; void main() { vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+        const fragmentShader = `
+            varying vec2 vUv; uniform sampler2D texture1; uniform sampler2D texture2; uniform float dispFactor;
+            void main() {
+                vec2 uv = vUv;
+                vec2 dist1 = vec2(uv.x + dispFactor * (sin(uv.y * 10.0 + dispFactor) * 0.1), uv.y);
+                vec2 dist2 = vec2(uv.x - (1.0 - dispFactor) * (sin(uv.y * 10.0 + dispFactor) * 0.1), uv.y);
+                gl_FragColor = mix(texture2D(texture1, dist1), texture2D(texture2, dist2), dispFactor);
             }
+        `;
+
+        const material = new THREE.ShaderMaterial({
+            uniforms: { dispFactor: { value: 0.0 }, texture1: { value: textures[0] }, texture2: { value: textures[1] } },
+            vertexShader, fragmentShader, transparent: true
         });
 
-        if(titleEl) titleEl.innerText = images[nextIdx].title;
-        if(artistEl) artistEl.innerText = images[nextIdx].artist;
+        const mesh = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), material);
+        scene.add(mesh);
+
+        let currentIdx = 0;
+        let isAnimating = false;
+
+        function nextSlide() {
+            if (isAnimating) return;
+            isAnimating = true;
+            const nextIdx = (currentIdx + 1) % imageSet.length;
+            material.uniforms.texture2.value = textures[nextIdx];
+
+            gsap.to(material.uniforms.dispFactor, {
+                value: 1, duration: 1.5, ease: "expo.inOut",
+                onComplete: () => {
+                    material.uniforms.texture1.value = textures[nextIdx];
+                    material.uniforms.dispFactor.value = 0;
+                    currentIdx = nextIdx;
+                    isAnimating = false;
+                }
+            });
+
+            if(titleEl) titleEl.innerText = imageSet[nextIdx].title;
+            if(artistEl) artistEl.innerText = imageSet[nextIdx].artist;
+        }
+
+        setInterval(nextSlide, 4000 + Math.random() * 2000); 
+        container.addEventListener('click', nextSlide);
+
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+        
+        if(titleEl) titleEl.innerText = imageSet[0].title;
+        if(artistEl) artistEl.innerText = imageSet[0].artist;
     }
 
-    // Auto-change every 5 seconds
-    setInterval(nextSlide, 5000);
-    
-    // Also allow click to change
-    container.addEventListener('click', nextSlide);
-
-    // --- RESPONSIVE RESIZE ---
-    window.addEventListener('resize', () => {
-        const width = container.offsetWidth;
-        const height = container.offsetHeight;
-        renderer.setSize(width, height);
-    });
-
-    function animate() {
-        requestAnimationFrame(animate);
-        renderer.render(scene, camera);
-    }
-    animate();
-    
-    if(titleEl) titleEl.innerText = images[0].title;
-    if(artistEl) artistEl.innerText = images[0].artist;
+    initGallery('art-gallery-container', 'art-title', 'art-artist', lifeImages);
+    initGallery('skill-gallery-container', 'skill-title', 'skill-artist', skillImages);
 })();
