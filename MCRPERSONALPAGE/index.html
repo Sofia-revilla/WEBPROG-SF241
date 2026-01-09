@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
     
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
     <link rel="stylesheet" href="css/design.css">
     <link rel="stylesheet" href="css/gallery.css">
 </head>
@@ -21,11 +23,16 @@
     <canvas id="click-canvas"></canvas>
 
     <div id="welcome-screen">
-        <canvas id="fireworks-canvas"></canvas>
-        <div class="welcome-content">
-            <h1>MA. SOFIA ANNE</h1>
-            <p style="letter-spacing: 3px; opacity: 0.8; margin-bottom: 20px;">PORTFOLIO 2025</p>
-            <button id="enter-btn">ENTER PROFILE</button>
+        <div class="slot-machine-container">
+            <div class="slot-window">
+                <div class="slot-reel" id="reel-1">H</div>
+                <div class="slot-reel" id="reel-2">E</div>
+                <div class="slot-reel" id="reel-3">L</div>
+                <div class="slot-reel" id="reel-4">L</div>
+                <div class="slot-reel" id="reel-5">O</div>
+            </div>
+            <div class="slot-sub" id="slot-sub">THERE</div>
+            <button id="enter-btn" style="opacity: 0; pointer-events: none;">ENTER PROFILE</button>
         </div>
     </div>
 
@@ -117,18 +124,6 @@
                             </div>
                         </div>
                         <div class="resume-item full-width">
-                            <span class="resume-label">Skills & Hobbies</span>
-                            <div class="search-list" style="margin-top:5px;">
-                                <div class="search-pill">Linux Fundamentals</div>
-                                <div class="search-pill">MySQL Workbench</div>
-                                <div class="search-pill">UI/UX Design</div>
-                                <div class="search-pill">Video Editing</div>
-                                <div class="search-pill">Shooting Range 🔫</div>
-                                <div class="search-pill">Cafe Exploring ☕</div>
-                                <div class="search-pill">Crime Docs 📺</div>
-                            </div>
-                        </div>
-                        <div class="resume-item full-width">
                             <span class="resume-label">Experience</span>
                             <div class="experience-box">
                                 <strong>Head of Arts Committee (2 Years)</strong><br>
@@ -141,12 +136,37 @@
             </div>
         </div>
 
-        <div class="col-gallery-wide centered-gallery">
-            <div class="section-header">Life Gallery <small style="opacity: 0.6; font-weight: normal;">(Memories)</small></div>
-            <div id="art-gallery-container" class="art-container">
-                <div class="art-ui">
-                    <h2 id="art-title">Loading...</h2>
-                    <p id="art-artist">MEMORIES</p>
+        <div class="dashboard-grid" style="margin-bottom: 40px;">
+            <div style="background: var(--card-white); padding: 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);">
+                <div class="section-header">Who Is Me?</div>
+                <p style="line-height: 1.8; color: var(--text-main); margin-bottom: 20px;">
+                    I am a 2nd Year BSCS student at Asia Pacific College. My journey balances technical rigor with deep compassion. I expect to explore different programming languages and front-end development, utilizing creativity to make coding fun.
+                </p>
+                <div style="border-left: 4px solid var(--primary-blue); padding-left: 20px; font-style: italic; color: var(--text-light); font-size: 0.9rem;">
+                    "I was able to save our puppy who had Parvo. It was almost two weeks of sleepless nights taking care of him while also finishing up a project... It was really hard, but my love and dedication kept me going."
+                </div>
+            </div>
+
+            <div id="vue-capabilities-app" style="background: var(--primary-dark); padding: 30px; border-radius: var(--radius-lg); color: white; height: 100%; position: relative; overflow: hidden;">
+                <div class="section-header" style="color: white; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px;">Capabilities</div>
+                
+                <div class="scrolling-wrapper">
+                    <div class="scroll-content" :style="{ transform: 'translateY(' + scrollY + 'px)' }">
+                        <div v-for="(item, index) in capabilities" :key="index" class="cap-item">
+                            <span class="cap-icon">{{ item.icon }}</span>
+                            <div>
+                                <h4 style="margin:0; font-size: 1rem;">{{ item.title }}</h4>
+                                <small style="opacity:0.7;">{{ item.desc }}</small>
+                            </div>
+                        </div>
+                        <div v-for="(item, index) in capabilities" :key="'dup'+index" class="cap-item">
+                            <span class="cap-icon">{{ item.icon }}</span>
+                            <div>
+                                <h4 style="margin:0; font-size: 1rem;">{{ item.title }}</h4>
+                                <small style="opacity:0.7;">{{ item.desc }}</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -177,7 +197,7 @@
 
         <div class="dashboard-grid">
             <div class="col-gallery">
-                <div class="section-header">Quick Snaps <small style="font-size:0.8rem;">(Click to Open Album)</small></div>
+                <div class="section-header">Quick Snaps</div>
                 <div class="polaroid-container">
                     <div class="polaroid sfx-trigger" data-album="pets" style="--r:-3deg;">
                         <div class="polaroid-img"><img src="image/kel.jpg" alt="Pets"></div>
@@ -203,7 +223,7 @@
             </div>
 
             <div class="details-column">
-                <div class="col-info" style="margin-top: 0;">
+                <div class="col-info">
                     <div class="section-header">Goals</div>
                     <div class="info-list">
                         <div class="info-card sfx-trigger">
@@ -223,13 +243,13 @@
             </div>
         </div> 
         
-        <div style="margin-top: 60px; margin-bottom: 40px; padding: 30px; background: var(--card-white); border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);">
-            <div class="section-header">Who Is Me?</div>
-            <p style="line-height: 1.8; color: var(--text-main); margin-bottom: 20px;">
-                I am a 2nd Year BSCS student at Asia Pacific College. My journey balances technical rigor with deep compassion. I expect to explore different programming languages and front-end development, utilizing creativity to make coding fun.
-            </p>
-            <div style="border-left: 4px solid var(--primary-blue); padding-left: 20px; font-style: italic; color: var(--text-light);">
-                "I was able to save our puppy who had Parvo. It was almost two weeks of sleepless nights taking care of him while also finishing up a project and reviewing for exams... Checking every minute if his dextrose was working properly, even while I was sick. It was really hard, but my love and dedication kept me going, and now I am very proud and happy to say that he’s fully recovered, very active, and lively."
+        <div class="col-gallery-wide centered-gallery" style="margin-top: 50px;">
+            <div class="section-header">Life Gallery <small style="opacity: 0.6; font-weight: normal;">(Vertical Portrait Mode)</small></div>
+            <div id="art-gallery-container" class="art-container">
+                <div class="art-ui">
+                    <h2 id="art-title">Loading...</h2>
+                    <p id="art-artist">MEMORIES</p>
+                </div>
             </div>
         </div>
 
@@ -245,6 +265,34 @@
     <script src="js/gallery.js"></script>
 
     <script>
+        const { createApp } = Vue;
+
+        createApp({
+            data() {
+                return {
+                    scrollY: 0,
+                    capabilities: [
+                        { title: 'Web Development', desc: 'HTML, CSS, JS, Vue', icon: '💻' },
+                        { title: 'Cyber Security', desc: 'Forensics, Linux', icon: '🔐' },
+                        { title: 'Database Mgmt', desc: 'MySQL, PHP', icon: '🗄️' },
+                        { title: 'Creative Arts', desc: 'Photoshop, Procreate', icon: '🎨' },
+                        { title: 'Video Editing', desc: 'Premiere, CapCut', icon: '🎬' },
+                        { title: 'Hardware', desc: 'Arduino, Networking', icon: '🔌' }
+                    ]
+                }
+            },
+            mounted() {
+                // Manual look auto-scroll logic
+                setInterval(() => {
+                    this.scrollY -= 0.5; // Slow scroll up
+                    // Reset if scrolled too far (infinite loop illusion)
+                    if (this.scrollY < -300) {
+                        this.scrollY = 0;
+                    }
+                }, 16); // ~60fps
+            }
+        }).mount('#vue-capabilities-app');
+
         function openProject(title, desc) {
             const modal = document.getElementById('info-modal');
             document.getElementById('modal-title').innerText = title;

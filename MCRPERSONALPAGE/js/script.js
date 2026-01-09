@@ -1,3 +1,4 @@
+// --- ALBUM DATA ---
 const albums = {
     'pets': ['image/kel.jpg', 'image/pet2.jpg', 'image/tal.jpg', 'image/nat.jpg'],
     'art': ['image/draww.png', 'image/draww.png', 'image/draww.png'],
@@ -12,6 +13,7 @@ let currentImgIndex = 0;
 const clickSound = document.getElementById('sfx-click');
 const popSound = document.getElementById('sfx-pop');
 
+// --- CURSOR FIREWORKS & INTERACTION ---
 const clickCanvas = document.getElementById('click-canvas');
 const clickCtx = clickCanvas.getContext('2d');
 clickCanvas.width = window.innerWidth;
@@ -54,6 +56,7 @@ window.addEventListener('mousedown', (e) => {
     }
 });
 
+// --- CUSTOM CURSOR MOVEMENT ---
 const cursorDot = document.querySelector('[data-cursor-dot]');
 const cursorOutline = document.querySelector('[data-cursor-outline]');
 window.addEventListener('mousemove', (e) => {
@@ -62,6 +65,70 @@ window.addEventListener('mousemove', (e) => {
     cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
 });
 
+// --- CASINO SLOT MACHINE INTRO LOGIC ---
+const slotReels = [
+    document.getElementById('reel-1'),
+    document.getElementById('reel-2'),
+    document.getElementById('reel-3'),
+    document.getElementById('reel-4'),
+    document.getElementById('reel-5')
+];
+const finalWord = ['H', 'E', 'L', 'L', 'O'];
+const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+function spinReel(element, finalChar, delay) {
+    let iteration = 0;
+    const maxIterations = 20 + delay * 5; // Staggered stopping
+    
+    // Manual interval logic for "manual made" look
+    let interval = setInterval(() => {
+        element.innerText = characters.charAt(Math.floor(Math.random() * characters.length));
+        iteration++;
+        
+        if (iteration > maxIterations) {
+            clearInterval(interval);
+            element.innerText = finalChar;
+            element.style.borderColor = "#6c8af1"; // Highlight color
+            
+            // Check if last reel
+            if (element.id === 'reel-5') {
+                showEnterButton();
+            }
+        }
+    }, 50); // Speed of spin
+}
+
+function startCasinoIntro() {
+    slotReels.forEach((reel, index) => {
+        spinReel(reel, finalWord[index], index);
+    });
+}
+
+function showEnterButton() {
+    const sub = document.getElementById('slot-sub');
+    const btn = document.getElementById('enter-btn');
+    
+    sub.style.opacity = 1; // Show "THERE"
+    
+    setTimeout(() => {
+        btn.style.opacity = 1;
+        btn.style.pointerEvents = "auto";
+    }, 800);
+}
+
+// Start Intro on Load
+window.onload = startCasinoIntro;
+
+// --- ENTER BUTTON CLICK ---
+const enterBtn = document.getElementById('enter-btn');
+enterBtn.addEventListener('click', () => {
+    if(popSound) { popSound.volume = 0.5; popSound.play().catch(e => console.log("Audio Error:", e)); }
+    
+    document.body.classList.remove('locked');
+    document.body.classList.add('active');
+});
+
+// --- POLAROID LOGIC ---
 document.querySelectorAll('.polaroid').forEach(card => {
     card.addEventListener('click', () => {
         const albumKey = card.getAttribute('data-album');
@@ -73,6 +140,7 @@ document.querySelectorAll('.polaroid').forEach(card => {
     });
 });
 
+// --- LIGHTBOX LOGIC ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const caption = document.getElementById('caption');
@@ -106,49 +174,7 @@ lightbox.onclick = (e) => {
     if(e.target === lightbox) lightbox.style.display = "none"; 
 };
 
-const enterBtn = document.getElementById('enter-btn');
-const welcomeScreen = document.getElementById('welcome-screen');
-const fireworkCanvas = document.getElementById('fireworks-canvas');
-const fwCtx = fireworkCanvas.getContext('2d');
-fireworkCanvas.width = window.innerWidth; fireworkCanvas.height = window.innerHeight;
-let fwParticles = [];
-
-enterBtn.addEventListener('click', () => {
-    if(popSound) { popSound.volume = 0.5; popSound.play().catch(e => console.log("Audio Error:", e)); }
-    createBigFirework();
-    animateBigFireworks();
-    setTimeout(() => {
-        document.body.classList.remove('locked');
-        document.body.classList.add('active');
-    }, 1200);
-});
-
-function createBigFirework() {
-    for(let i=0; i<80; i++) {
-        fwParticles.push({
-            x: window.innerWidth/2, y: window.innerHeight/2,
-            vx: (Math.random()-0.5)*15, vy: (Math.random()-0.5)*15,
-            alpha: 1, color: '#fff'
-        });
-    }
-}
-
-function animateBigFireworks() {
-    fwCtx.globalCompositeOperation = 'destination-out';
-    fwCtx.fillStyle = 'rgba(0,0,0,0.1)';
-    fwCtx.fillRect(0,0, fireworkCanvas.width, fireworkCanvas.height);
-    fwCtx.globalCompositeOperation = 'lighter';
-    
-    fwParticles.forEach((p, i) => {
-        p.x += p.vx; p.y += p.vy; p.alpha -= 0.01;
-        fwCtx.fillStyle = p.color; fwCtx.globalAlpha = p.alpha;
-        fwCtx.beginPath(); fwCtx.arc(p.x, p.y, 4, 0, Math.PI*2); fwCtx.fill();
-        if(p.alpha<=0) fwParticles.splice(i,1);
-    });
-    
-    if(fwParticles.length > 0) requestAnimationFrame(animateBigFireworks);
-}
-
+// --- MISC HANDLERS ---
 const weaknessBtn = document.getElementById('weakness-btn');
 let wStep = 0;
 weaknessBtn.addEventListener('click', () => {
@@ -163,6 +189,4 @@ document.getElementById('resumeToggle').onclick = () => document.getElementById(
 window.addEventListener('resize', () => {
     clickCanvas.width = window.innerWidth;
     clickCanvas.height = window.innerHeight;
-    fireworkCanvas.width = window.innerWidth;
-    fireworkCanvas.height = window.innerHeight;
 });
