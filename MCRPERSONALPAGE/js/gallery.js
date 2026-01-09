@@ -2,7 +2,7 @@
     // --- CONFIGURATION ---
     // Make sure these files exist in your 'gallery' folder!
     const images = [
-        { url: 'gallery/img1.jpg', title: 'My Life', artist: 'MEMORIES' }, 
+        { url: 'image/draww.png', title: 'My Life', artist: 'MEMORIES' }, 
         { url: 'gallery/img2.jpg', title: 'Adventure', artist: 'TRAVEL' },
         { url: 'gallery/img3.jpg', title: 'Family', artist: 'LOVE' },
         { url: 'gallery/img4.jpg', title: 'Friends', artist: 'FUN' }
