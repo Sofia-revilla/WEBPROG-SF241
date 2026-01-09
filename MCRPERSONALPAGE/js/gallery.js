@@ -1,5 +1,6 @@
 (function() {
-    // --- IMAGES FOR LIFE GALLERY ---
+    // --- IMAGES FOR VERTICAL GALLERY ---
+    // These should be your best shots
     const images = [
         { url: 'image/pet2.jpg', title: 'Happiness', artist: 'MY PETS' },
         { url: 'image/draww.png', title: 'Creativity', artist: 'ARTWORKS' },

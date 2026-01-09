@@ -1,4 +1,5 @@
 // --- ALBUM DATA ---
+// You must have these images in your folder!
 const albums = {
     'pets': ['image/kel.jpg', 'image/pet2.jpg', 'image/tal.jpg', 'image/nat.jpg'],
     'art': ['image/draww.png', 'image/draww.png', 'image/draww.png'],
@@ -13,21 +14,6 @@ let currentImgIndex = 0;
 // --- SOUNDS ---
 const clickSound = document.getElementById('sfx-click');
 const popSound = document.getElementById('sfx-pop');
-
-function playClick() {
-    if(clickSound) {
-        // Clone allows rapid clicking without waiting for track to finish
-        const clone = clickSound.cloneNode();
-        clone.play().catch(e => {});
-    }
-}
-
-// Attach sound to triggers
-document.addEventListener('click', (e) => {
-    if(e.target.closest('.sfx-trigger') || e.target.tagName === 'BUTTON' || e.target.tagName === 'A') {
-        playClick();
-    }
-});
 
 // --- CURSOR FIREWORKS ---
 const clickCanvas = document.getElementById('click-canvas');
@@ -63,12 +49,19 @@ function animateClickFireworks() {
     if(clickParticles.length > 0) requestAnimationFrame(animateClickFireworks);
 }
 
+// Mouse Down Event for Firework
 window.addEventListener('mousedown', (e) => {
     createClickFirework(e.clientX, e.clientY);
     animateClickFireworks();
+    
+    // Play Click Sound Safely
+    if(clickSound) {
+        clickSound.currentTime = 0;
+        clickSound.play().catch(()=>{});
+    }
 });
 
-// --- CUSTOM CURSOR ---
+// --- CUSTOM CURSOR MOVEMENT ---
 const cursorDot = document.querySelector('[data-cursor-dot]');
 const cursorOutline = document.querySelector('[data-cursor-outline]');
 window.addEventListener('mousemove', (e) => {
@@ -77,89 +70,7 @@ window.addEventListener('mousemove', (e) => {
     cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
 });
 
-// --- SIDE NAV LOGIC ---
-const sideNav = document.getElementById('side-nav');
-const navToggle = document.getElementById('side-nav-toggle');
-const closeNav = document.querySelector('.close-nav');
-
-if(navToggle) {
-    navToggle.addEventListener('click', () => sideNav.classList.add('active'));
-}
-if(closeNav) {
-    closeNav.addEventListener('click', () => sideNav.classList.remove('active'));
-}
-
-// --- MUSIC PLAYER LOGIC ---
-const tracks = [
-    { title: "Chill Vibes", artist: "Unknown Artist", file: "music-track-1" },
-    { title: "Cyber Focus", artist: "Synthwave", file: "music-track-2" }
-];
-let trackIdx = 0;
-let isPlaying = false;
-const playBtn = document.getElementById('play-pause');
-const titleDisplay = document.getElementById('music-title');
-const artistDisplay = document.getElementById('music-artist');
-
-function toggleMusic() {
-    const audioEl = document.getElementById(tracks[trackIdx].file);
-    if(!audioEl) return;
-
-    if(isPlaying) {
-        audioEl.pause();
-        playBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
-        isPlaying = false;
-    } else {
-        // Stop all others
-        document.querySelectorAll('audio').forEach(a => { if(a.id.includes('music')) a.pause(); });
-        audioEl.play().catch(e => console.log("No audio file found"));
-        playBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
-        isPlaying = true;
-    }
-}
-
-if(playBtn) {
-    playBtn.addEventListener('click', toggleMusic);
-    document.getElementById('next-track').addEventListener('click', () => {
-        trackIdx = (trackIdx + 1) % tracks.length;
-        updateTrackInfo();
-    });
-    document.getElementById('prev-track').addEventListener('click', () => {
-        trackIdx = (trackIdx - 1 + tracks.length) % tracks.length;
-        updateTrackInfo();
-    });
-}
-
-function updateTrackInfo() {
-    isPlaying = false; // Reset play state on change
-    playBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
-    titleDisplay.innerText = tracks[trackIdx].title;
-    artistDisplay.innerText = tracks[trackIdx].artist;
-    // Stop previous
-    document.querySelectorAll('audio').forEach(a => { if(a.id.includes('music')) { a.pause(); a.currentTime = 0; } });
-}
-
-// --- NOTE FEATURE (LOCAL STORAGE) ---
-const noteInput = document.getElementById('note-input');
-const saveNoteBtn = document.getElementById('save-note-btn');
-const noteDisplay = document.getElementById('saved-note-display');
-
-if(saveNoteBtn) {
-    // Load saved note
-    const saved = localStorage.getItem('sofia_portfolio_note');
-    if(saved) noteDisplay.innerHTML = `<p>"${saved}"</p>`;
-
-    saveNoteBtn.addEventListener('click', () => {
-        const text = noteInput.value;
-        if(text.trim() !== "") {
-            localStorage.setItem('sofia_portfolio_note', text);
-            noteDisplay.innerHTML = `<p>"${text}"</p>`;
-            noteInput.value = "";
-            alert("Note saved!");
-        }
-    });
-}
-
-// --- POLAROID & LIGHTBOX ---
+// --- POLAROID CLICK LOGIC (Open Album) ---
 document.querySelectorAll('.polaroid').forEach(card => {
     card.addEventListener('click', () => {
         const albumKey = card.getAttribute('data-album');
@@ -171,6 +82,7 @@ document.querySelectorAll('.polaroid').forEach(card => {
     });
 });
 
+// --- LIGHTBOX NAVIGATION ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const caption = document.getElementById('caption');
@@ -200,8 +112,11 @@ document.querySelector('.prev-btn').addEventListener('click', (e) => {
 });
 
 document.querySelector('.close-btn').onclick = () => lightbox.style.display = "none";
+lightbox.onclick = (e) => { 
+    if(e.target === lightbox) lightbox.style.display = "none"; 
+};
 
-// --- WELCOME SCREEN ---
+// --- WELCOME SCREEN (Unlocks Audio) ---
 const enterBtn = document.getElementById('enter-btn');
 const welcomeScreen = document.getElementById('welcome-screen');
 const fireworkCanvas = document.getElementById('fireworks-canvas');
@@ -210,11 +125,8 @@ fireworkCanvas.width = window.innerWidth; fireworkCanvas.height = window.innerHe
 let fwParticles = [];
 
 enterBtn.addEventListener('click', () => {
-    // UNLOCK AUDIO CONTEXT
-    if(popSound) { 
-        popSound.volume = 0.5; 
-        popSound.play().catch(e => console.log("Audio Error:", e)); 
-    }
+    // UNLOCK AUDIO
+    if(popSound) { popSound.volume = 0.5; popSound.play().catch(e => console.log("Audio Error:", e)); }
     
     // Big Fireworks
     createBigFirework();
@@ -265,6 +177,7 @@ weaknessBtn.addEventListener('click', () => {
 document.getElementById('theme-toggle').onclick = () => document.body.classList.toggle('dark-mode');
 document.getElementById('resumeToggle').onclick = () => document.getElementById('resumeContent').classList.toggle('active');
 
+// --- RESIZE HANDLER ---
 window.addEventListener('resize', () => {
     clickCanvas.width = window.innerWidth;
     clickCanvas.height = window.innerHeight;
