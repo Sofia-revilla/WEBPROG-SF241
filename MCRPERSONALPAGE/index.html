@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma. Sofia Anne - Dashboard Profile</title>
+    <title>Ma. Sofia Anne - Portfolio</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
@@ -18,13 +18,12 @@
 
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
-
-    <div id="welcome-screen">
+    <canvas id="click-canvas"></canvas> <div id="welcome-screen">
         <canvas id="fireworks-canvas"></canvas>
         <div class="welcome-content">
             <h1>MA. SOFIA ANNE</h1>
-            <p style="letter-spacing: 3px; font-size: 0.9rem; opacity: 0.8; margin-bottom: 20px;">PORTFOLIO 2025</p>
-            <button id="enter-btn">CLICK TO ENTER PROFILE</button>
+            <p style="letter-spacing: 3px; opacity: 0.8;">PORTFOLIO 2025</p>
+            <button id="enter-btn">ENTER PROFILE</button>
         </div>
     </div>
 
@@ -32,109 +31,76 @@
         <div class="modal-content">
             <span class="close-modal">&times;</span>
             <h2 id="modal-title">Title</h2>
-            <div id="modal-body">Message goes here...</div>
+            <div id="modal-body">Message...</div>
         </div>
     </div>
 
     <div id="contact-modal" class="modal-overlay">
         <div class="modal-content contact-style">
             <span class="close-modal" onclick="document.getElementById('contact-modal').style.display='none'">&times;</span>
-            <h2><i class="bi bi-person-lines-fill"></i> Get in Touch</h2>
+            <h2>Get in Touch</h2>
             <p><strong>Email:</strong> sofia.revilla@example.com</p>
             <p><strong>Phone:</strong> +63 900 000 0000</p>
-            <p><strong>Location:</strong> Clark Air Base, Philippines</p>
         </div>
     </div>
 
     <div id="lightbox" class="lightbox">
         <span class="close-btn">&times;</span>
+        <div class="lightbox-nav prev-btn"><i class="bi bi-chevron-left"></i></div>
         <img class="lightbox-content" id="lightbox-img">
+        <div class="lightbox-nav next-btn"><i class="bi bi-chevron-right"></i></div>
         <div id="caption"></div>
+        <div id="album-counter">1 / 5</div>
     </div>
 
     <div class="app-container">
         
         <nav class="nav-bar">
             <div class="nav-left-icons">
-                <a href="https://www.linkedin.com/in/ma-sofia-anne-revilla-" target="_blank" class="icon-box sfx-trigger" title="LinkedIn">
-                    <i class="bi bi-person"></i>
-                </a>
-                <div class="icon-box sfx-trigger" id="theme-toggle" title="Toggle Dark Mode">
-                    <i class="bi bi-moon"></i>
-                </div>
-                <a href="#" class="btn-pill btn-fill sfx-trigger" id="ref-btn" style="margin-left: 10px; font-size: 0.8rem; text-decoration: none;">
-                    REFERENCES
-                </a>
+                <a href="https://www.linkedin.com/in/ma-sofia-anne-revilla-" target="_blank" class="icon-box sfx-trigger"><i class="bi bi-linkedin"></i></a>
+                <div class="icon-box sfx-trigger" id="theme-toggle"><i class="bi bi-moon"></i></div>
+                <a href="#" class="btn-pill btn-fill sfx-trigger" id="ref-btn" style="margin-left: 10px; font-size: 0.8rem; text-decoration: none;">REFERENCES</a>
             </div>
-            
-            <div class="nav-menu">
-                <span class="active">Personal Webpage</span>
-            </div>
-
+            <div class="nav-menu"><span class="active">Personal Webpage</span></div>
             <div class="nav-auth-buttons">
-                <button class="btn-pill btn-outline sfx-trigger" onclick="document.getElementById('contact-modal').style.display='flex'">
-                    Contact Me
-                </button>
-                <a href="https://github.com/Sofia-revilla" target="_blank" class="btn-pill btn-fill sfx-trigger" style="text-decoration: none;">
-                    GitHub
-                </a>
+                <button class="btn-pill btn-outline sfx-trigger" onclick="document.getElementById('contact-modal').style.display='flex'">Contact</button>
+                <a href="https://github.com/Sofia-revilla" target="_blank" class="btn-pill btn-fill sfx-trigger" style="text-decoration: none;">GitHub</a>
             </div>
         </nav>
 
         <section class="hero-banner">
             <div class="hero-text">
                 <h1>Ma. Sofia Anne</h1>
-                <p>BSCS-SF Student specializing in Cyber Security.<br>
-                Future Veterinarian & Web Programmer.</p>
-                <button id="weakness-btn" class="btn-pill btn-outline sfx-trigger" style="margin-top:10px;">
-                    View Weakness ⚠️
-                </button>
+                <p>BSCS-SF Student specializing in Cyber Security.<br>Future Veterinarian & Web Programmer.</p>
+                <button id="weakness-btn" class="btn-pill btn-outline sfx-trigger" style="margin-top:10px;">View Weakness ⚠️</button>
             </div>
-            <div class="hero-img-wrapper">
-                <img src="image/me.png" alt="Profile Character">
-            </div>
+            <div class="hero-img-wrapper"><img src="image/me.png" alt="Profile"></div>
         </section>
 
         <div class="resume-section">
             <button class="resume-toggle-btn sfx-trigger" id="resumeToggle">
                 <i class="bi bi-file-earmark-person"></i> VIEW FULL RESUME & BADGES
             </button>
-            
             <div class="resume-content" id="resumeContent">
                 <div class="paper-sheet">
-                    <div class="paper-header">
-                        <h2>CURRICULUM VITAE</h2>
-                        <p>MA. SOFIA ANNE C. REVILLA</p>
-                    </div>
-                    
+                    <div class="paper-header"><h2>CURRICULUM VITAE</h2><p>MA. SOFIA ANNE C. REVILLA</p></div>
                     <div class="paper-grid">
                         <div class="resume-item full-width">
                             <span class="resume-label">Experience</span>
                             <div class="experience-box">
-                                <strong>Head of Arts Committee (2 Years)</strong><br>
-                                Clark Air Base Youth Club<br>
-                                <em style="font-size: 0.8rem;">Led artistic initiatives, managed events, and coordinated youth activities.</em>
+                                <strong>Head of Arts Committee (2 Years)</strong><br>Clark Air Base Youth Club<br>
+                                <em>Led artistic initiatives and events.</em>
                             </div>
                         </div>
-
                         <div class="resume-item full-width">
-                            <span class="resume-label">Hobbies & Interests</span>
-                            <span class="resume-value">
-                                Cafe Exploring • Going to Shooting Range • Doing Arts • Painting • Custom Designing • Taking Care of Pets
-                            </span>
-                        </div>
-                        
-                        <div class="resume-item full-width">
-                            <span class="resume-label">Certifications & Badges</span>
-                            <div class="badge-grid clickable-section" data-section="Achievements">
-                                <div class="badge-item">Agile Explorer (IBM)</div>
-                                <div class="badge-item">Explore Emerging Tech (IBM)</div>
-                                <div class="badge-item">Project Mgmt Fundamentals</div>
-                                <div class="badge-item">User Experience Design</div>
-                                <div class="badge-item">Networking Basics (Cisco)</div>
-                                <div class="badge-item">Scrum Foundation (SFPC)</div>
-                                <div class="badge-item">Lifelong Learning (Certiprof)</div>
-                                <div class="badge-item">Professional Skills (IBM)</div>
+                            <span class="resume-label">Certifications</span>
+                            <div class="badge-grid clickable-section" onclick="openProject('Badges', 'Full list of IBM and Cisco certifications.')">
+                                <div class="badge-item">Agile Explorer</div>
+                                <div class="badge-item">Explore Emerging Tech</div>
+                                <div class="badge-item">Project Mgmt</div>
+                                <div class="badge-item">UX Design</div>
+                                <div class="badge-item">Networking Basics</div>
+                                <div class="badge-item">Scrum Foundation</div>
                             </div>
                         </div>
                     </div>
@@ -142,36 +108,34 @@
             </div>
         </div>
 
-        <div class="col-gallery-wide">
-            <div class="section-header">
-                My Life Gallery <small style="font-size: 0.8rem; opacity: 0.6; font-weight: normal; margin-left: 10px;">(Auto-playing • Click to Next)</small>
-            </div>
+        <div class="col-gallery-wide centered-gallery">
+            <div class="section-header">My Life Gallery <small>(Vertical Portrait Mode)</small></div>
             <div id="art-gallery-container" class="art-container">
                 <div class="art-ui">
                     <h2 id="art-title">Loading...</h2>
-                    <p id="art-artist">MY GALLERY</p>
+                    <p id="art-artist">MEMORIES</p>
                 </div>
             </div>
         </div>
 
-        <div class="section-header">Projects <small style="font-size: 0.8rem; opacity: 0.6; font-weight: normal; margin-left: 10px;">(Click for details)</small></div>
+        <div class="section-header">Projects</div>
         <div class="projects-grid">
-            <div class="project-card sfx-trigger" onclick="openProject('Face Track', 'Attendance face tracker for school used by LeanTech. Built with Python and OpenCV.')">
+            <div class="project-card sfx-trigger" onclick="openProject('Face Track', 'Attendance face tracker using Python/OpenCV.')">
                 <div class="p-icon"><i class="bi bi-person-bounding-box"></i></div>
                 <h3>Face Track</h3>
-                <p>Attendance Face Tracker (LeanTech)</p>
+                <p>Attendance System</p>
             </div>
-            <div class="project-card sfx-trigger" onclick="openProject('TechZone DB', 'A complete Database Management System for inventory and sales. Built with MySQL and PHP.')">
+            <div class="project-card sfx-trigger" onclick="openProject('TechZone DB', 'Inventory System using MySQL/PHP.')">
                 <div class="p-icon"><i class="bi bi-database"></i></div>
                 <h3>TechZone DB</h3>
-                <p>Database Management System</p>
+                <p>Database Management</p>
             </div>
-            <div class="project-card sfx-trigger" onclick="openProject('Cyber Lab', 'Network Security Simulation and Packet Analysis project using Linux tools.')">
+            <div class="project-card sfx-trigger" onclick="openProject('Cyber Lab', 'Network Packet Analysis with Linux.')">
                 <div class="p-icon"><i class="bi bi-shield-lock"></i></div>
                 <h3>Cyber Lab</h3>
-                <p>Network Security Simulation</p>
+                <p>Security Simulation</p>
             </div>
-            <div class="project-card sfx-trigger" onclick="openProject('Achievement Board', 'Coming Soon...')">
+            <div class="project-card sfx-trigger" onclick="openProject('Achievements', 'Coming Soon...')">
                 <div class="p-icon"><i class="bi bi-trophy"></i></div>
                 <h3>Achievement Board</h3>
                 <p>Future Module</p>
@@ -179,34 +143,49 @@
         </div>
 
         <div class="dashboard-grid">
-
             <div class="col-gallery">
-                <div class="section-header">Quick Snaps <small style="font-size:0.8rem;">(Click to view)</small></div>
-                <div class="quick-snaps-grid">
-                    <div class="snap-item"><img src="image/pet2.jpg" alt="Happiness"></div>
-                    <div class="snap-item"><img src="image/draww.png" alt="Artworks"></div>
-                    <div class="snap-item"><img src="image/family.jpg" alt="Family"></div>
-                    <div class="snap-item"><img src="image/kel.jpg" alt="Fur Babies"></div>
-                    <div class="snap-item"><img src="image/tal.jpg" alt="Talia"></div>
-                    <div class="snap-item"><img src="image/nat.jpg" alt="Nat-Nat"></div>
-                    <div class="snap-item"><img src="image/shs.jpg" alt="Memories"></div>
-                    <div class="snap-item"><img src="image/me.png" alt="Portrait"></div>
+                <div class="section-header">Quick Snaps <small>(Click to Open Album)</small></div>
+                <div class="polaroid-container">
+                    
+                    <div class="polaroid sfx-trigger" data-album="pets" style="--r:-3deg;">
+                        <div class="polaroid-img"><img src="image/kel.jpg" alt="Pets"></div>
+                        <span>Fur Babies 🐾</span>
+                    </div>
+
+                    <div class="polaroid sfx-trigger" data-album="art" style="--r:2deg;">
+                        <div class="polaroid-img"><img src="image/draww.png" alt="Art"></div>
+                        <span>Artworks 🎨</span>
+                    </div>
+
+                    <div class="polaroid sfx-trigger" data-album="family" style="--r:-2deg;">
+                        <div class="polaroid-img"><img src="image/family.jpg" alt="Family"></div>
+                        <span>Family ❤️</span>
+                    </div>
+
+                    <div class="polaroid sfx-trigger" data-album="hobbies" style="--r:4deg;">
+                        <div class="polaroid-img"><img src="image/shs.jpg" alt="Hobbies"></div>
+                        <span>Hobbies 🔫</span>
+                    </div>
+
+                    <div class="polaroid sfx-trigger" data-album="memories" style="--r:-4deg;">
+                        <div class="polaroid-img"><img src="image/me.png" alt="Me"></div>
+                        <span>Memories ✨</span>
+                    </div>
+
                 </div>
             </div>
 
             <div class="details-column">
-                
                 <div class="col-search">
                     <div class="section-header">Skills</div>
-                    <div class="search-list clickable-section" onclick="openProject('Full Skill Set', 'Coming Soon: Detailed breakdown of proficiency levels.')">
+                    <div class="search-list">
                         <div class="search-pill">Python & JS</div>
-                        <div class="search-pill">HTML & CSS</div>
-                        <div class="search-pill">MySQL & Linux</div>
                         <div class="search-pill">Video Editing</div>
                         <div class="search-pill">Photoshop</div>
                         <div class="search-pill">Procreate</div>
-                        <div class="search-pill">UI/UX Design</div>
-                        <div class="search-pill">Canva</div>
+                        <div class="search-pill">Pet Care</div>
+                        <div class="search-pill">Shooting Range</div>
+                        <div class="search-pill">Custom Design</div>
                     </div>
                 </div>
 
@@ -215,29 +194,20 @@
                     <div class="info-list">
                         <div class="info-card sfx-trigger">
                             <div class="info-img">🎯</div>
-                            <div class="info-content">
-                                <h4>Life Goal</h4>
-                                <p>Financial stability.</p>
-                            </div>
+                            <div class="info-content"><h4>Life Goal</h4><p>Financial stability.</p></div>
                         </div>
                         <div class="info-card sfx-trigger">
                             <div class="info-img">🐾</div>
-                            <div class="info-content">
-                                <h4>Dream Project</h4>
-                                <p>Animal rescue shelter.</p>
-                            </div>
+                            <div class="info-content"><h4>Dream</h4><p>Animal rescue shelter.</p></div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </div> 
         
         <div style="text-align: center; margin-top: 50px; margin-bottom: 20px; color: var(--text-light); font-size: 0.8rem;">
             WEBPROG SF241 | © 2025 Ma. Sofia Anne Revilla
         </div>
-
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
