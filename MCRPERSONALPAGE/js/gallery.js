@@ -1,13 +1,12 @@
 (function() {
-    // --- 1. LIFE GALLERY IMAGES (Left - Landscape) ---
+    // Left (Landscape)
     const lifeImages = [
         { url: 'image/pet2.jpg', title: 'Happiness', artist: 'MY PETS' },
         { url: 'image/draww.png', title: 'Creativity', artist: 'ARTWORKS' },
         { url: 'image/family.jpg', title: 'Support', artist: 'FAMILY' }
     ];
 
-    // --- 2. SKILLS GALLERY IMAGES (Right - Portrait) ---
-    // Use images of your badges/logos here
+    // Right (Portrait)
     const skillImages = [
         { url: 'image/shs.jpg', title: 'Certified', artist: 'IBM SKILLS' },
         { url: 'image/me.png', title: 'Tech Stack', artist: 'PYTHON & JS' },

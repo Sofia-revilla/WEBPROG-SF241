@@ -1,10 +1,7 @@
-// --- SIDE NAV LOGIC ---
+// --- SIDE NAV ---
 const sideNav = document.getElementById('side-nav');
-const toggleBtn = document.getElementById('side-nav-toggle');
-const closeNav = document.querySelector('.close-nav');
-
-toggleBtn.onclick = () => sideNav.classList.add('active');
-closeNav.onclick = () => sideNav.classList.remove('active');
+document.getElementById('side-nav-toggle').onclick = () => sideNav.classList.add('active');
+document.querySelector('.close-nav').onclick = () => sideNav.classList.remove('active');
 
 // --- ALBUM DATA ---
 const albums = {
@@ -22,15 +19,14 @@ let currentImgIndex = 0;
 const clickSound = document.getElementById('sfx-click');
 const popSound = document.getElementById('sfx-pop');
 
-// --- CURSOR FIREWORKS ---
+// --- CLICK FIREWORKS ---
 const clickCanvas = document.getElementById('click-canvas');
 const clickCtx = clickCanvas.getContext('2d');
-clickCanvas.width = window.innerWidth;
-clickCanvas.height = window.innerHeight;
+clickCanvas.width = window.innerWidth; clickCanvas.height = window.innerHeight;
 let clickParticles = [];
 
 function createClickFirework(x, y) {
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < 15; i++) {
         clickParticles.push({
             x: x, y: y,
             vx: (Math.random() - 0.5) * 8, vy: (Math.random() - 0.5) * 8,
@@ -56,7 +52,7 @@ window.addEventListener('mousedown', (e) => {
     if(clickSound) { clickSound.currentTime = 0; clickSound.play().catch(()=>{}); }
 });
 
-// --- CUSTOM CURSOR ---
+// --- CURSOR ---
 const cursorDot = document.querySelector('[data-cursor-dot]');
 const cursorOutline = document.querySelector('[data-cursor-outline]');
 window.addEventListener('mousemove', (e) => {
@@ -101,9 +97,8 @@ document.querySelector('.prev-btn').onclick = (e) => {
 };
 document.querySelector('.close-btn').onclick = () => lightbox.style.display = "none";
 
-// --- WELCOME SCREEN ---
+// --- WELCOME ---
 const enterBtn = document.getElementById('enter-btn');
-const welcomeScreen = document.getElementById('welcome-screen');
 const fireworkCanvas = document.getElementById('fireworks-canvas');
 const fwCtx = fireworkCanvas.getContext('2d');
 fireworkCanvas.width = window.innerWidth; fireworkCanvas.height = window.innerHeight;
@@ -155,9 +150,4 @@ weaknessBtn.onclick = (e) => {
 
 document.getElementById('theme-toggle').onclick = () => document.body.classList.toggle('dark-mode');
 document.getElementById('resumeToggle').onclick = () => document.getElementById('resumeContent').classList.toggle('active');
-window.openProject = (t, d) => {
-    document.getElementById('modal-title').innerText = t;
-    document.getElementById('modal-body').innerText = d;
-    document.getElementById('info-modal').style.display = 'flex';
-};
-document.querySelector('.close-modal').onclick = () => document.getElementById('info-modal').style.display = 'none';
+window.addEventListener('resize', () => { clickCanvas.width = window.innerWidth; clickCanvas.height = window.innerHeight; });
