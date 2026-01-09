@@ -1,186 +1,143 @@
-// --- ALBUM DATA ---
-// You must have these images in your folder!
-const albums = {
-    'pets': ['image/kel.jpg', 'image/pet2.jpg', 'image/tal.jpg', 'image/nat.jpg'],
-    'art': ['image/draww.png', 'image/draww.png', 'image/draww.png'],
-    'family': ['image/family.jpg', 'image/family.jpg'],
-    'hobbies': ['image/shs.jpg', 'image/shs.jpg'],
-    'memories': ['image/me.png', 'image/shs.jpg']
-};
-
-let currentAlbum = [];
-let currentImgIndex = 0;
-
-// --- SOUNDS ---
+// --- AUDIO CONTEXT UNLOCK & SOUNDS ---
 const clickSound = document.getElementById('sfx-click');
 const popSound = document.getElementById('sfx-pop');
 
-// --- CURSOR FIREWORKS ---
-const clickCanvas = document.getElementById('click-canvas');
-const clickCtx = clickCanvas.getContext('2d');
-clickCanvas.width = window.innerWidth;
-clickCanvas.height = window.innerHeight;
-let clickParticles = [];
+// Modern browsers require user interaction before playing audio
+let audioUnlocked = false;
 
-function createClickFirework(x, y) {
-    for (let i = 0; i < 12; i++) {
-        clickParticles.push({
-            x: x, y: y,
-            vx: (Math.random() - 0.5) * 8,
-            vy: (Math.random() - 0.5) * 8,
-            life: 1,
-            color: `hsl(${Math.random() * 360}, 100%, 60%)`
-        });
+function playSound(audioEl) {
+    if (audioEl && audioUnlocked) {
+        audioEl.currentTime = 0;
+        audioEl.play().catch(e => console.log("Audio skipped:", e));
     }
 }
 
-function animateClickFireworks() {
-    clickCtx.clearRect(0, 0, clickCanvas.width, clickCanvas.height);
-    clickParticles.forEach((p, i) => {
-        p.x += p.vx; p.y += p.vy;
-        p.life -= 0.05;
-        clickCtx.fillStyle = p.color;
-        clickCtx.globalAlpha = p.life;
-        clickCtx.beginPath();
-        clickCtx.arc(p.x, p.y, 3, 0, Math.PI * 2);
-        clickCtx.fill();
-        if(p.life <= 0) clickParticles.splice(i, 1);
-    });
-    if(clickParticles.length > 0) requestAnimationFrame(animateClickFireworks);
-}
-
-// Mouse Down Event for Firework
-window.addEventListener('mousedown', (e) => {
-    createClickFirework(e.clientX, e.clientY);
-    animateClickFireworks();
-    
-    // Play Click Sound Safely
-    if(clickSound) {
-        clickSound.currentTime = 0;
-        clickSound.play().catch(()=>{});
-    }
-});
-
-// --- CUSTOM CURSOR MOVEMENT ---
+// --- CURSOR LOGIC ---
 const cursorDot = document.querySelector('[data-cursor-dot]');
 const cursorOutline = document.querySelector('[data-cursor-outline]');
+
 window.addEventListener('mousemove', (e) => {
-    const posX = e.clientX; const posY = e.clientY;
-    cursorDot.style.left = `${posX}px`; cursorDot.style.top = `${posY}px`;
-    cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
+    const posX = e.clientX;
+    const posY = e.clientY;
+    
+    // Animate Dot
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+    
+    // Animate Outline with slight delay
+    cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
 });
 
-// --- POLAROID CLICK LOGIC (Open Album) ---
-document.querySelectorAll('.polaroid').forEach(card => {
-    card.addEventListener('click', () => {
-        const albumKey = card.getAttribute('data-album');
-        if(albums[albumKey]) {
-            currentAlbum = albums[albumKey];
-            currentImgIndex = 0;
-            openLightbox();
-        }
+// Add hover effect to interactive elements
+const interactiveEls = document.querySelectorAll('a, button, .sfx-trigger, .polaroid');
+interactiveEls.forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+    
+    el.addEventListener('mousedown', () => {
+        playSound(clickSound); // Play click sound
     });
 });
 
-// --- LIGHTBOX NAVIGATION ---
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const caption = document.getElementById('caption');
-const counter = document.getElementById('album-counter');
+// --- SIDE NAV ---
+const sideNav = document.getElementById('side-nav');
+const toggleBtn = document.getElementById('side-nav-toggle');
+const closeNav = document.querySelector('.close-nav');
 
-function openLightbox() {
-    lightbox.style.display = "flex";
-    updateLightboxImage();
-}
+toggleBtn.addEventListener('click', () => sideNav.classList.add('active'));
+closeNav.addEventListener('click', () => sideNav.classList.remove('active'));
 
-function updateLightboxImage() {
-    lightboxImg.src = currentAlbum[currentImgIndex];
-    caption.innerText = "Viewing Album";
-    counter.innerText = `${currentImgIndex + 1} / ${currentAlbum.length}`;
-}
-
-document.querySelector('.next-btn').addEventListener('click', (e) => {
-    e.stopPropagation();
-    currentImgIndex = (currentImgIndex + 1) % currentAlbum.length;
-    updateLightboxImage();
-});
-
-document.querySelector('.prev-btn').addEventListener('click', (e) => {
-    e.stopPropagation();
-    currentImgIndex = (currentImgIndex - 1 + currentAlbum.length) % currentAlbum.length;
-    updateLightboxImage();
-});
-
-document.querySelector('.close-btn').onclick = () => lightbox.style.display = "none";
-lightbox.onclick = (e) => { 
-    if(e.target === lightbox) lightbox.style.display = "none"; 
-};
-
-// --- WELCOME SCREEN (Unlocks Audio) ---
+// --- WELCOME SCREEN ENTER ---
 const enterBtn = document.getElementById('enter-btn');
 const welcomeScreen = document.getElementById('welcome-screen');
-const fireworkCanvas = document.getElementById('fireworks-canvas');
-const fwCtx = fireworkCanvas.getContext('2d');
-fireworkCanvas.width = window.innerWidth; fireworkCanvas.height = window.innerHeight;
-let fwParticles = [];
 
 enterBtn.addEventListener('click', () => {
-    // UNLOCK AUDIO
-    if(popSound) { popSound.volume = 0.5; popSound.play().catch(e => console.log("Audio Error:", e)); }
-    
-    // Big Fireworks
-    createBigFirework();
-    animateBigFireworks();
+    // 1. Unlock Audio Context
+    audioUnlocked = true;
+    if(popSound) { 
+        popSound.volume = 0.5; 
+        popSound.play().catch(e => console.log(e)); 
+    }
 
+    // 2. Hide Screen
     setTimeout(() => {
         document.body.classList.remove('locked');
         document.body.classList.add('active');
-    }, 1200);
+    }, 500);
 });
 
-function createBigFirework() {
-    for(let i=0; i<80; i++) {
-        fwParticles.push({
-            x: window.innerWidth/2, y: window.innerHeight/2,
-            vx: (Math.random()-0.5)*15, vy: (Math.random()-0.5)*15,
-            alpha: 1, color: '#fff'
-        });
+// --- MUSIC PLAYER ---
+const musicCard = document.querySelector('.music-player-card');
+const playBtn = document.getElementById('music-toggle');
+let isPlaying = false;
+
+playBtn.addEventListener('click', () => {
+    isPlaying = !isPlaying;
+    if(isPlaying) {
+        musicCard.classList.add('playing');
+        playBtn.classList.replace('bi-play-circle-fill', 'bi-pause-circle-fill');
+        // If you had a real mp3, you would do audio.play() here
+    } else {
+        musicCard.classList.remove('playing');
+        playBtn.classList.replace('bi-pause-circle-fill', 'bi-play-circle-fill');
+        // audio.pause()
     }
+});
+
+// --- GUESTBOOK (LocalStorage) ---
+const guestMsg = document.getElementById('guest-msg');
+const sendBtn = document.getElementById('guest-send');
+const guestList = document.getElementById('guest-list');
+
+// Load saved notes
+const savedNotes = JSON.parse(localStorage.getItem('sofia_guestbook')) || [];
+savedNotes.forEach(note => displayNote(note));
+
+sendBtn.addEventListener('click', () => {
+    const text = guestMsg.value.trim();
+    if(text) {
+        // Save to array
+        savedNotes.unshift(text); // Add to top
+        localStorage.setItem('sofia_guestbook', JSON.stringify(savedNotes));
+        
+        // Display
+        displayNote(text);
+        guestMsg.value = ""; // Clear input
+        playSound(clickSound);
+    }
+});
+
+function displayNote(text) {
+    const div = document.createElement('div');
+    div.classList.add('guest-note');
+    div.innerText = `“${text}”`;
+    guestList.prepend(div);
 }
 
-function animateBigFireworks() {
-    fwCtx.globalCompositeOperation = 'destination-out';
-    fwCtx.fillStyle = 'rgba(0,0,0,0.1)';
-    fwCtx.fillRect(0,0, fireworkCanvas.width, fireworkCanvas.height);
-    fwCtx.globalCompositeOperation = 'lighter';
-    
-    fwParticles.forEach((p, i) => {
-        p.x += p.vx; p.y += p.vy; p.alpha -= 0.01;
-        fwCtx.fillStyle = p.color; fwCtx.globalAlpha = p.alpha;
-        fwCtx.beginPath(); fwCtx.arc(p.x, p.y, 4, 0, Math.PI*2); fwCtx.fill();
-        if(p.alpha<=0) fwParticles.splice(i,1);
+// --- POLAROID & LIGHTBOX ---
+// (Keep your existing Polaroid/Lightbox Logic here from previous script.js)
+// Just ensure playSound(clickSound) is called inside clicks.
+const lightbox = document.getElementById('lightbox');
+const closeBtn = document.querySelector('.close-btn');
+
+document.querySelectorAll('.polaroid').forEach(card => {
+    card.addEventListener('click', () => {
+        // Simple placeholder logic for demo
+        const img = card.querySelector('img').src;
+        document.getElementById('lightbox-img').src = img;
+        lightbox.style.display = 'flex';
     });
-    
-    if(fwParticles.length > 0) requestAnimationFrame(animateBigFireworks);
-}
+});
+closeBtn.onclick = () => lightbox.style.display = 'none';
 
-// --- WEAKNESS BTN ---
+// --- WEAKNESS BUTTON LOGIC ---
 const weaknessBtn = document.getElementById('weakness-btn');
 let wStep = 0;
 weaknessBtn.addEventListener('click', () => {
     if(wStep === 0) { weaknessBtn.innerText = "👉 YOU"; wStep=1; }
     else if(wStep === 1) { weaknessBtn.innerText = "✖️ MATH"; weaknessBtn.classList.add('btn-fill'); weaknessBtn.classList.remove('btn-outline'); wStep=2; }
     else { weaknessBtn.innerText = "View Weakness ⚠️"; weaknessBtn.classList.remove('btn-fill'); weaknessBtn.classList.add('btn-outline'); wStep=0; }
-});
-
-// --- TOGGLES ---
-document.getElementById('theme-toggle').onclick = () => document.body.classList.toggle('dark-mode');
-document.getElementById('resumeToggle').onclick = () => document.getElementById('resumeContent').classList.toggle('active');
-
-// --- RESIZE HANDLER ---
-window.addEventListener('resize', () => {
-    clickCanvas.width = window.innerWidth;
-    clickCanvas.height = window.innerHeight;
-    fireworkCanvas.width = window.innerWidth;
-    fireworkCanvas.height = window.innerHeight;
 });

@@ -6,7 +6,7 @@
     <title>Ma. Sofia Anne - Portfolio</title>
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Courier+New:wght@400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="css/design.css">
     <link rel="stylesheet" href="css/gallery.css">
@@ -15,29 +15,29 @@
 
     <audio id="sfx-click" src="audio/typewriter-click.mp3" preload="auto"></audio>
     <audio id="sfx-pop" src="audio/firework.mp3" preload="auto"></audio>
-    <audio id="music-track-1" src="audio/song1.mp3" preload="none"></audio>
-    <audio id="music-track-2" src="audio/song2.mp3" preload="none"></audio>
 
     <div class="cursor-dot" data-cursor-dot></div>
     <div class="cursor-outline" data-cursor-outline></div>
     <canvas id="click-canvas"></canvas>
 
     <div id="side-nav-toggle" class="sfx-trigger"><i class="bi bi-list"></i></div>
+
     <div id="side-nav">
-        <span class="close-nav sfx-trigger">&times;</span>
-        <h3>Navigation</h3>
-        <a href="#" onclick="scrollToSection('hero')" class="sfx-trigger">Home</a>
-        <a href="#" onclick="scrollToSection('who-is-me')" class="sfx-trigger">Who Is Me</a>
-        <a href="#" onclick="scrollToSection('gallery-row')" class="sfx-trigger">Life & Music</a>
-        <a href="#" onclick="scrollToSection('projects')" class="sfx-trigger">Projects</a>
-        <a href="#" onclick="scrollToSection('quick-snaps')" class="sfx-trigger">Quick Snaps</a>
-        <a href="#" onclick="scrollToSection('guestbook')" class="sfx-trigger">Leave a Note</a>
-        
-        <div class="nav-contact-bonus">
-            <h4>CONTACT</h4>
-            <div class="contact-item"><i class="bi bi-envelope"></i> sofia.revilla@example.com</div>
-            <div class="contact-item"><i class="bi bi-linkedin"></i> linkedin.com/in/sofia-revilla</div>
-            <div class="contact-item"><i class="bi bi-geo-alt"></i> Clark Air Base / Makati</div>
+        <span class="close-nav">&times;</span>
+        <div class="nav-content">
+            <h3>Menu</h3>
+            <a href="#" onclick="scrollToSection('hero')">Home</a>
+            <a href="#" onclick="scrollToSection('resume-section')">Who Is Me?</a>
+            <a href="#" onclick="scrollToSection('gallery-area')">Galleries</a>
+            <a href="#" onclick="scrollToSection('guestbook')">Guestbook</a>
+            
+            <div class="nav-contact-bonus">
+                <h4>Contact Info</h4>
+                <p><i class="bi bi-envelope-fill"></i> sofia.revilla@example.com</p>
+                <p><i class="bi bi-linkedin"></i> linkedin.com/in/sofia-revilla</p>
+                <p><i class="bi bi-geo-alt-fill"></i> Clark Air Base, Philippines</p>
+                <p class="quote">"Future Military Cyber Specialist"</p>
+            </div>
         </div>
     </div>
 
@@ -52,17 +52,17 @@
 
     <div id="info-modal" class="modal-overlay">
         <div class="modal-content">
-            <span class="close-modal sfx-trigger">&times;</span>
+            <span class="close-modal">&times;</span>
             <h2 id="modal-title">Title</h2>
             <div id="modal-body">Message...</div>
         </div>
     </div>
 
     <div id="lightbox" class="lightbox">
-        <span class="close-btn sfx-trigger">&times;</span>
-        <div class="lightbox-nav prev-btn sfx-trigger"><i class="bi bi-chevron-left"></i></div>
+        <span class="close-btn">&times;</span>
+        <div class="lightbox-nav prev-btn"><i class="bi bi-chevron-left"></i></div>
         <img class="lightbox-content" id="lightbox-img">
-        <div class="lightbox-nav next-btn sfx-trigger"><i class="bi bi-chevron-right"></i></div>
+        <div class="lightbox-nav next-btn"><i class="bi bi-chevron-right"></i></div>
         <div id="caption"></div>
         <div id="album-counter">1 / 1</div>
     </div>
@@ -83,8 +83,8 @@
         <section class="hero-banner" id="hero">
             <div class="hero-text">
                 <h1>Ma. Sofia Anne</h1>
-                <p><strong>Future Military Cyber Specialist & Veterinarian</strong><br>
-                "Practicality over passion, but passion always finds a way."</p>
+                <p><strong>Cybersecurity Student & Future Veterinarian</strong><br>
+                "Passion fuels the journey, but discipline ensures the destination."</p>
                 <button id="weakness-btn" class="btn-pill btn-outline sfx-trigger" style="margin-top:10px;">View Weakness ⚠️</button>
             </div>
             <div class="hero-img-wrapper">
@@ -92,66 +92,71 @@
             </div>
         </section>
 
-        <div class="resume-section" id="who-is-me">
+        <div style="text-align: center; max-width: 800px; margin: 0 auto 50px auto; line-height: 1.8; color: var(--text-main);">
+            <p>I am a 20-year-old BSCS student specializing in Forensics at Asia Pacific College. Balancing the technical world of ethical hacking with a deep love for animals, I aim to secure cyberspace today and build a rescue shelter tomorrow.</p>
+        </div>
+
+        <div class="resume-section" id="resume-section">
             <button class="resume-toggle-btn sfx-trigger" id="resumeToggle">
-                <i class="bi bi-file-earmark-person"></i> WHO IS ME? (Click to Reveal)
+                <i class="bi bi-folder2-open"></i> WHO IS ME? (Click to Open)
             </button>
             
             <div class="resume-content" id="resumeContent">
                 <div class="paper-sheet">
                     <div class="paper-header">
-                        <h2>WHO IS ME</h2>
-                        <p>CONFIDENTIAL | STUDENT PROFILE</p>
+                        <h2>CONFIDENTIAL PROFILE</h2>
+                        <p>SUBJECT: MA. SOFIA ANNE C. REVILLA</p>
                     </div>
                     
-                    <div class="bio-narrative">
-                        <p>I am a 2nd Year BSCS student at Asia Pacific College. My journey balances technical rigor with deep compassion. From saving my puppy from Parvo through sleepless nights during exam week, to mastering Linux fundamentals—dedication drives everything I do.</p>
-                    </div>
-
                     <div class="paper-grid">
-                        <div class="resume-item">
-                            <span class="resume-label">Identity</span>
-                            <span class="resume-value">
-                                <strong>Name:</strong> Ma. Sofia Anne C. Revilla<br>
-                                <strong>Nicknames:</strong> Sof or Pia<br>
-                                <strong>Age:</strong> 20 (April 26, 2005)
-                            </span>
+                        <div class="resume-col">
+                            <div class="resume-item">
+                                <span class="resume-label">Alias</span>
+                                <span class="resume-value">Sof or Pia</span>
+                            </div>
+                            <div class="resume-item">
+                                <span class="resume-label">Stats</span>
+                                <span class="resume-value">Age: 20 | April 26, 2005</span>
+                            </div>
+                            <div class="resume-item">
+                                <span class="resume-label">Base of Operations</span>
+                                <span class="resume-value">Makati / Clark Air Base</span>
+                            </div>
+                            <div class="resume-item">
+                                <span class="resume-label">Education</span>
+                                <span class="resume-value">Asia Pacific College (BSCS-SF)<br>60% AFP-OLC Scholar</span>
+                            </div>
                         </div>
-                        <div class="resume-item">
-                            <span class="resume-label">Education</span>
-                            <span class="resume-value">
-                                <strong>SHS:</strong> Asia Pacific College, Makati<br>
-                                <strong>College:</strong> BSCS (Cybersecurity & Forensics)<br>
-                                <strong>Scholarship:</strong> 60% AFP-OLC
-                            </span>
+
+                        <div class="resume-col">
+                            <div class="resume-item">
+                                <span class="resume-label">Active Skills</span>
+                                <div class="search-list" style="justify-content: flex-start;">
+                                    <span class="search-pill">Video Editing</span>
+                                    <span class="search-pill">Photoshop</span>
+                                    <span class="search-pill">Drawing</span>
+                                    <span class="search-pill">Linux</span>
+                                    <span class="search-pill">MySQL</span>
+                                </div>
+                            </div>
+                            <div class="resume-item">
+                                <span class="resume-label">Hobbies</span>
+                                <span class="resume-value">Shooting Range, Cafe Exploring, Watching Crime Docs, Running Alone.</span>
+                            </div>
                         </div>
 
                         <div class="resume-item full-width">
-                            <span class="resume-label">Goals & Ambitions</span>
+                            <span class="resume-label">Mission: Practicality vs. Passion</span>
                             <div class="experience-box">
-                                <p><strong>Primary Goal:</strong> Financial stability to support my family and build a large animal rescue shelter.</p>
-                                <p><strong>Dream Career:</strong> Military Cyber Operations. I also plan to pursue Veterinary Medicine later in life.</p>
+                                "I chose CS for practicality. Tech is in high demand, and I plan to join <strong>Military Cyber Operations</strong>. I originally wanted Veterinary Medicine, but found ethical hacking intriguing. My ultimate dream is to have a stable job that funds my future <strong>Animal Rescue Shelter</strong>."
                             </div>
                         </div>
 
                         <div class="resume-item full-width">
-                            <span class="resume-label">Life Highlight: Resilience</span>
+                            <span class="resume-label">Life Event: The Survivor</span>
                             <div class="experience-box highlight-box">
-                                "I was able to save our puppy who had parvo. It was almost two weeks of sleepless nights taking care of him while also finishing up a project and reviewing for exams... It was really hard, but my love and dedication kept me going. He is now fully recovered."
-                            </div>
-                        </div>
-
-                        <div class="resume-item full-width">
-                            <span class="resume-label">Skills & Interests</span>
-                            <div class="search-list" style="margin-top: 5px;">
-                                <span class="search-pill">Video Editing</span>
-                                <span class="search-pill">Photoshop</span>
-                                <span class="search-pill">Drawing/Painting</span>
-                                <span class="search-pill">Custom Designing</span>
-                                <span class="search-pill">Pet Care</span>
-                                <span class="search-pill">Cafe Exploring</span>
-                                <span class="search-pill">Shooting Range</span>
-                                <span class="search-pill">Crime Docs</span>
+                                <i class="bi bi-heart-pulse-fill" style="color: #d14444;"></i> 
+                                <strong>Saving My Puppy:</strong> For two weeks, I had sleepless nights nursing my puppy through Parvo while simultaneously studying for exam week. Checking dextrose drips while sick myself—it was hard, but my dedication kept me going. He is now fully recovered, active, and lively.
                             </div>
                         </div>
                     </div>
@@ -159,11 +164,11 @@
             </div>
         </div>
 
-        <div class="gallery-row" id="gallery-row">
+        <div class="gallery-dual-container" id="gallery-area">
             
             <div class="gallery-column">
-                <div class="section-header">Life Gallery <small>(Automated)</small></div>
-                <div id="art-gallery-container" class="art-container vertical-art sfx-trigger">
+                <div class="section-header">Life Gallery</div>
+                <div id="art-gallery-container" class="art-container vertical-art">
                     <div class="art-ui">
                         <h2 id="art-title">Loading...</h2>
                         <p id="art-artist">MY LIFE</p>
@@ -172,20 +177,32 @@
             </div>
 
             <div class="gallery-column">
-                <div class="section-header">My Playlist <small>(Vibe)</small></div>
-                <div class="music-player-container sfx-trigger">
-                    <div class="music-visualizer">
-                        <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                <div class="section-header">Vibe Check</div>
+                
+                <div class="music-player-card">
+                    <div class="album-art">
+                        <img src="image/me.png" alt="Album Art"> <div class="vinyl-center"></div>
                     </div>
-                    <div class="music-info">
-                        <h3 id="music-title">Select a Track</h3>
-                        <p id="music-artist">Sofia's Favorites</p>
+                    <div class="song-info">
+                        <h3>Simula at Wakas</h3>
+                        <p>SB19 - Pagtatag!</p>
                     </div>
-                    <div class="music-controls">
-                        <button id="prev-track" class="control-btn"><i class="bi bi-skip-start-fill"></i></button>
-                        <button id="play-pause" class="control-btn play-btn"><i class="bi bi-play-fill"></i></button>
-                        <button id="next-track" class="control-btn"><i class="bi bi-skip-end-fill"></i></button>
+                    <div class="progress-container">
+                        <div class="progress-bar"></div>
                     </div>
+                    <div class="controls">
+                        <i class="bi bi-skip-backward-fill sfx-trigger"></i>
+                        <i class="bi bi-play-circle-fill play-btn sfx-trigger" id="music-toggle"></i>
+                        <i class="bi bi-skip-forward-fill sfx-trigger"></i>
+                    </div>
+                </div>
+
+                <div class="tech-stack-mini" style="margin-top: 20px;">
+                    <span class="badge">Python</span>
+                    <span class="badge">HTML/CSS</span>
+                    <span class="badge">Linux</span>
+                    <span class="badge">UI/UX</span>
+                    <span class="badge">Canva</span>
                 </div>
             </div>
 
@@ -208,17 +225,17 @@
                 <h3>Cyber Lab</h3>
                 <p>Security Simulation</p>
             </div>
-            <div class="project-card sfx-trigger" onclick="openProject('Achievement Board', 'Future module showcasing badges and certifications.')">
+            <div class="project-card sfx-trigger" onclick="openProject('Achievement Board', 'Coming Soon... Tracking all my badges and certifications.')">
                 <div class="p-icon"><i class="bi bi-trophy"></i></div>
-                <h3>Achievements</h3>
-                <p>Coming Soon...</p>
+                <h3>Achievement Board</h3>
+                <p>Future Module</p>
             </div>
         </div>
 
-        <div class="dashboard-grid" id="quick-snaps">
+        <div class="dashboard-grid">
 
             <div class="col-gallery">
-                <div class="section-header">Quick Snaps <small>(Click to Open Albums)</small></div>
+                <div class="section-header">Quick Snaps (Polaroids)</div>
                 <div class="polaroid-container">
                     
                     <div class="polaroid sfx-trigger" data-album="pets" style="--r:-3deg;">
@@ -236,52 +253,26 @@
                         <span>Family</span>
                     </div>
 
-                    <div class="polaroid sfx-trigger" data-album="hobbies" style="--r:4deg;">
-                        <div class="polaroid-img"><img src="image/shs.jpg" alt="Hobbies"></div>
-                        <span>Hobbies</span>
-                    </div>
-
-                    <div class="polaroid sfx-trigger" data-album="memories" style="--r:-4deg;">
+                    <div class="polaroid sfx-trigger" data-album="memories" style="--r:4deg;">
                         <div class="polaroid-img"><img src="image/me.png" alt="Me"></div>
                         <span>Memories</span>
                     </div>
-
                 </div>
             </div>
 
-            <div class="details-column">
-                <div class="col-info">
-                    <div class="section-header">Goals</div>
-                    <div class="info-list">
-                        <div class="info-card sfx-trigger">
-                            <div class="info-img">🎯</div>
-                            <div class="info-content"><h4>Goal</h4><p>Financial stability for family.</p></div>
+            <div class="col-info" id="guestbook">
+                <div class="section-header">Leave a Note</div>
+                <div class="guestbook-card paper-sheet" style="padding: 20px;">
+                    <textarea id="guest-msg" placeholder="Write a message for Sofia..."></textarea>
+                    <button id="guest-send" class="btn-pill btn-fill" style="width: 100%; margin-top: 10px;">Send Note</button>
+                    
+                    <div id="guest-list" class="guest-list">
                         </div>
-                        <div class="info-card sfx-trigger">
-                            <div class="info-img">🐾</div>
-                            <div class="info-content"><h4>Dream</h4><p>Build a large animal rescue shelter.</p></div>
-                        </div>
-                        <div class="info-card sfx-trigger">
-                            <div class="info-img">🛡️</div>
-                            <div class="info-content"><h4>Career</h4><p>Military Cyber Operations.</p></div>
-                        </div>
-                    </div>
                 </div>
             </div>
 
         </div> 
         
-        <div class="section-header" id="guestbook" style="margin-top: 50px;">Leave a Note</div>
-        <div class="note-container">
-            <div class="note-input-area">
-                <textarea id="note-input" placeholder="Write a message for Sofia..." class="note-field"></textarea>
-                <button id="save-note-btn" class="btn-pill btn-fill sfx-trigger">POST NOTE</button>
-            </div>
-            <div id="saved-note-display" class="note-display">
-                <p><em>No note saved yet.</em></p>
-            </div>
-        </div>
-
         <div style="text-align: center; margin-top: 50px; margin-bottom: 20px; color: var(--text-light); font-size: 0.8rem;">
             WEBPROG SF241 | © 2026 Ma. Sofia Anne Revilla
         </div>
@@ -294,13 +285,9 @@
     <script src="js/gallery.js"></script>
 
     <script>
-        // Inline helper for scrolling
         function scrollToSection(id) {
-            const el = document.getElementById(id);
-            if(el) {
-                el.scrollIntoView({behavior: 'smooth'});
-                document.getElementById('side-nav').classList.remove('active'); // Close nav
-            }
+            document.getElementById(id).scrollIntoView({behavior: 'smooth'});
+            document.getElementById('side-nav').classList.remove('active');
         }
         function openProject(title, desc) {
             const modal = document.getElementById('info-modal');
