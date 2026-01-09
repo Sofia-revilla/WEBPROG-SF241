@@ -137,33 +137,34 @@
         </div>
 
         <div class="dashboard-grid" style="margin-bottom: 40px;">
-            <div style="background: var(--card-white); padding: 30px; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft);">
-                <div class="section-header">Who Is Me?</div>
+            <div style="background: var(--card-white); padding: 40px; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); display: flex; flex-direction: column; justify-content: center;">
+                <div class="section-header">About Me</div>
+                <h3 style="margin-bottom: 15px; color: var(--primary-blue);">Aspiring Cyber Operations Specialist & Future Veterinarian</h3>
                 <p style="line-height: 1.8; color: var(--text-main); margin-bottom: 20px;">
-                    I am a 2nd Year BSCS student at Asia Pacific College. My journey balances technical rigor with deep compassion. I expect to explore different programming languages and front-end development, utilizing creativity to make coding fun.
+                    Driven 2nd-year Computer Science student specializing in Cybersecurity & Forensics at Asia Pacific College. My career path is defined by a unique duality: the precision of military cyber defense and the compassion of veterinary medicine.
                 </p>
-                <div style="border-left: 4px solid var(--primary-blue); padding-left: 20px; font-style: italic; color: var(--text-light); font-size: 0.9rem;">
-                    "I was able to save our puppy who had Parvo. It was almost two weeks of sleepless nights taking care of him while also finishing up a project... It was really hard, but my love and dedication kept me going."
-                </div>
+                <p style="line-height: 1.8; color: var(--text-light); font-size: 0.9rem;">
+                    I am dedicated to mastering Linux fundamentals, database management, and network security, with the ultimate goal of serving in military cyber operations.
+                </p>
             </div>
 
-            <div id="vue-capabilities-app" style="background: var(--primary-dark); padding: 30px; border-radius: var(--radius-lg); color: white; height: 100%; position: relative; overflow: hidden;">
+            <div id="vue-capabilities-app" style="background: var(--primary-dark); padding: 30px; border-radius: var(--radius-lg); color: white; height: 350px; position: relative; overflow: hidden;">
                 <div class="section-header" style="color: white; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 10px;">Capabilities</div>
                 
                 <div class="scrolling-wrapper">
                     <div class="scroll-content" :style="{ transform: 'translateY(' + scrollY + 'px)' }">
                         <div v-for="(item, index) in capabilities" :key="index" class="cap-item">
-                            <span class="cap-icon">{{ item.icon }}</span>
-                            <div>
-                                <h4 style="margin:0; font-size: 1rem;">{{ item.title }}</h4>
-                                <small style="opacity:0.7;">{{ item.desc }}</small>
+                            <div class="cap-icon-box">{{ item.icon }}</div>
+                            <div class="cap-info">
+                                <h4>{{ item.title }}</h4>
+                                <small>{{ item.desc }}</small>
                             </div>
                         </div>
                         <div v-for="(item, index) in capabilities" :key="'dup'+index" class="cap-item">
-                            <span class="cap-icon">{{ item.icon }}</span>
-                            <div>
-                                <h4 style="margin:0; font-size: 1rem;">{{ item.title }}</h4>
-                                <small style="opacity:0.7;">{{ item.desc }}</small>
+                            <div class="cap-icon-box">{{ item.icon }}</div>
+                            <div class="cap-info">
+                                <h4>{{ item.title }}</h4>
+                                <small>{{ item.desc }}</small>
                             </div>
                         </div>
                     </div>
@@ -244,8 +245,8 @@
         </div> 
         
         <div class="col-gallery-wide centered-gallery" style="margin-top: 50px;">
-            <div class="section-header">Life Gallery <small style="opacity: 0.6; font-weight: normal;">(Vertical Portrait Mode)</small></div>
-            <div id="art-gallery-container" class="art-container">
+            <div class="section-header">Life Gallery <small style="opacity: 0.6; font-weight: normal;">(Landscape Mode)</small></div>
+            <div id="art-gallery-container" class="art-container landscape-art">
                 <div class="art-ui">
                     <h2 id="art-title">Loading...</h2>
                     <p id="art-artist">MEMORIES</p>
@@ -271,6 +272,7 @@
             data() {
                 return {
                     scrollY: 0,
+                    // These act as "Cards" with icons/images
                     capabilities: [
                         { title: 'Web Development', desc: 'HTML, CSS, JS, Vue', icon: '💻' },
                         { title: 'Cyber Security', desc: 'Forensics, Linux', icon: '🔐' },
@@ -282,14 +284,15 @@
                 }
             },
             mounted() {
-                // Manual look auto-scroll logic
+                // Auto Scroll Logic (Looping)
                 setInterval(() => {
-                    this.scrollY -= 0.5; // Slow scroll up
-                    // Reset if scrolled too far (infinite loop illusion)
-                    if (this.scrollY < -300) {
+                    this.scrollY -= 0.8; // Adjust speed here
+                    // Reset if scrolled past the first set of items (approx height calculation)
+                    // 6 items * approx 90px height each = 540px
+                    if (this.scrollY < -540) {
                         this.scrollY = 0;
                     }
-                }, 16); // ~60fps
+                }, 16); 
             }
         }).mount('#vue-capabilities-app');
 

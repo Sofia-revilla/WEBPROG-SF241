@@ -13,7 +13,7 @@ let currentImgIndex = 0;
 const clickSound = document.getElementById('sfx-click');
 const popSound = document.getElementById('sfx-pop');
 
-// --- CURSOR FIREWORKS & INTERACTION ---
+// --- CURSOR FIREWORKS ---
 const clickCanvas = document.getElementById('click-canvas');
 const clickCtx = clickCanvas.getContext('2d');
 clickCanvas.width = window.innerWidth;
@@ -56,7 +56,6 @@ window.addEventListener('mousedown', (e) => {
     }
 });
 
-// --- CUSTOM CURSOR MOVEMENT ---
 const cursorDot = document.querySelector('[data-cursor-dot]');
 const cursorOutline = document.querySelector('[data-cursor-outline]');
 window.addEventListener('mousemove', (e) => {
@@ -65,7 +64,7 @@ window.addEventListener('mousemove', (e) => {
     cursorOutline.animate({ left: `${posX}px`, top: `${posY}px` }, { duration: 500, fill: "forwards" });
 });
 
-// --- CASINO SLOT MACHINE INTRO LOGIC ---
+// --- CASINO SLOT INTRO ---
 const slotReels = [
     document.getElementById('reel-1'),
     document.getElementById('reel-2'),
@@ -78,9 +77,8 @@ const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
 function spinReel(element, finalChar, delay) {
     let iteration = 0;
-    const maxIterations = 20 + delay * 5; // Staggered stopping
+    const maxIterations = 20 + delay * 5; 
     
-    // Manual interval logic for "manual made" look
     let interval = setInterval(() => {
         element.innerText = characters.charAt(Math.floor(Math.random() * characters.length));
         iteration++;
@@ -88,14 +86,13 @@ function spinReel(element, finalChar, delay) {
         if (iteration > maxIterations) {
             clearInterval(interval);
             element.innerText = finalChar;
-            element.style.borderColor = "#6c8af1"; // Highlight color
+            element.style.borderColor = "#6c8af1"; 
             
-            // Check if last reel
             if (element.id === 'reel-5') {
                 showEnterButton();
             }
         }
-    }, 50); // Speed of spin
+    }, 50);
 }
 
 function startCasinoIntro() {
@@ -107,28 +104,24 @@ function startCasinoIntro() {
 function showEnterButton() {
     const sub = document.getElementById('slot-sub');
     const btn = document.getElementById('enter-btn');
-    
-    sub.style.opacity = 1; // Show "THERE"
-    
+    sub.style.opacity = 1;
     setTimeout(() => {
         btn.style.opacity = 1;
         btn.style.pointerEvents = "auto";
     }, 800);
 }
 
-// Start Intro on Load
 window.onload = startCasinoIntro;
 
-// --- ENTER BUTTON CLICK ---
+// --- ENTER BUTTON ---
 const enterBtn = document.getElementById('enter-btn');
 enterBtn.addEventListener('click', () => {
     if(popSound) { popSound.volume = 0.5; popSound.play().catch(e => console.log("Audio Error:", e)); }
-    
     document.body.classList.remove('locked');
     document.body.classList.add('active');
 });
 
-// --- POLAROID LOGIC ---
+// --- INTERACTIONS ---
 document.querySelectorAll('.polaroid').forEach(card => {
     card.addEventListener('click', () => {
         const albumKey = card.getAttribute('data-album');
@@ -140,7 +133,6 @@ document.querySelectorAll('.polaroid').forEach(card => {
     });
 });
 
-// --- LIGHTBOX LOGIC ---
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const caption = document.getElementById('caption');
@@ -174,7 +166,6 @@ lightbox.onclick = (e) => {
     if(e.target === lightbox) lightbox.style.display = "none"; 
 };
 
-// --- MISC HANDLERS ---
 const weaknessBtn = document.getElementById('weakness-btn');
 let wStep = 0;
 weaknessBtn.addEventListener('click', () => {

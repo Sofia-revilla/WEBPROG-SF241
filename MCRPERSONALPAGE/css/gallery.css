@@ -1,4 +1,4 @@
-/* --- WebGL Banner Gallery (VERTICAL PORTRAIT) --- */
+/* --- WebGL Banner Gallery (LANDSCAPE) --- */
 .col-gallery-wide.centered-gallery {
     width: 100%;
     margin-bottom: 30px;
@@ -10,8 +10,9 @@
 .art-container {
     position: relative;
     width: 100%;
-    max-width: 400px;
-    height: 500px;    
+    /* LANDSCAPE MODE ADJUSTMENTS */
+    max-width: 800px; /* Wider */
+    height: 450px;    /* Shorter relative to width */
     border-radius: 20px;
     overflow: hidden;
     background-color: #000;
@@ -53,6 +54,6 @@
 .project-card p { font-size: 0.8rem; color: var(--text-light); }
 
 @media (max-width: 768px) {
-    .art-container { width: 100%; height: 400px; }
+    .art-container { width: 100%; height: 300px; } /* Smaller Landscape for mobile */
     .art-ui h2 { font-size: 1.5rem; }
 }
