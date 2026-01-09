@@ -1,11 +1,10 @@
 (function() {
-    // --- IMAGES CONFIGURATION (6+ Images) ---
-    // Ensure these file names match what you have in your folder
+    // --- IMAGES FOR VERTICAL GALLERY ---
+    // These should be your best shots
     const images = [
         { url: 'image/pet2.jpg', title: 'Happiness', artist: 'MY PETS' },
         { url: 'image/draww.png', title: 'Creativity', artist: 'ARTWORKS' },
         { url: 'image/family.jpg', title: 'Support', artist: 'FAMILY' },
-        { url: 'image/kel.jpg', title: 'Twinkel', artist: 'FUR BABY' },
         { url: 'image/shs.jpg', title: 'Memories', artist: 'SCHOOL DAYS' },
         { url: 'image/tal.jpg', title: 'Talia', artist: 'COMPANION' }
     ];
@@ -42,6 +41,7 @@
         uniform float dispFactor;
         void main() {
             vec2 uv = vUv;
+            // Wave distortion effect
             vec2 dist1 = vec2(uv.x + dispFactor * (sin(uv.y * 10.0 + dispFactor) * 0.1), uv.y);
             vec2 dist2 = vec2(uv.x - (1.0 - dispFactor) * (sin(uv.y * 10.0 + dispFactor) * 0.1), uv.y);
             gl_FragColor = mix(texture2D(texture1, dist1), texture2D(texture2, dist2), dispFactor);
@@ -91,8 +91,6 @@
 
     // Auto-change every 5 seconds
     setInterval(nextSlide, 5000);
-    
-    // Also allow click to change
     container.addEventListener('click', nextSlide);
 
     // --- RESPONSIVE RESIZE ---

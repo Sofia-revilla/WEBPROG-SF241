@@ -1,7 +1,8 @@
-// --- ALBUM DATA (Images per Album) ---
+// --- ALBUM DATA ---
+// You must have these images in your folder!
 const albums = {
     'pets': ['image/kel.jpg', 'image/pet2.jpg', 'image/tal.jpg', 'image/nat.jpg'],
-    'art': ['image/draww.png', 'image/draww.png', 'image/draww.png'], // Add more if you have them
+    'art': ['image/draww.png', 'image/draww.png', 'image/draww.png'],
     'family': ['image/family.jpg', 'image/family.jpg'],
     'hobbies': ['image/shs.jpg', 'image/shs.jpg'],
     'memories': ['image/me.png', 'image/shs.jpg']
@@ -22,7 +23,7 @@ clickCanvas.height = window.innerHeight;
 let clickParticles = [];
 
 function createClickFirework(x, y) {
-    for (let i = 0; i < 15; i++) {
+    for (let i = 0; i < 12; i++) {
         clickParticles.push({
             x: x, y: y,
             vx: (Math.random() - 0.5) * 8,
@@ -48,11 +49,12 @@ function animateClickFireworks() {
     if(clickParticles.length > 0) requestAnimationFrame(animateClickFireworks);
 }
 
+// Mouse Down Event for Firework
 window.addEventListener('mousedown', (e) => {
     createClickFirework(e.clientX, e.clientY);
     animateClickFireworks();
     
-    // Play sound safely
+    // Play Click Sound Safely
     if(clickSound) {
         clickSound.currentTime = 0;
         clickSound.play().catch(()=>{});
@@ -93,12 +95,12 @@ function openLightbox() {
 
 function updateLightboxImage() {
     lightboxImg.src = currentAlbum[currentImgIndex];
-    caption.innerText = `Album View`;
+    caption.innerText = "Viewing Album";
     counter.innerText = `${currentImgIndex + 1} / ${currentAlbum.length}`;
 }
 
 document.querySelector('.next-btn').addEventListener('click', (e) => {
-    e.stopPropagation(); // Prevent closing lightbox
+    e.stopPropagation();
     currentImgIndex = (currentImgIndex + 1) % currentAlbum.length;
     updateLightboxImage();
 });
@@ -123,10 +125,10 @@ fireworkCanvas.width = window.innerWidth; fireworkCanvas.height = window.innerHe
 let fwParticles = [];
 
 enterBtn.addEventListener('click', () => {
-    // UNLOCK AUDIO ENGINE
+    // UNLOCK AUDIO
     if(popSound) { popSound.volume = 0.5; popSound.play().catch(e => console.log("Audio Error:", e)); }
     
-    // Fireworks
+    // Big Fireworks
     createBigFirework();
     animateBigFireworks();
 
@@ -174,3 +176,11 @@ weaknessBtn.addEventListener('click', () => {
 // --- TOGGLES ---
 document.getElementById('theme-toggle').onclick = () => document.body.classList.toggle('dark-mode');
 document.getElementById('resumeToggle').onclick = () => document.getElementById('resumeContent').classList.toggle('active');
+
+// --- RESIZE HANDLER ---
+window.addEventListener('resize', () => {
+    clickCanvas.width = window.innerWidth;
+    clickCanvas.height = window.innerHeight;
+    fireworkCanvas.width = window.innerWidth;
+    fireworkCanvas.height = window.innerHeight;
+});
